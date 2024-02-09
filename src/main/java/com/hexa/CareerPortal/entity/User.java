@@ -20,7 +20,7 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
-	private String role;
+	private Role role;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="employer_id")
 	private Employer employer;
@@ -30,7 +30,7 @@ public class User {
 	public User() {
 		super();
 	}
-	public User(Long userId, String name, String email, String password, String role, Employer employer,
+	public User(Long userId, String name, String email, String password, Role role, Employer employer,
 			JobSeeker jobSeeker) {
 		super();
 		this.userId = userId;
@@ -65,10 +65,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	public Employer getEmployer() {
