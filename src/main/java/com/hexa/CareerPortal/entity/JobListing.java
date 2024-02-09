@@ -1,13 +1,17 @@
 package com.hexa.CareerPortal.entity;
 
-import java.sql.Date;
+
+import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,22 +19,29 @@ import jakarta.persistence.Table;
 public class JobListing {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="job_listing_id")
 	private Long jobListingId;
 	private String requirements;
 	private String description;
 	private String title;
 	@CreationTimestamp
-	private Date dateOfPosting;
+	@Column(name="date_of_posting")
+	private LocalDateTime dateOfPosting;
+	@ManyToOne
+	@JoinColumn(name="employer_id")
+	private Employer employer;
 	public JobListing() {
 		super();
 	}
-	public JobListing(Long jobListingId, String requirements, String description, String title, Date dateOfPosting) {
+	public JobListing(Long jobListingId, String requirements, String description, String title,
+			LocalDateTime dateOfPosting, Employer employer) {
 		super();
 		this.jobListingId = jobListingId;
 		this.requirements = requirements;
 		this.description = description;
 		this.title = title;
 		this.dateOfPosting = dateOfPosting;
+		this.employer = employer;
 	}
 	public Long getJobListingId() {
 		return jobListingId;
@@ -56,16 +67,23 @@ public class JobListing {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Date getDateOfPosting() {
+	public LocalDateTime getDateOfPosting() {
 		return dateOfPosting;
 	}
-	public void setDateOfPosting(Date dateOfPosting) {
+	public void setDateOfPosting(LocalDateTime dateOfPosting) {
 		this.dateOfPosting = dateOfPosting;
+	}
+	public Employer getEmployer() {
+		return employer;
+	}
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
 	}
 	@Override
 	public String toString() {
-		return "JobListing [jobListingId=" + jobListingId + ", Requirements=" + requirements + ", description="
-				+ description + ", Title=" + title + ", dateOfPosting=" + dateOfPosting + "]";
+		return "JobListing [jobListingId=" + jobListingId + ", requirements=" + requirements + ", description="
+				+ description + ", title=" + title + ", dateOfPosting=" + dateOfPosting + ", employer=" + employer
+				+ "]";
 	}
 	
 }
