@@ -21,7 +21,7 @@ public class JobApplication {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="job_application_id")
 	private Long jobApplicationId;
-	private String status;
+	private Status status;
 	@CreationTimestamp
 	@Column(name="application_date")
 	private LocalDateTime applicationDate;
@@ -34,7 +34,7 @@ public class JobApplication {
 	public JobApplication() {
 		super();
 	}
-	public JobApplication(Long jobApplicationId, String status, LocalDateTime applicationDate,
+	public JobApplication(Long jobApplicationId, Status status, LocalDateTime applicationDate,
 			LocalDateTime applicationUpadtedDate, JobSeeker jobSeeker) {
 		super();
 		this.jobApplicationId = jobApplicationId;
@@ -49,10 +49,10 @@ public class JobApplication {
 	public void setJobApplicationId(Long jobApplicationId) {
 		this.jobApplicationId = jobApplicationId;
 	}
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	public LocalDateTime getApplicationDate() {
