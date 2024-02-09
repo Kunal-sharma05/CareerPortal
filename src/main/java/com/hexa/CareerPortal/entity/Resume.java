@@ -3,6 +3,8 @@ package com.hexa.CareerPortal.entity;
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +20,8 @@ public class Resume {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String resumeId;
+	@Column(name="resume_id")
+	private Long resumeId;
 	private String fileUrl;
 	@CreationTimestamp
 	private LocalDateTime uploadDate;
@@ -30,7 +33,7 @@ public class Resume {
 	public Resume() {
 		super();
 	}
-	public Resume(String resumeId, String fileUrl, LocalDateTime uploadDate, LocalDateTime updateDate,
+	public Resume(Long resumeId, String fileUrl, LocalDateTime uploadDate, LocalDateTime updateDate,
 			JobSeeker jobSeeker) {
 		super();
 		this.resumeId = resumeId;
@@ -39,10 +42,10 @@ public class Resume {
 		this.updateDate = updateDate;
 		this.jobSeeker = jobSeeker;
 	}
-	public String getResumeId() {
+	public Long getResumeId() {
 		return resumeId;
 	}
-	public void setResumeId(String resumeId) {
+	public void setResumeId(Long resumeId) {
 		this.resumeId = resumeId;
 	}
 	public String getFileUrl() {

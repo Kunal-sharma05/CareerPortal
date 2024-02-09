@@ -18,14 +18,14 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="job seeker")
+@Table(name="job_seeker")
 public class JobSeeker {
 
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="job_seeker_id")
-	private String jobSeekerId;
+	private Long jobSeekerId;
 	@Column(name="full_name")
 	private String fullName;
 	@Column(name="professional_details")
@@ -40,7 +40,7 @@ public class JobSeeker {
 	@UpdateTimestamp
 	private LocalDateTime dateUpdated;
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="jobSeeker_jobApplication_mapping",joinColumns=@JoinColumn(name="job_seeker_id"),inverseJoinColumns=@JoinColumn(name="application_id"))
+	@JoinTable(name="jobSeeker_jobApplication_mapping",joinColumns=@JoinColumn(name="job_seeker_id"),inverseJoinColumns=@JoinColumn(name="job_application_id"))
 	private List<JobApplication> jobApplication;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="jobSeeker_resume_mapping",joinColumns=@JoinColumn(name="job_seeker_id"),inverseJoinColumns=@JoinColumn(name="resume_id"))
@@ -49,7 +49,7 @@ public class JobSeeker {
 		super();
 	}
 	
-	public JobSeeker(String jobSeekerId, String fullName, String professionalDetails, String educationDetail,
+	public JobSeeker(Long jobSeekerId, String fullName, String professionalDetails, String educationDetail,
 			String mobileNumber, String email, LocalDateTime dateCreated, LocalDateTime dateUpdated,
 			List<JobApplication> jobApplication, List<Resume> resume) {
 		super();
@@ -65,10 +65,10 @@ public class JobSeeker {
 		this.resume = resume;
 	}
 
-	public String getJobSeekerId() {
+	public Long getJobSeekerId() {
 		return jobSeekerId;
 	}
-	public void setJobSeekerId(String jobSeekerId) {
+	public void setJobSeekerId(Long jobSeekerId) {
 		this.jobSeekerId = jobSeekerId;
 	}
 	public String getFullName() {

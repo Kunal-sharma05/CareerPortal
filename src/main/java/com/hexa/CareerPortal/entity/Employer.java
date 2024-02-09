@@ -27,7 +27,7 @@ public class Employer {
 	private String mobileNo;
 	private String email;
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="Employer_jobListing_mapping",joinColumns=@JoinColumn(name="employer_id"),inverseJoinColumns=@JoinColumn(name="jobListing_id"))
+	@JoinTable(name="Employer_jobListing_mapping",joinColumns=@JoinColumn(name="employer_id"),inverseJoinColumns=@JoinColumn(name="job_Listing_id"))
 	private List<JobListing> jobListing;
 	public Employer() {
 		super();

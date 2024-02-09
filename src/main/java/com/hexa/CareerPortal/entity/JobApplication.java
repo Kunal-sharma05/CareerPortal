@@ -14,13 +14,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="job_application_id")
+@Table(name="job_application")
 public class JobApplication {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="job_application_id")
-	private String jobApplicationId;
+	private Long jobApplicationId;
 	private String status;
 	@CreationTimestamp
 	@Column(name="application_date")
@@ -34,7 +34,7 @@ public class JobApplication {
 	public JobApplication() {
 		super();
 	}
-	public JobApplication(String jobApplicationId, String status, LocalDateTime applicationDate,
+	public JobApplication(Long jobApplicationId, String status, LocalDateTime applicationDate,
 			LocalDateTime applicationUpadtedDate, JobSeeker jobSeeker) {
 		super();
 		this.jobApplicationId = jobApplicationId;
@@ -43,10 +43,10 @@ public class JobApplication {
 		this.applicationUpadtedDate = applicationUpadtedDate;
 		this.jobSeeker = jobSeeker;
 	}
-	public String getJobApplicationId() {
+	public Long getJobApplicationId() {
 		return jobApplicationId;
 	}
-	public void setJobApplicationId(String jobApplicationId) {
+	public void setJobApplicationId(Long jobApplicationId) {
 		this.jobApplicationId = jobApplicationId;
 	}
 	public String getStatus() {
