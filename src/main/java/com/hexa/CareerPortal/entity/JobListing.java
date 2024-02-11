@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +32,9 @@ public class JobListing {
 	@ManyToOne
 	@JoinColumn(name="employer_id")
 	private Employer employer;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="job_application_id")
+	private JobApplication jobApplication;
 	public JobListing() {
 		super();
 	}

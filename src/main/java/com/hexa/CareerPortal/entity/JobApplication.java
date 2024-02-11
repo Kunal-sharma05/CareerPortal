@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +21,7 @@ public class JobApplication {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="job_application_id")
+	@OneToOne(mappedBy="job_listing_id")
 	private Long jobApplicationId;
 	private Status status;
 	@CreationTimestamp
