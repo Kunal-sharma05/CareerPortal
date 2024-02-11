@@ -1,10 +1,10 @@
-package com.hexa.CareerPortal.services;
+package com.hexa.CareerPortal.service;
 
 import java.util.List;
 
 import com.hexa.CareerPortal.entity.JobSeeker;
 
-public interface JobSeekerServices {
+public interface JobSeekerService {
 
 
 	public JobSeeker createJobSeeker(JobSeeker jobseeker);

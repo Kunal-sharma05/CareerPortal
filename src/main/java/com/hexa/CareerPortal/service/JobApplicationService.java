@@ -1,4 +1,4 @@
-package com.hexa.CareerPortal.services;
+package com.hexa.CareerPortal.service;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.entity.Status;
 
 
-public interface JobApplicationServices {
+public interface JobApplicationService {
 
 	public JobApplication save(JobApplication jobApplication);
 	public List<JobApplication> findJobApplication(List<JobApplication> jobApplication);
