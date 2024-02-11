@@ -1,4 +1,4 @@
-package com.hexa.CareerPortal.services;
+package com.hexa.CareerPortal.service;
 
 import java.util.List;
 import java.util.Optional;
