@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.repository.JobSeekerRepository;
-import com.hexa.CareerPortal.services.JobSeekerServices;
+import com.hexa.CareerPortal.service.JobSeekerService;
 
 @Service
-public class JobSeekerServiceImpl implements JobSeekerServices {
+public class JobSeekerServiceImpl implements JobSeekerService {
 
 	private JobSeekerRepository jobSeekerRepository;
 	public JobSeekerServiceImpl(JobSeekerRepository jobSeekerRepository) 

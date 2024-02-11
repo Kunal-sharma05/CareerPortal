@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.entity.Resume;
-import com.hexa.CareerPortal.services.ResumeServices;
+import com.hexa.CareerPortal.service.ResumeService;
 
 @Service
-public class ResumeServiceImpl implements ResumeServices{
+public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public Resume addResume(Resume resume) {

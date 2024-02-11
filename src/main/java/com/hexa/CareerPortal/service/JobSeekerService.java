@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.hexa.CareerPortal.entity.JobSeeker;
 
-public interface JobSeekerServices {
+public interface JobSeekerService {
 
 
 	public JobSeeker createJobSeeker(JobSeeker jobseeker);

@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.entity.Resume;
 
-public interface ResumeServices {
+public interface ResumeService {
 
 public Resume addResume(Resume resume);
 	
