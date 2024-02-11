@@ -1,6 +1,7 @@
 package com.hexa.CareerPortal.entity;
 
 import java.time.LocalDateTime;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -79,5 +80,6 @@ public class JobApplication {
 				+ applicationDate + ", applicationUpadtedDate=" + applicationUpadtedDate + ", jobSeeker=" + jobSeeker
 				+ "]";
 	}
+	
 	
 }
