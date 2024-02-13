@@ -4,10 +4,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.hexa.CareerPortal.entity.JobListing;
 import com.hexa.CareerPortal.repository.JobListingRepository;
 import com.hexa.CareerPortal.service.JobListingService;
 
+@Service
 public class JobListingServiceImpl implements JobListingService {
 	private JobListingRepository jobListingRepository;
 	public JobListingServiceImpl(JobListingRepository jobListingRepository) {

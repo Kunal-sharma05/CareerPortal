@@ -3,13 +3,15 @@ package com.hexa.CareerPortal.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.hexa.CareerPortal.entity.Employer;
 import com.hexa.CareerPortal.repository.EmployerRepository;
 import com.hexa.CareerPortal.service.EmployerService;
-
-public class EmployerRepositoryImpl implements EmployerService {
+@Service
+public class EmployerServiceImpl implements EmployerService {
 	private EmployerRepository employerRepository;
-	public EmployerRepositoryImpl(EmployerRepository employerRepository) {
+	public EmployerServiceImpl(EmployerRepository employerRepository) {
 		super();
 		this.employerRepository = employerRepository;
 	}

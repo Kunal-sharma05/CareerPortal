@@ -3,11 +3,14 @@ package com.hexa.CareerPortal.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.hexa.CareerPortal.entity.Role;
 import com.hexa.CareerPortal.entity.User;
 import com.hexa.CareerPortal.repository.UserRepository;
 import com.hexa.CareerPortal.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
