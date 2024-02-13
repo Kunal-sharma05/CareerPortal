@@ -137,6 +137,11 @@ public class JobSeeker {
 				+ ", email=" + email + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
 				+ ", jobApplication=" + jobApplication + ", resume=" + resume + "]";
 	}
+
+	public void setMobileNo(String mobileNo) {
+		
+		
+	}
 	
 	
 	

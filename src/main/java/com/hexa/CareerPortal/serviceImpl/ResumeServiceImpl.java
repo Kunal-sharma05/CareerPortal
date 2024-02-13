@@ -2,12 +2,9 @@ package com.hexa.CareerPortal.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.hexa.CareerPortal.entity.JobListing;
-import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.entity.Resume;
 import com.hexa.CareerPortal.repository.ResumeRepository;
 import com.hexa.CareerPortal.service.ResumeService;

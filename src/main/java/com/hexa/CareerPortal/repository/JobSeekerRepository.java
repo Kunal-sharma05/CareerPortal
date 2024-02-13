@@ -12,7 +12,6 @@ public interface JobSeekerRepository extends JpaRepository<JobSeeker, Long>   {
 	//public List<JobSeeker> findAll();
 	//Opublic JobSeeker findByUserId(Long id);
 	public JobSeeker findByEmail(String Email);
-	public JobSeeker findByMobileNumber(String mobileNo);
 	//public JobSeeker deleteByID(Long jobSeekerId);
 	public void deleteAll();
 	public long count();
