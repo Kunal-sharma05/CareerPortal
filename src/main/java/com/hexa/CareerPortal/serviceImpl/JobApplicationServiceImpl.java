@@ -9,10 +9,7 @@ import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.entity.Status;
 import com.hexa.CareerPortal.repository.JobApplicationRepository;
 import com.hexa.CareerPortal.service.JobApplicationService;
-<<<<<<< HEAD
 
-=======
->>>>>>> 71afcc64c3b01dc3ef74ac3431da2c59527a6ef5
 
 @Service
 public class JobApplicationServiceImpl implements JobApplicationService{

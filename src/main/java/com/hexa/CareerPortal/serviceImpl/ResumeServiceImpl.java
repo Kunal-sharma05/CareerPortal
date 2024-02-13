@@ -2,11 +2,13 @@ package com.hexa.CareerPortal.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.hexa.CareerPortal.entity.JobListing;
+import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.entity.Resume;
-<<<<<<< HEAD
 import com.hexa.CareerPortal.repository.ResumeRepository;
 import com.hexa.CareerPortal.service.ResumeService;
 
@@ -20,12 +22,6 @@ public class ResumeServiceImpl implements ResumeService{
 		super();
 		this.resumeRepository = resumeRepository;
 	}
-=======
-import com.hexa.CareerPortal.service.ResumeService;
-
-@Service
-public class ResumeServiceImpl implements ResumeService{
->>>>>>> 71afcc64c3b01dc3ef74ac3431da2c59527a6ef5
 
 	@Override
 	public Resume addResume(Resume resume) {
