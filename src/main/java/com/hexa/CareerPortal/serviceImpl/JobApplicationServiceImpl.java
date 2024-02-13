@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.entity.Status;
 import com.hexa.CareerPortal.repository.JobApplicationRepository;
-import com.hexa.CareerPortal.services.JobApplicationServices;
+import com.hexa.CareerPortal.service.JobApplicationService;
+
 
 @Service
-public class JobApplicationServiceImpl implements JobApplicationServices{
+public class JobApplicationServiceImpl implements JobApplicationService{
 
 	private JobApplicationRepository jobApplicationRepository;
 	
