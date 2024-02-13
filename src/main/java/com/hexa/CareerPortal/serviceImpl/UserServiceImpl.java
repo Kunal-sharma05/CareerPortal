@@ -140,20 +140,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> deleteAll(List<User> users) {
 		List<User> user=new ArrayList<>();
-		user.addAll(userRepository.findAll(users));
+		user.addAll(users);
 		if(user!=null)
 		{
 			userRepository.deleteAll(users);
 		}
 		return user;
 		
-	}
-
-	@Override
-	public List<User> findAll(List<User> user) {
-		List<User> users=new ArrayList<>();
-		users.addAll(userRepository.findAll(users));
-		return users;
 	}
 
 }

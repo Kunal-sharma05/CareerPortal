@@ -12,7 +12,7 @@ public interface JobApplicationService {
 	public List<JobApplication> findJobApplication(List<JobApplication> jobApplication);
 	public List<JobApplication> findAll();
 	public JobApplication findByUserId(Long id);
-	public JobApplication findByStatus(Status status);
+	public List<JobApplication> findByStatus(Status status);
 	public JobApplication deleteById(Long jobApplicationId);
 	public void deleteAll();
 	public long count();

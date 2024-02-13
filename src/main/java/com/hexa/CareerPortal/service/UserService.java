@@ -10,7 +10,7 @@ public interface UserService {
 	public List<User> createUsers(List<User> user);
 	public User findByName(String name);
 	public List<User> findAll();
-	public List<User> findAll(List<User> user);
+
 	public User findByUserId(Long id);
 	public User findByEmail(String email);
 	public List<User> findByRole(Role role);

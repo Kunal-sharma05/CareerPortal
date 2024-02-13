@@ -84,7 +84,7 @@ public class JobListingServiceImpl implements JobListingService {
 
 	@Override
 	public List<JobListing> findByDate(LocalDateTime date) {
-		List<JobListing> jobListing=jobListingRepository.findByDate(date);
+		List<JobListing> jobListing=jobListingRepository.findByDateOfPosting(date);
 		return jobListing;	
 		}
 
@@ -119,7 +119,7 @@ public class JobListingServiceImpl implements JobListingService {
 	@Override
 	public List<JobListing> deleteAll(List<JobListing> jobListing) {
 		List<JobListing> jobListings=new ArrayList<>();
-		jobListings.addAll(jobListingRepository.findAll(jobListing));
+		jobListings.addAll(jobListing);
 		if(jobListings!=null)
 		{
 			jobListingRepository.deleteAll(jobListing);
@@ -154,11 +154,11 @@ public class JobListingServiceImpl implements JobListingService {
 		return jobListing;
 	}
 
-	@Override
-	public List<JobListing> findAll(List<JobListing> jobListing) {
-		List<JobListing> jobListings=new ArrayList<>();
-		jobListings.addAll(jobListingRepository.findAll(jobListing));
-		return jobListings;	
-		}
+	/*
+	 * @Override public List<JobListing> findAll(List<JobListing> jobListing) {
+	 * List<JobListing> jobListings=new ArrayList<>();
+	 * jobListings.addAll(jobListingRepository.findAll(jobListing)); return
+	 * jobListings; }
+	 */
 
 }

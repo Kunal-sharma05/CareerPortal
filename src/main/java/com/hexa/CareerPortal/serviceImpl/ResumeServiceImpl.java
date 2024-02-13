@@ -25,21 +25,18 @@ public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public Resume addResume(Resume resume) {
-		// TODO Auto-generated method stub
 		Resume saveResume = resumeRepository.save(resume);
 		return saveResume;
 	}
 
 	@Override
 	public List<Resume> findResumes(List<Resume> resume) {
-		// TODO Auto-generated method stub
 		List<Resume> saveResume = resumeRepository.saveAll(resume);
 		return saveResume;
 	}
 
 	@Override
 	public List<Resume> findAll(List<Resume> resume) {
-		// TODO Auto-generated method stub
 		List<Resume> resumes = new ArrayList<>();
 		resumes.addAll(resumeRepository.findAll());
 		return resumes;
@@ -47,7 +44,6 @@ public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public Resume findByResumeId(Long id) {
-		// TODO Auto-generated method stub
 		Resume resume= resumeRepository.findById(id).orElse(null);
 		return resume;
 		
@@ -55,7 +51,6 @@ public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public Resume deleteById(Long resumeId) {
-		// TODO Auto-generated method stub
 		Resume resume= resumeRepository.findById(resumeId).orElse(null);
 		if(resume!=null)
 		{
@@ -66,7 +61,6 @@ public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public List<Resume> deleteAll() {
-		// TODO Auto-generated method stub
 		List<Resume> resumes=new ArrayList<>();
 		resumes.addAll(resumeRepository.findAll());
 		if(resumes!=null)
@@ -80,7 +74,6 @@ public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public long count() {
-		// TODO Auto-generated method stub
 		Long count=resumeRepository.count();
 		return count;
 	
@@ -88,9 +81,8 @@ public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public List<Resume> deleteAll(List<Resume> resume) {
-		// TODO Auto-generated method stub
 		List<Resume> resumes=new ArrayList<>();
-		resumes.addAll(resumeRepository.findAll(resume));
+		resumes.addAll(resume);
 		if(resumes!=null)
 		{
 			resumeRepository.deleteAll(resume);

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hexa.CareerPortal.entity.JobApplication;
+import com.hexa.CareerPortal.entity.JobListing;
 import com.hexa.CareerPortal.entity.Status;
 import com.hexa.CareerPortal.repository.JobApplicationRepository;
 import com.hexa.CareerPortal.service.JobApplicationService;
@@ -18,7 +19,6 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	
 	public JobApplicationServiceImpl() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -36,7 +36,6 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 
 	@Override
 	public List<JobApplication> findAll() {
-		// TODO Auto-generated method stub
 		List<JobApplication>jobApplications = new ArrayList<>();
 		jobApplications.addAll(jobApplicationRepository.findAll());
 		return jobApplications;
@@ -44,15 +43,15 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 
 	@Override
 	public JobApplication findByUserId(Long id) {
-		// TODO Auto-generated method stub
-		JobApplication jobApplication = jobApplicationRepository.findByUserId(id).orElse(null);
+		JobApplication jobApplication = jobApplicationRepository.findById(id).orElse(null);
 		return jobApplication;
 	}
 
 	@Override
-	public JobApplication findByStatus(Status status) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<JobApplication> findByStatus(Status status) {
+		List<JobApplication> jobApplications=new ArrayList<>();
+		jobApplications.addAll(jobApplicationRepository.findByStatus(status));
+		return jobApplications;
 	}
 
 	@Override

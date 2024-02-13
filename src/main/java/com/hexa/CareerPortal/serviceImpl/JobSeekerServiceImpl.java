@@ -20,7 +20,6 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 	@Override
 	public JobSeeker updateName(Long id, String name) {
-		// TODO Auto-generated method stub
 		JobSeeker jobseeker = jobSeekerRepository.findById(id).orElse(null);
 		if(jobseeker!=null)
 		{
@@ -32,7 +31,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	@Override
 	public JobSeeker updateEmail(Long id, String email) {
 		// TODO Auto-generated method stub
-		JobSeeker jobseeker = jobSeekerRepository.findByEmail(email).orElse(null);
+		JobSeeker jobseeker = jobSeekerRepository.findByEmail(email);
 		if(jobseeker!=null)
 		{
 			jobseeker.setEmail(email);
@@ -63,7 +62,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	@Override
 	public JobSeeker findByName(String name) {
 		// TODO Auto-generated method stub
-		JobSeeker jobseeker = jobSeekerRepository.findByName(name).orElse(null);
+		JobSeeker jobseeker = jobSeekerRepository.findByFullName(name);
 		return jobseeker;
 	}
 
@@ -77,15 +76,14 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Override
 	public JobSeeker findByUserId(Long id) {
-		// TODO Auto-generated method stub
-		JobSeeker jobseeker = jobSeekerRepository.findByUserId(id).orElse(null);
+		JobSeeker jobseeker = jobSeekerRepository.findById(id).orElse(null);
 		return jobseeker;
 	}
 
 	@Override
 	public JobSeeker findByEmail(String Email) {
 		// TODO Auto-generated method stub
-		JobSeeker jobseeker = jobSeekerRepository.findByEmail(Email).orElse(null);
+		JobSeeker jobseeker = jobSeekerRepository.findByEmail(Email);
 		return jobseeker;
 	}
 
@@ -123,7 +121,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	public List<JobSeeker> deleteAll(List<JobSeeker> jobseekers) {
 		// TODO Auto-generated method stub
 		List<JobSeeker> jobseeker=new ArrayList<>();
-		jobseeker.addAll(jobSeekerRepository.findAll(jobseekers));
+		jobseeker.addAll(jobseekers);
 		if(jobseeker!=null)
 		{
 			jobSeekerRepository.deleteAll(jobseekers);

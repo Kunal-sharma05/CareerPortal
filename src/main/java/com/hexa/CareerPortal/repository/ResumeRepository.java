@@ -11,16 +11,15 @@ import com.hexa.CareerPortal.entity.Resume;
 @Repository
 public interface ResumeRepository extends JpaRepository<Resume, Long>   {
 
-	public Resume addResume(Resume resume);
 	
-	public List<Resume> findResumes(List<Resume> resumes);
-	public List<Resume> findAll(String url);
+	//public List<Resume> findResumes(List<Resume> resumes);
+	//public List<Resume> findbyFileUrl(String url);
 	public Optional<Resume> findByResumeId(Long id);
 	public void deleteById(Long resumeId);
 	public void deleteAll();
 	public long count();
-	public void deleteAll(List<Resume> reumes);
+	//public void deleteAll(List<Resume> reumes);
 
-	public List< Resume> findAll(List<Resume> resume);
+	//public List< Resume> findAll(List<Resume> resume);
 	
 }

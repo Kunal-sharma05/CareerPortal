@@ -3,6 +3,8 @@ package com.hexa.CareerPortal.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+
 import com.hexa.CareerPortal.entity.JobListing;
 
 public interface JobListingService {
@@ -24,6 +26,6 @@ public interface JobListingService {
 	public long count();
 	public List<JobListing> deleteAll(List<JobListing> jobListing);
 	public List<JobListing> findAll();
-	public List<JobListing> findAll(List<JobListing> jobListing);
+	//public List<JobListing> findAll(List<JobListing> jobListing);
 	
 }

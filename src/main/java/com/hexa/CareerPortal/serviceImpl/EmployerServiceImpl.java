@@ -3,6 +3,7 @@ package com.hexa.CareerPortal.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hexa.CareerPortal.entity.Employer;
@@ -109,7 +110,7 @@ public class EmployerServiceImpl implements EmployerService {
 	@Override
 	public List<Employer> deleteAll(List<Employer> employer) {
 		List<Employer> employers=new ArrayList<>();
-		employers.addAll(employerRepository.findAll(employer).orElse(null));
+		employers.addAll(employerRepository.findAllEmployers(employer));
 		if(employers!=null)
 		{
 			employerRepository.deleteAll(employer);
@@ -128,7 +129,7 @@ public class EmployerServiceImpl implements EmployerService {
 	@Override
 	public List<Employer> findAll(List<Employer> employers) {
 		List<Employer> employer=new ArrayList<>();
-		employer.addAll(employerRepository.findAll(employers).orElse(null));
+		employer.addAll(employerRepository.findAllEmployers(employers));
 		return employer;
 	}
 
