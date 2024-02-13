@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hexa.CareerPortal.entity.JobApplication;
-import com.hexa.CareerPortal.entity.JobListing;
 import com.hexa.CareerPortal.entity.Status;
 import com.hexa.CareerPortal.repository.JobApplicationRepository;
 import com.hexa.CareerPortal.service.JobApplicationService;
@@ -23,15 +22,16 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 
 	@Override
 	public JobApplication save(JobApplication jobApplication) {
-		// TODO Auto-generated method stub
 		JobApplication savedJobApplication = jobApplicationRepository.save(jobApplication);
 		return savedJobApplication;
 	}
 
 	@Override
-	public List<JobApplication> findJobApplication(List<JobApplication> jobApplication) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<JobApplication> createJobApplication(List<JobApplication> jobApplication) {
+		List<JobApplication> jobApplications=new ArrayList<>();
+		jobApplications.addAll(jobApplicationRepository.saveAll(jobApplication));
+		return jobApplications;
+	
 	}
 
 	@Override
@@ -56,7 +56,6 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 
 	@Override
 	public JobApplication deleteById(Long id) {
-		// TODO Auto-generated method stub
 		JobApplication jobApplication= jobApplicationRepository.findById(id).orElse(null);
 		if(jobApplication!=null)
 		{
@@ -66,34 +65,55 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	}
 
 	@Override
-	public void deleteAll() {
-		// TODO Auto-generated method stub
+	public List<JobApplication> deleteAll() {
+		List<JobApplication> jobApplication=new ArrayList<>();
+		jobApplication.addAll(jobApplicationRepository.findAll());
+		if(jobApplication!=null)
+		{
+			jobApplicationRepository.deleteAll();
+		}
+		return jobApplication;
 		
 	}
 
 	@Override
 	public long count() {
-		// TODO Auto-generated method stub
 		Long count = jobApplicationRepository.count();
 		return count;
 	}
 
 	@Override
-	public void deleteAll(List<JobApplication> jobApplications) {
-		// TODO Auto-generated method stub
+	public List<JobApplication> deleteAll(List<JobApplication> jobApplications) {
+		List<JobApplication> jobApplication=new ArrayList<>();
+		jobApplication.addAll(jobApplications);
+		if(jobApplication!=null)
+		{
+			jobApplicationRepository.deleteAll(jobApplications);
+		}
+		return jobApplication;
 		
 	}
 
 	@Override
-	public JobApplication updateStatus(Status status) {
-		// TODO Auto-generated method stub
-		return null;
+	public JobApplication updateStatus(JobApplication jobApplication, Status status) {
+		JobApplication jobApplications =jobApplicationRepository.findById(jobApplication.getJobApplicationId()).orElse(null);
+		if(jobApplications!=null)
+		{
+			jobApplications.setStatus(status);
+		}
+		return jobApplications;
+		
 	}
 
 	@Override
-	public JobApplication updatemobileNo(String mobileno) {
-		// TODO Auto-generated method stub
-		return null;
+	public JobApplication updatemobileNo(JobApplication jobApplications, String mobileNo) {
+		JobApplication jobApplication = jobApplicationRepository.findById(jobApplications.getJobApplicationId()).orElse(null);
+		if(jobApplication!=null)
+		{
+			jobApplication.setMobileNo(mobileNo);
+		}
+		return jobApplication;
+
 	}
 
 }

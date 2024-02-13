@@ -20,17 +20,16 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 	@Override
 	public JobSeeker updateName(Long id, String name) {
-		JobSeeker jobseeker = jobSeekerRepository.findById(id).orElse(null);
-		if(jobseeker!=null)
+		JobSeeker jobSeeker = jobSeekerRepository.findById(id).orElse(null);
+		if(jobSeeker!=null)
 		{
-			jobseeker.setFullName(name);
+			jobSeeker.setFullName(name);
 		}
-		return null;
+		return jobSeeker;
 	}
 
 	@Override
 	public JobSeeker updateEmail(Long id, String email) {
-		// TODO Auto-generated method stub
 		JobSeeker jobseeker = jobSeekerRepository.findByEmail(email);
 		if(jobseeker!=null)
 		{
@@ -40,35 +39,36 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public JobSeeker updatemobileNo(Long id,String mobileno) {
-		// TODO Auto-generated method stub
-		return null;
+	public JobSeeker updatemobileNo(JobSeeker jobSeekers,String mobileNo) {
+		JobSeeker jobSeeker=jobSeekerRepository.findById(jobSeekers.getJobSeekerId()).orElse(null);
+		if(jobSeeker!=null)
+		{
+			jobSeeker.setMobileNo(mobileNo);
+		}
+		return jobSeeker;
+	
 	}
 
 	@Override
 	public JobSeeker createJobSeeker(JobSeeker jobseeker) {
-		// TODO Auto-generated method stub
 		JobSeeker savedJobSeeker = jobSeekerRepository.save(jobseeker);
 		return savedJobSeeker;
 	}
 
 	@Override
 	public List<JobSeeker> findJobSeeker(List<JobSeeker> jobseeker) {
-		// TODO Auto-generated method stub
 		List<JobSeeker> jobseekers = jobSeekerRepository.saveAll(jobseeker);
 		return jobseekers;
 	}
 
 	@Override
 	public JobSeeker findByName(String name) {
-		// TODO Auto-generated method stub
 		JobSeeker jobseeker = jobSeekerRepository.findByFullName(name);
 		return jobseeker;
 	}
 
 	@Override
 	public List<JobSeeker> findAll() {
-		// TODO Auto-generated method stub
 		List<JobSeeker> jobseekers = new ArrayList<>();
 		jobseekers.addAll(jobSeekerRepository.findAll());
 		return jobseekers;
@@ -82,22 +82,18 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Override
 	public JobSeeker findByEmail(String Email) {
-		// TODO Auto-generated method stub
 		JobSeeker jobseeker = jobSeekerRepository.findByEmail(Email);
 		return jobseeker;
 	}
 
 	@Override
-	public JobSeeker findByMobileNo(String mobileNo) {
-		// TODO Auto-generated method stub
-		
-		return null;
-	}
-
-	@Override
 	public JobSeeker deleteByID(Long jobSeekerId) {
-		// TODO Auto-generated method stub
-		return null;
+		JobSeeker jobSeeker=jobSeekerRepository.findById(jobSeekerId).orElse(null);
+		if(jobSeeker!=null)
+		{
+			jobSeekerRepository.deleteById(jobSeekerId);
+		}
+		return jobSeeker;
 	}
 
 	@Override
@@ -119,7 +115,6 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Override
 	public List<JobSeeker> deleteAll(List<JobSeeker> jobseekers) {
-		// TODO Auto-generated method stub
 		List<JobSeeker> jobseeker=new ArrayList<>();
 		jobseeker.addAll(jobseekers);
 		if(jobseeker!=null)

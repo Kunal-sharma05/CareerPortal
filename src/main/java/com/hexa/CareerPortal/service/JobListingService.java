@@ -3,8 +3,6 @@ package com.hexa.CareerPortal.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
-
 import com.hexa.CareerPortal.entity.JobListing;
 
 public interface JobListingService {
