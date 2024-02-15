@@ -132,4 +132,11 @@ public class EmployerServiceImpl implements EmployerService {
 		return employer;
 	}
 
+	@Override
+	public List<Employer> findByFullName(String fullName) {
+		List<Employer> employers=new ArrayList<>();
+		employers.addAll(employerRepository.findByFullName(fullName));
+		return employers;
+	}
+
 }

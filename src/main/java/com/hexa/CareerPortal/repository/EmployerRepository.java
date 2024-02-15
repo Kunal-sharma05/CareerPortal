@@ -20,11 +20,12 @@ public interface EmployerRepository extends JpaRepository<Employer, Long> {
 	           "AND e.mobileNo = :#{#employer.mobileNo} " +
 	           "AND e.email = :#{#employer.email}")
 	    @Modifying
-	    void deleteAll(List<Employer> employer);
+	  public  void deleteAll(List<Employer> employer);
 
 	@Query("SELECT e FROM Employer e " +
 	           "WHERE e.companyName = :#{#employer.companyName} " +
 	           "AND e.mobileNo = :#{#employer.mobileNo} " +
 	           "AND e.email = :#{#employer.email}")
 	    List<Employer> findAllEmployers(@Param("employer") List<Employer> employers);
+	public List<Employer> findByFullName(String fullName);
 }

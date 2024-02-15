@@ -21,6 +21,8 @@ public class Employer {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="employer_id")
 	private Long employerId;
+	@Column(name="full_name")
+	private String fullName;
 	@Column(name="company_name")
 	private String companyName;
 	@Column(name="mobile_number")
@@ -33,9 +35,10 @@ public class Employer {
 		super();
 	}
 	
-	public Employer(Long employerId, String companyName, String mobileNo, String email, List<JobListing> jobListing) {
+	public Employer(Long employerId,String fullName, String companyName, String mobileNo, String email, List<JobListing> jobListing) {
 		super();
 		this.employerId = employerId;
+		this.fullName=fullName;
 		this.companyName = companyName;
 		this.mobileNo = mobileNo;
 		this.email = email;
@@ -48,6 +51,14 @@ public class Employer {
 	public void setEmployerId(Long employerId) {
 		this.employerId = employerId;
 	}
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -77,9 +88,11 @@ public class Employer {
 
 	@Override
 	public String toString() {
-		return "Employer [employerId=" + employerId + ", companyName=" + companyName + ", mobileNo=" + mobileNo
-				+ ", email=" + email + ", jobListing=" + jobListing + "]";
+		return "Employer [employerId=" + employerId + ", fullName=" + fullName + ", companyName=" + companyName
+				+ ", mobileNo=" + mobileNo + ", email=" + email + ", jobListing=" + jobListing + "]";
 	}
+
+	
 	
 	
 	
