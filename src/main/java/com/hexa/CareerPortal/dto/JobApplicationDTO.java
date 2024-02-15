@@ -14,14 +14,18 @@ public class JobApplicationDTO {
 	@FutureOrPresent(message = "Date should be either future or present")
     private LocalDateTime applicationUpdatedDate;
     
-	public JobApplicationDTO(Status status,LocalDateTime applicationUpdatedDate) {
+	public JobApplicationDTO(Status status, LocalDateTime applicationUpdatedDate) {
 		super();
+		
+	    
 		this.status = status;
-		this.applicationUpdatedDate=applicationUpdatedDate;
+		
+		this.applicationUpdatedDate = applicationUpdatedDate;
 		
 	}
 	public JobApplicationDTO() {
 		super();
+		
 	}
 	public Status getStatus() {
 		return status;
@@ -37,8 +41,7 @@ public class JobApplicationDTO {
 	}
 	@Override
 	public String toString() {
-		return "JobApplicationDTO [status=" + status
-				+ ", applicationUpdatedDate=" + applicationUpdatedDate + "]";
+		return "JobApplicationDTO [status=" + status + ", applicationUpdatedDate=" + applicationUpdatedDate + "]";
 	}
     
 }

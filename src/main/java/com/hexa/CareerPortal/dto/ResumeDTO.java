@@ -1,8 +1,9 @@
 package com.hexa.CareerPortal.dto;
 
+import java.time.LocalDateTime;
+
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 public class ResumeDTO {
 
 	@NotNull(message = "id should not be empty")
@@ -20,7 +21,7 @@ public class ResumeDTO {
 	}
 	public ResumeDTO() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Long getResumeId() {
 		return resumeId;

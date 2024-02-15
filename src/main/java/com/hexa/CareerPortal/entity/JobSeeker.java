@@ -33,11 +33,11 @@ public class JobSeeker {
 	private String professionalDetails;
 	@Column(name="education_details")
 	private String educationDetail;
-	@Column(name="date_of_birth")
-	private Date dateOfBirth;
 	@Column(name="mobile_number")
 	private String mobileNumber;
 	private String email;
+	@Column(name="date_of_birth")
+	private Date dateOfBirth;
 	@CreationTimestamp
 	private LocalDateTime dateCreated;
 	@UpdateTimestamp
@@ -54,7 +54,7 @@ public class JobSeeker {
 	
 	public JobSeeker(Long jobSeekerId, String fullName, String professionalDetails, String educationDetail,
 			String mobileNumber, String email, LocalDateTime dateCreated, LocalDateTime dateUpdated,
-			List<JobApplication> jobApplication, List<Resume> resume) {
+			List<JobApplication> jobApplication, List<Resume> resume, Date dateOfBirth) {
 		super();
 		this.jobSeekerId = jobSeekerId;
 		this.fullName = fullName;
@@ -66,7 +66,9 @@ public class JobSeeker {
 		this.dateUpdated = dateUpdated;
 		this.jobApplication = jobApplication;
 		this.resume = resume;
+		this.dateOfBirth = dateOfBirth;
 	}
+
 
 	public Long getJobSeekerId() {
 		return jobSeekerId;
@@ -132,6 +134,7 @@ public class JobSeeker {
 	public void setResume(List<Resume> resume) {
 		this.resume = resume;
 	}
+	
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -143,13 +146,11 @@ public class JobSeeker {
 	@Override
 	public String toString() {
 		return "JobSeeker [jobSeekerId=" + jobSeekerId + ", fullName=" + fullName + ", professionalDetails="
-				+ professionalDetails + ", educationDetail=" + educationDetail + ", dateOfBirth=" + dateOfBirth
-				+ ", mobileNumber=" + mobileNumber + ", email=" + email + ", dateCreated=" + dateCreated
-				+ ", dateUpdated=" + dateUpdated + ", jobApplication=" + jobApplication + ", resume=" + resume + "]";
+				+ professionalDetails + ", educationDetail=" + educationDetail + ", mobileNumber=" + mobileNumber
+				+ ", email=" + email + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
+				+ ", jobApplication=" + jobApplication + ", resume=" + resume + "dateOfBirth =" + dateOfBirth+ "]";
+		
 	}
-
-	
-	
 	
 	
 }
