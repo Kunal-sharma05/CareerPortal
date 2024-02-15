@@ -12,6 +12,7 @@ public interface EmployerService {
 	public Employer updateCompany(Employer employer,String company);
 	public Employer findById(Long id);
 	public List<Employer> findByCompanyName(String Name);
+	public List<Employer> findByFullName(String fullName);
 	public Employer findByEmail(String email);
 	public Employer deleteById(Long id);
 	public List<Employer> deleteAll();
