@@ -1,5 +1,7 @@
 package com.hexa.CareerPortal.dto;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.FutureOrPresent;
