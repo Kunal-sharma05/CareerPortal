@@ -24,7 +24,7 @@ public class JobSeekerDTO {
 	@Past
     private Date dateOfBirth;
 	@NotEmpty(message = "email should be valid")
-	@Email
+	@Email(message = "email should be valid")
     private String email;
     private List<ResumeDTO> resumes;
 
