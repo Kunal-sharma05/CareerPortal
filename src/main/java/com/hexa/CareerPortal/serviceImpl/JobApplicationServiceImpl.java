@@ -42,7 +42,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	}
 
 	@Override
-	public JobApplication findByUserId(Long id) {
+	public JobApplication findById(Long id) {
 		JobApplication jobApplication = jobApplicationRepository.findById(id).orElse(null);
 		return jobApplication;
 	}

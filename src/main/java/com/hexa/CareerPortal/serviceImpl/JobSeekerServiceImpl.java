@@ -87,7 +87,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public JobSeeker deleteByID(Long jobSeekerId) {
+	public JobSeeker deleteById(Long jobSeekerId) {
 		JobSeeker jobSeeker=jobSeekerRepository.findById(jobSeekerId).orElse(null);
 		if(jobSeeker!=null)
 		{

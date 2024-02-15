@@ -11,7 +11,7 @@ public interface JobApplicationService {
 	public JobApplication save(JobApplication jobApplication);
 	public List<JobApplication> createJobApplication(List<JobApplication> jobApplication);
 	public List<JobApplication> findAll();
-	public JobApplication findByUserId(Long id);
+	public JobApplication findById(Long id);
 	public List<JobApplication> findByStatus(Status status);
 	public JobApplication deleteById(Long jobApplicationId);
 	public List<JobApplication> deleteAll();

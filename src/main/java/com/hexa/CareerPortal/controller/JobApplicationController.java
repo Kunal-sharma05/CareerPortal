@@ -32,7 +32,7 @@ public class JobApplicationController {
     @GetMapping("/{jobApplicationId}")
     public ResponseEntity<JobApplicationDTO> getJobApplicationById(@PathVariable Long jobApplicationId) {
         try {
-            JobApplicationDTO jobApplicationDTO = jobApplicationService.findByJobApplicationId(jobApplicationId);
+            JobApplicationDTO jobApplicationDTO = jobApplicationService.findById(jobApplicationId);
             return ResponseEntity.ok(jobApplicationDTO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -51,7 +51,7 @@ public class JobApplicationController {
 
     @DeleteMapping("/{jobApplicationId}")
     public ResponseEntity<Void> deleteJobApplication(@PathVariable Long jobApplicationId) {
-        jobApplicationService.deleteJobApplication(jobApplicationId);
+        jobApplicationService.deleteById(jobApplicationId);
         return ResponseEntity.noContent().build();
     }
 

@@ -53,8 +53,8 @@ public class JobSeekerController {
     @PutMapping("/{id}")
     public ResponseEntity<JobSeekerDTO> updateJobSeeker(@PathVariable Long id, @RequestBody @Validated JobSeekerDTO jobSeekerDto) {
         JobSeekerDTO updatedJobSeeker = jobSeekerService.updateJobSeeker(id, jobSeekerDto);
-        if (updateJobSeekers != null) {
-       	 return new ResponseEntity<>(updateJobSeekers, HttpStatus.OK);;
+        if (updatedJobSeeker != null) {
+       	 return new ResponseEntity<>(updatedJobSeeker, HttpStatus.OK);;
        } else {
            throw new ResourceNotFoundException("User not found with id: " + id);
        }
@@ -63,7 +63,7 @@ public class JobSeekerController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteJobSeeker(@PathVariable Long id) {
-        jobSeekerService.deleteAll(id);
+        jobSeekerService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

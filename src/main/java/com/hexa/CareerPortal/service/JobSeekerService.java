@@ -13,7 +13,7 @@ public interface JobSeekerService {
 	public List<JobSeeker> findAll();
 	public JobSeeker findByUserId(Long id);
 	public JobSeeker findByEmail(String Email);
-	public JobSeeker deleteByID(Long id);
+	public JobSeeker deleteById(Long id);
 	public List<JobSeeker> deleteAll();
 	public long count();
 	public List<JobSeeker>  deleteAll(List<JobSeeker> jobseekers);
