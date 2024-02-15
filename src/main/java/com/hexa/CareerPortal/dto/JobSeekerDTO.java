@@ -3,14 +3,31 @@ package com.hexa.CareerPortal.dto;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class JobSeekerDTO {
+	@NotEmpty(message = "status should not be empty")
+	@Size(message = "size should not be lesser than 2")
     private String fullName;
+	@NotEmpty(message = "details should not be empty")
     private String professionalDetails;
+	@NotEmpty(message = "details should not be empty")
     private String educationDetail;
+	@NotEmpty(message = "contact number should not be empty")
+	@Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits")
     private String mobileNumber;
+	@NotEmpty(message = "birth date should not be empty")
+	@Past
     private Date dateOfBirth;
+	@NotEmpty(message = "email should be valid")
+	@Email
     private String email;
     private List<ResumeDTO> resumes;
+    
 
     public JobSeekerDTO() {
     }

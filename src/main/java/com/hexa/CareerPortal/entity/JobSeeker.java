@@ -1,6 +1,7 @@
 package com.hexa.CareerPortal.entity;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -35,6 +36,8 @@ public class JobSeeker {
 	@Column(name="mobile_number")
 	private String mobileNumber;
 	private String email;
+	@Column(name="date_of_birth")
+	private Date dateOfBirth;
 	@CreationTimestamp
 	private LocalDateTime dateCreated;
 	@UpdateTimestamp
@@ -51,7 +54,7 @@ public class JobSeeker {
 	
 	public JobSeeker(Long jobSeekerId, String fullName, String professionalDetails, String educationDetail,
 			String mobileNumber, String email, LocalDateTime dateCreated, LocalDateTime dateUpdated,
-			List<JobApplication> jobApplication, List<Resume> resume) {
+			List<JobApplication> jobApplication, List<Resume> resume, Date dateOfBirth) {
 		super();
 		this.jobSeekerId = jobSeekerId;
 		this.fullName = fullName;
@@ -63,7 +66,9 @@ public class JobSeeker {
 		this.dateUpdated = dateUpdated;
 		this.jobApplication = jobApplication;
 		this.resume = resume;
+		this.dateOfBirth = dateOfBirth;
 	}
+
 
 	public Long getJobSeekerId() {
 		return jobSeekerId;
@@ -129,21 +134,23 @@ public class JobSeeker {
 	public void setResume(List<Resume> resume) {
 		this.resume = resume;
 	}
+	
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
 
 	@Override
 	public String toString() {
 		return "JobSeeker [jobSeekerId=" + jobSeekerId + ", fullName=" + fullName + ", professionalDetails="
 				+ professionalDetails + ", educationDetail=" + educationDetail + ", mobileNumber=" + mobileNumber
 				+ ", email=" + email + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
-				+ ", jobApplication=" + jobApplication + ", resume=" + resume + "]";
-	}
-
-	public void setMobileNo(String mobileNo) {
-		
+				+ ", jobApplication=" + jobApplication + ", resume=" + resume + "dateOfBirth =" + dateOfBirth+ "]";
 		
 	}
-	
-	
 	
 	
 }
