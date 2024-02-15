@@ -27,7 +27,7 @@ public class ResumeServiceImpl implements ResumeService{
 	}
 
 	@Override
-	public List<Resume> findResumes(List<Resume> resume) {
+	public List<Resume> saveResume(List<Resume> resume) {
 		List<Resume> saveResume = resumeRepository.saveAll(resume);
 		return saveResume;
 	}

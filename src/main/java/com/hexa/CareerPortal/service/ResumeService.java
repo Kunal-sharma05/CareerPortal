@@ -11,7 +11,7 @@ public interface ResumeService {
 
 public Resume addResume(Resume resume);
 	
-	public List<Resume> findResumes(List<Resume> resume);
+	public List<Resume> saveResume(List<Resume> resume);
 	public List<Resume> findAll(List<Resume> resume);
 	public Resume findByResumeId(Long id);
 	public Resume deleteById(Long resumeId);
