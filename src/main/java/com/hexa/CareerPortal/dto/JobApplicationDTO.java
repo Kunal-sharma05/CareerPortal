@@ -1,11 +1,17 @@
 package com.hexa.CareerPortal.dto;
 
 import com.hexa.CareerPortal.entity.Status;
+
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class JobApplicationDTO {
- 
+	
+	@NotNull(message = "status should not be empty")
     private Status status;
+	@NotNull(message = "updated date can be empty")
+	@FutureOrPresent(message = "Date should be either future or present")
     private LocalDateTime applicationUpdatedDate;
     
 	public JobApplicationDTO(Status status,LocalDateTime applicationUpdatedDate) {

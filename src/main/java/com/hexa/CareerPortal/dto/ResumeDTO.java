@@ -1,10 +1,16 @@
 package com.hexa.CareerPortal.dto;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 public class ResumeDTO {
 
+	@NotNull(message = "id should not be empty")
     private Long resumeId;
+	@NotNull(message = "url should not be empty")
     private String fileUrl;
+	@NotNull(message = "updated date can be empty")
+	@FutureOrPresent(message = "Date should be either future or present")
     private LocalDateTime updateDate;
 	public ResumeDTO(Long resumeId, String fileUrl, LocalDateTime updateDate) {
 		super();

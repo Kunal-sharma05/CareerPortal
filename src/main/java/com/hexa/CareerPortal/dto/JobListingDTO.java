@@ -1,11 +1,20 @@
 package com.hexa.CareerPortal.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PastOrPresent;
+
 import java.time.LocalDateTime;
 
 public class JobListingDTO {
+    @NotEmpty(message = "Requirements should not be empty")
     private String requirements;
+
+    @NotEmpty(message = "Description should not be empty")
     private String description;
+
+    @NotEmpty(message = "Title should not be empty")
     private String title;
+    @PastOrPresent(message = "Title should not be empty")
     private LocalDateTime dateOfPosting;
     private EmployerDTO employer;
 
@@ -17,8 +26,6 @@ public class JobListingDTO {
         this.description = description;
         this.title = title;
     }
-
-    // Getters and setters
     public String getRequirements() {
         return requirements;
     }
@@ -58,4 +65,10 @@ public class JobListingDTO {
     public void setEmployer(EmployerDTO employer) {
         this.employer = employer;
     }
+
+	@Override
+	public String toString() {
+		return "JobListingDTO [requirements=" + requirements + ", description=" + description + ", title=" + title
+				+ ", dateOfPosting=" + dateOfPosting + ", employer=" + employer + "]";
+	}
 }

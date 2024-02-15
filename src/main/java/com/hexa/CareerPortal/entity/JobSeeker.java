@@ -1,6 +1,7 @@
 package com.hexa.CareerPortal.entity;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -32,6 +33,8 @@ public class JobSeeker {
 	private String professionalDetails;
 	@Column(name="education_details")
 	private String educationDetail;
+	@Column(name="date_of_birth")
+	private Date dateOfBirth;
 	@Column(name="mobile_number")
 	private String mobileNumber;
 	private String email;
@@ -129,19 +132,22 @@ public class JobSeeker {
 	public void setResume(List<Resume> resume) {
 		this.resume = resume;
 	}
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
 
 	@Override
 	public String toString() {
 		return "JobSeeker [jobSeekerId=" + jobSeekerId + ", fullName=" + fullName + ", professionalDetails="
-				+ professionalDetails + ", educationDetail=" + educationDetail + ", mobileNumber=" + mobileNumber
-				+ ", email=" + email + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
-				+ ", jobApplication=" + jobApplication + ", resume=" + resume + "]";
+				+ professionalDetails + ", educationDetail=" + educationDetail + ", dateOfBirth=" + dateOfBirth
+				+ ", mobileNumber=" + mobileNumber + ", email=" + email + ", dateCreated=" + dateCreated
+				+ ", dateUpdated=" + dateUpdated + ", jobApplication=" + jobApplication + ", resume=" + resume + "]";
 	}
 
-	public void setMobileNo(String mobileNo) {
-		
-		
-	}
 	
 	
 	

@@ -43,7 +43,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		JobSeeker jobSeeker=jobSeekerRepository.findById(jobSeekers.getJobSeekerId()).orElse(null);
 		if(jobSeeker!=null)
 		{
-			jobSeeker.setMobileNo(mobileNo);
+			jobSeeker.setMobileNumber(mobileNo);
 		}
 		return jobSeeker;
 	
