@@ -1,10 +1,7 @@
 package com.hexa.CareerPortal.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.hexa.CareerPortal.entity.JobListing;
-import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.entity.Resume;
 
 public interface ResumeService {

@@ -33,8 +33,6 @@ public class JobSeeker {
 	private String professionalDetails;
 	@Column(name="education_details")
 	private String educationDetail;
-	@Column(name="date_of_birth")
-	private Date dateOfBirth;
 	@Column(name="mobile_number")
 	private String mobileNumber;
 	private String email;
@@ -136,10 +134,7 @@ public class JobSeeker {
 	public void setResume(List<Resume> resume) {
 		this.resume = resume;
 	}
-<<<<<<< HEAD
 	
-=======
->>>>>>> d735d44391e5b2875129923de6f644c9e40283c7
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -151,19 +146,11 @@ public class JobSeeker {
 	@Override
 	public String toString() {
 		return "JobSeeker [jobSeekerId=" + jobSeekerId + ", fullName=" + fullName + ", professionalDetails="
-<<<<<<< HEAD
 				+ professionalDetails + ", educationDetail=" + educationDetail + ", mobileNumber=" + mobileNumber
 				+ ", email=" + email + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
 				+ ", jobApplication=" + jobApplication + ", resume=" + resume + "dateOfBirth =" + dateOfBirth+ "]";
 		
 	}
-=======
-				+ professionalDetails + ", educationDetail=" + educationDetail + ", dateOfBirth=" + dateOfBirth
-				+ ", mobileNumber=" + mobileNumber + ", email=" + email + ", dateCreated=" + dateCreated
-				+ ", dateUpdated=" + dateUpdated + ", jobApplication=" + jobApplication + ", resume=" + resume + "]";
-	}
-
->>>>>>> d735d44391e5b2875129923de6f644c9e40283c7
 	
 	
 }
