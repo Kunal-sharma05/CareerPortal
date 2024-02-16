@@ -1,8 +1,11 @@
 package com.hexa.CareerPortal.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.hexa.CareerPortal.dto.JobSeekerDTO;
 import com.hexa.CareerPortal.entity.JobSeeker;
 
 @Repository
@@ -17,4 +20,6 @@ public interface JobSeekerRepository extends JpaRepository<JobSeeker, Long>   {
 	public long count();
 	//public void deleteAll(List<JobSeeker> jobseekers);
 	//public List<JobSeeker> findAll(List<JobSeeker> jobseekers);
+	public JobSeekerDTO save(JobSeekerDTO userEntity);
+	public Optional<JobSeeker> findByJobSeekerId(Long id);
 }

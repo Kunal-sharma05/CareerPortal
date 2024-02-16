@@ -43,5 +43,11 @@ public class JobApplicationDTO {
 	public String toString() {
 		return "JobApplicationDTO [status=" + status + ", applicationUpdatedDate=" + applicationUpdatedDate + "]";
 	}
+	public String getMobileNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
     
 }

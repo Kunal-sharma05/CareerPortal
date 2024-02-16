@@ -18,6 +18,7 @@ import io.swagger.v3.oas.annotations.info.License;
 				contact=@Contact(
 						name="Kunal Sharma and Asim Zohair",
 						email="itsmekunal0501@gmail.com,asimzohair@gmail.com"
+
 						),
 				license=@License(
 						name="License",

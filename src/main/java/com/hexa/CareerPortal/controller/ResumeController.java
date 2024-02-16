@@ -2,6 +2,7 @@ package com.hexa.CareerPortal.controller;
 
 import com.hexa.CareerPortal.dto.ResumeDTO;
 import com.hexa.CareerPortal.entity.Resume;
+import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.ResumeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +26,18 @@ public class ResumeController {
 
     @PostMapping
     public ResponseEntity<ResumeDTO> createResume(@Validated @RequestBody ResumeDTO resumeDTO) {
-        ResumeDTO createdResume = resumeService.createResume(resumeDTO);
+        ResumeDTO createdResume = resumeService.addResume(resumeDTO);
         return new ResponseEntity<>(createdResume, HttpStatus.CREATED);
     }
 
     @GetMapping("/{resumeId}")
-    public ResponseEntity<ResumeDTO> getResumeById(@PathVariable Long resumeId) {
-        try {
-            ResumeDTO resumeDTO = resumeService.findByResumeId(resumeId);
-            return ResponseEntity.ok(resumeDTO);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+    public ResponseEntity<ResumeDTO> getResumeById(@PathVariable Long resumeId) throws ResourceNotFoundException {
+        ResumeDTO resumeDTO = resumeService.findByResumeId(resumeId);
+            if (resumeDTO != null) {
+                return new ResponseEntity<>(resumeDTO, HttpStatus.OK);
+            } else {
+                throw new ResourceNotFoundException("User not found with id: " + resumeId);
+            }
     }
 
     @PutMapping("/{resumeId}")
@@ -51,7 +52,7 @@ public class ResumeController {
 
     @DeleteMapping("/{resumeId}")
     public ResponseEntity<Void> deleteResume(@PathVariable Long resumeId) {
-        resumeService.deleteResume(resumeId);
+        resumeService.deleteById(resumeId);
         return ResponseEntity.noContent().build();
     }
 

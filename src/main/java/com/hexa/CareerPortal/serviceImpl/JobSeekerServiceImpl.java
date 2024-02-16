@@ -2,16 +2,21 @@ package com.hexa.CareerPortal.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hexa.CareerPortal.dto.JobSeekerDTO;
 import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.repository.JobSeekerRepository;
 import com.hexa.CareerPortal.service.JobSeekerService;
 
 @Service
 public class JobSeekerServiceImpl implements JobSeekerService {
-
+	@Autowired
+	private ModelMapper modelMapper;
 	private JobSeekerRepository jobSeekerRepository;
 	public JobSeekerServiceImpl(JobSeekerRepository jobSeekerRepository) 
 	{
@@ -56,6 +61,13 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
+	public JobSeekerDTO createJobSeeker(JobSeekerDTO jobSeekerDTO) {
+		JobSeeker JobSeekerEntity=  modelMapper.map(jobSeekerDTO, JobSeeker.class);
+		JobSeeker savedJobSeeker= jobSeekerRepository.save(JobSeekerEntity);
+		jobSeekerDTO=modelMapper.map(savedJobSeeker,JobSeekerDTO.class );
+		return jobSeekerDTO;
+	}
+	@Override
 	public List<JobSeeker> findJobSeeker(List<JobSeeker> jobseeker) {
 		List<JobSeeker> jobseekers = jobSeekerRepository.saveAll(jobseeker);
 		return jobseekers;
@@ -68,18 +80,26 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public List<JobSeeker> findAll() {
-		List<JobSeeker> jobseekers = new ArrayList<>();
-		jobseekers.addAll(jobSeekerRepository.findAll());
-		return jobseekers;
+	public List<JobSeekerDTO> findAll() {
+		List<JobSeeker> users=new ArrayList<>();
+		users.addAll(jobSeekerRepository.findAll());
+		List<JobSeekerDTO> user=users.stream().map(User->modelMapper.map(users, JobSeekerDTO.class)).toList();
+		return user;
+	}
+	@Override
+	public JobSeekerDTO findByUserId(Long id) {
+		JobSeeker jobSeeker = jobSeekerRepository.findById(id).orElse(null);
+		JobSeekerDTO jobSeekerDTO=modelMapper.map(jobSeeker,JobSeekerDTO.class );
+		return jobSeekerDTO;
+	
 	}
 
 	@Override
-	public JobSeeker findByUserId(Long id) {
-		JobSeeker jobseeker = jobSeekerRepository.findById(id).orElse(null);
-		return jobseeker;
+	public JobSeekerDTO findByJobSeekerId(Long id) {
+		JobSeeker jobSeeker= jobSeekerRepository.findByJobSeekerId(id).orElse(null);
+		JobSeekerDTO jobSeekerDTO=modelMapper.map(jobSeeker, JobSeekerDTO.class);
+		return jobSeekerDTO;
 	}
-
 	@Override
 	public JobSeeker findByEmail(String Email) {
 		JobSeeker jobseeker = jobSeekerRepository.findByEmail(Email);
@@ -124,6 +144,37 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return jobseeker;
 		
 		
+	}
+	@Override
+	public JobSeekerDTO updateJobSeekerDTO(Long jobSeekerId, JobSeekerDTO jobSeekerDTO) {
+		JobSeeker jobSeeker= jobSeekerRepository.findById(jobSeekerId).orElse(null);
+		if(jobSeeker!=null)
+		{
+			jobSeeker.setEmail(jobSeekerDTO.getEmail());
+			jobSeeker.setFullName(jobSeekerDTO.getFullName());
+		    JobSeekerDTO updatedJobSeeker=new JobSeekerDTO(jobSeeker.getFullName(),jobSeeker.getEmail());
+			return updatedJobSeeker;
+		}
+		
+		return null;
+	}
+	
+	public JobSeekerDTO updateJobSeeker(Long jobSeekerId, JobSeekerDTO jobSeekerDTO) {
+	    Optional<JobSeeker> optionalEmployer = jobSeekerRepository.findById(jobSeekerId);
+	    JobSeekerDTO jobSeekerDTO1=null;
+	    if (optionalEmployer.isPresent()) {
+	        JobSeeker existingEmployer = optionalEmployer.get();
+	        // Update the existing employer with the new information
+	        existingEmployer.setFullName(jobSeekerDTO1.getFullName());
+	        existingEmployer.setCompanyName(jobSeekerDTO1.getCompanyName());
+	        existingEmployer.setMobileNumber(jobSeekerDTO1.getMobileNumber());
+	        existingEmployer.setEmail(jobSeekerDTO1.getEmail());
+	        
+	        JobSeeker updatedEmployer = jobSeekerRepository.save(existingEmployer);
+	        
+	        jobSeekerDTO1= modelMapper.map(updatedEmployer, JobSeekerDTO.class);
+	    }
+	    return jobSeekerDTO1;
 	}
 
 }

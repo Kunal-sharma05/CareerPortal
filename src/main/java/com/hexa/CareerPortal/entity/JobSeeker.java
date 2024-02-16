@@ -151,6 +151,11 @@ public class JobSeeker {
 				+ ", jobApplication=" + jobApplication + ", resume=" + resume + "dateOfBirth =" + dateOfBirth+ "]";
 		
 	}
+
+	public void setCompanyName(Object companyName) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

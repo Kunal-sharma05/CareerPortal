@@ -2,9 +2,13 @@ package com.hexa.CareerPortal.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hexa.CareerPortal.dto.ResumeDTO;
 import com.hexa.CareerPortal.entity.Resume;
 import com.hexa.CareerPortal.repository.ResumeRepository;
 import com.hexa.CareerPortal.service.ResumeService;
@@ -12,7 +16,8 @@ import com.hexa.CareerPortal.service.ResumeService;
 
 @Service
 public class ResumeServiceImpl implements ResumeService{
-
+	@Autowired
+	private ModelMapper modelMapper;
 	private ResumeRepository resumeRepository;
 	
 	public ResumeServiceImpl(ResumeRepository resumeRepository){
@@ -21,31 +26,34 @@ public class ResumeServiceImpl implements ResumeService{
 	}
 
 	@Override
-	public Resume addResume(Resume resume) {
-		Resume saveResume = resumeRepository.save(resume);
-		return saveResume;
-	}
-
-	@Override
-	public List<Resume> saveResume(List<Resume> resume) {
-		List<Resume> saveResume = resumeRepository.saveAll(resume);
-		return saveResume;
-	}
-
-	@Override
-	public List<Resume> findAll(List<Resume> resume) {
-		List<Resume> resumes = new ArrayList<>();
-		resumes.addAll(resumeRepository.findAll());
-		return resumes;
-	}
-
-	@Override
-	public Resume findByResumeId(Long id) {
-		Resume resume= resumeRepository.findById(id).orElse(null);
+	public ResumeDTO addResume(ResumeDTO resume) {
+		Resume resumeEntity=modelMapper.map(resume, Resume.class);
+		Resume savedResume=resumeRepository.save(resumeEntity);
+		resume=modelMapper.map(savedResume,ResumeDTO.class );
 		return resume;
-		
 	}
 
+	@Override
+	public List<ResumeDTO> addResumes(List<ResumeDTO> resume) {
+		List<Resume> resumes=resume.stream().map(userDTO->modelMapper.map(userDTO,Resume.class)).toList();
+		List<Resume> savedUsers=resumeRepository.saveAll(resumes);
+		resume=savedUsers.stream().map(User->modelMapper.map(savedUsers, ResumeDTO.class)).toList();
+		return resume;
+	}
+	@Override
+	public List<ResumeDTO> findAll() {
+		List<Resume> users=new ArrayList<>();
+		users.addAll(resumeRepository.findAll());
+		List<ResumeDTO> user=users.stream().map(User->modelMapper.map(users, ResumeDTO.class)).toList();
+		return user;
+	}
+	
+	@Override
+	public ResumeDTO findByResumeId(Long id) {
+		Resume resume=resumeRepository.findByResumeId(id).orElse(null);
+		ResumeDTO userDTO=modelMapper.map(resume, ResumeDTO.class);
+		return userDTO;
+	}
 	@Override
 	public Resume deleteById(Long resumeId) {
 		Resume resume= resumeRepository.findById(resumeId).orElse(null);
@@ -88,6 +96,22 @@ public class ResumeServiceImpl implements ResumeService{
 	}
 
 	
+	@Override
+	public ResumeDTO updateResume(Long resumeId, ResumeDTO resumeDTO) {
+	    Optional<Resume> optionalResume = resumeRepository.findById(resumeId);
+	    ResumeDTO resumeDTOs=null;
+	    if (optionalResume.isPresent()) {
+	        Resume existingResume = optionalResume.get();
+	        // Update the existing employer with the new information
+	        existingResume.setFileUrl(resumeDTO.getFileUrl());
+	        
+	        Resume updatedResume = resumeRepository.save(existingResume);
+	        
+	        resumeDTOs=modelMapper.map(updatedResume,ResumeDTO.class);
+	    }
+	    return resumeDTOs;
+	}
+
 
 
 }
