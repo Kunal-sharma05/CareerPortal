@@ -9,7 +9,7 @@ import com.hexa.CareerPortal.entity.Status;
 
 public interface JobApplicationService {
 
-	public JobApplication save(JobApplication jobApplication);
+	public JobApplicationDTO createJobApplication(JobApplicationDTO jobApplication);
 	
 	public List<JobApplicationDTO> findAll();
 	
@@ -23,5 +23,5 @@ public interface JobApplicationService {
 	public JobApplicationDTO updateJobApplication(Long jobApplicationId, JobApplicationDTO jobApplicationDTO);
 	public List<JobApplicationDTO> createJobApplication(List<JobApplicationDTO> jobApplication);
 
-	public JobApplicationDTO findJobApplicationId(Long id);
+	public JobApplicationDTO findByJobApplicationId(Long id);
 }

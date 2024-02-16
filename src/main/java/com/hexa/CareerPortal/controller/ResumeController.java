@@ -26,21 +26,19 @@ public class ResumeController {
 
     @PostMapping
     public ResponseEntity<ResumeDTO> createResume(@Validated @RequestBody ResumeDTO resumeDTO) {
-        ResumeDTO createdResume = resumeService.saveResume(resumeDTO);
+        ResumeDTO createdResume = resumeService.addResume(resumeDTO);
         return new ResponseEntity<>(createdResume, HttpStatus.CREATED);
     }
 
     @GetMapping("/{resumeId}")
-    public ResponseEntity<ResumeDTO> getResumeById(@PathVariable Long resumeId) {
+    public ResponseEntity<ResumeDTO> getResumeById(@PathVariable Long resumeId) throws ResourceNotFoundException {
         ResumeDTO resumeDTO = resumeService.findByResumeId(resumeId);
             if (resumeDTO != null) {
                 return new ResponseEntity<>(resumeDTO, HttpStatus.OK);
             } else {
                 throw new ResourceNotFoundException("User not found with id: " + resumeId);
             }
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-  
+    }
 
     @PutMapping("/{resumeId}")
     public ResponseEntity<ResumeDTO> updateResume(@PathVariable Long resumeId, @Validated @RequestBody ResumeDTO resumeDTO) {

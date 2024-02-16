@@ -26,13 +26,15 @@ public class ResumeServiceImpl implements ResumeService{
 	}
 
 	@Override
-	public Resume addResume(Resume resume) {
-		Resume saveResume = resumeRepository.save(resume);
-		return saveResume;
+	public ResumeDTO addResume(ResumeDTO resume) {
+		Resume resumeEntity=modelMapper.map(resume, Resume.class);
+		Resume savedResume=resumeRepository.save(resumeEntity);
+		resume=modelMapper.map(savedResume,ResumeDTO.class );
+		return resume;
 	}
 
 	@Override
-	public List<ResumeDTO> createUsers(List<ResumeDTO> resume) {
+	public List<ResumeDTO> addResumes(List<ResumeDTO> resume) {
 		List<Resume> resumes=resume.stream().map(userDTO->modelMapper.map(userDTO,Resume.class)).toList();
 		List<Resume> savedUsers=resumeRepository.saveAll(resumes);
 		resume=savedUsers.stream().map(User->modelMapper.map(savedUsers, ResumeDTO.class)).toList();
@@ -103,9 +105,9 @@ public class ResumeServiceImpl implements ResumeService{
 	        // Update the existing employer with the new information
 	        existingResume.setFileUrl(resumeDTO.getFileUrl());
 	        
-	        Resume updatedEmployer = resumeRepository.save(existingResume);
+	        Resume updatedResume = resumeRepository.save(existingResume);
 	        
-	        resumeDTOs=modelMapper.map(updatedEmployer, ResumeDTO.class);
+	        resumeDTOs=modelMapper.map(updatedResume,ResumeDTO.class);
 	    }
 	    return resumeDTOs;
 	}

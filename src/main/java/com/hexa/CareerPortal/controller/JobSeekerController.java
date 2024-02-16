@@ -30,7 +30,7 @@ public class JobSeekerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<JobSeekerDTO> getJobSeekerById(@PathVariable Long id) {
+    public ResponseEntity<JobSeekerDTO> getJobSeekerById(@PathVariable Long id) throws ResourceNotFoundException {
         JobSeekerDTO jobSeeker = jobSeekerService.findByUserId(id);
         if (jobSeeker != null) {
             return new ResponseEntity<>(jobSeeker, HttpStatus.OK);
@@ -40,7 +40,7 @@ public class JobSeekerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<JobSeekerDTO>> getAllJobSeekers() {
+    public ResponseEntity<List<JobSeekerDTO>> getAllJobSeekers() throws ResourceNotFoundException {
         List<JobSeekerDTO> jobSeekers = jobSeekerService.findAll();
         if (jobSeekers != null) {
             return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
@@ -50,7 +50,7 @@ public class JobSeekerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<JobSeekerDTO> updateJobSeeker(@PathVariable Long id, @RequestBody @Validated JobSeekerDTO jobSeekerDto) {
+    public ResponseEntity<JobSeekerDTO> updateJobSeeker(@PathVariable Long id, @RequestBody @Validated JobSeekerDTO jobSeekerDto) throws ResourceNotFoundException {
         JobSeekerDTO updatedJobSeeker = jobSeekerService.updateJobSeeker(id, jobSeekerDto);
         if (updatedJobSeeker != null) {
             return new ResponseEntity<>(updatedJobSeeker, HttpStatus.OK);

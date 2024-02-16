@@ -2,6 +2,7 @@ package com.hexa.CareerPortal.controller;
 
 import com.hexa.CareerPortal.dto.JobApplicationDTO;
 import com.hexa.CareerPortal.entity.JobApplication;
+import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.JobApplicationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,14 @@ public class JobApplicationController {
     }
 
     @GetMapping("/{jobApplicationId}")
-    public ResponseEntity<JobApplicationDTO> getJobApplicationById(@PathVariable Long jobApplicationId) {
-        try {
-            JobApplicationDTO jobApplicationDTO = jobApplicationService.findById(jobApplicationId);
-            return ResponseEntity.ok(jobApplicationDTO);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+    public ResponseEntity<JobApplicationDTO> getJobApplicationById(@PathVariable Long jobApplicationId) throws ResourceNotFoundException {
+       
+            JobApplicationDTO jobApplicationDTO = jobApplicationService.findByJobApplicationId(jobApplicationId);
+            if (jobApplicationDTO != null) {
+                return new ResponseEntity<>(jobApplicationDTO, HttpStatus.OK);
+            } else {
+                throw new ResourceNotFoundException("User not found with id: " + jobApplicationId);
+            }
     }
 
     @PutMapping("/{jobApplicationId}")

@@ -12,7 +12,7 @@ public interface JobSeekerService {
 	public List<JobSeeker> findJobSeeker(List<JobSeeker> jobseeker);
 	public JobSeeker findByName(String name);
 	public List<JobSeekerDTO> findAll();
-	public JobSeeker findByUserId(Long id);
+	public JobSeekerDTO findByUserId(Long id);
 	public JobSeeker findByEmail(String Email);
 	public JobSeeker deleteById(Long id);
 	public List<JobSeeker> deleteAll();

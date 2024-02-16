@@ -62,9 +62,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Override
 	public JobSeekerDTO createJobSeeker(JobSeekerDTO jobSeekerDTO) {
-		JobSeeker userEntity=  modelMapper.map(jobSeekerDTO, JobSeeker.class);
-		JobSeeker savedUser= jobSeekerRepository.save(userEntity);
-		jobSeekerDTO=modelMapper.map(savedUser,JobSeekerDTO.class );
+		JobSeeker JobSeekerEntity=  modelMapper.map(jobSeekerDTO, JobSeeker.class);
+		JobSeeker savedJobSeeker= jobSeekerRepository.save(JobSeekerEntity);
+		jobSeekerDTO=modelMapper.map(savedJobSeeker,JobSeekerDTO.class );
 		return jobSeekerDTO;
 	}
 	@Override
@@ -87,9 +87,11 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return user;
 	}
 	@Override
-	public JobSeeker findByUserId(Long id) {
-		JobSeeker jobseeker = jobSeekerRepository.findById(id).orElse(null);
-		return jobseeker;
+	public JobSeekerDTO findByUserId(Long id) {
+		JobSeeker jobSeeker = jobSeekerRepository.findById(id).orElse(null);
+		JobSeekerDTO jobSeekerDTO=modelMapper.map(jobSeeker,JobSeekerDTO.class );
+		return jobSeekerDTO;
+	
 	}
 
 	@Override

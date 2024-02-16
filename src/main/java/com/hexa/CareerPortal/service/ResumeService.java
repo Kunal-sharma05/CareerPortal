@@ -7,7 +7,7 @@ import com.hexa.CareerPortal.entity.Resume;
 
 public interface ResumeService {
 
-public Resume addResume(Resume resume);
+public ResumeDTO addResume(ResumeDTO resumeDTO);
 
 	public ResumeDTO findByResumeId(Long id);
 	public Resume deleteById(Long resumeId);
@@ -19,7 +19,9 @@ public Resume addResume(Resume resume);
 
 	public List<ResumeDTO> findAll();
 
-	List<ResumeDTO> createUsers(List<ResumeDTO> resume);
+	
+
+	public List<ResumeDTO> addResumes(List<ResumeDTO> resume);
 	
 	
 }

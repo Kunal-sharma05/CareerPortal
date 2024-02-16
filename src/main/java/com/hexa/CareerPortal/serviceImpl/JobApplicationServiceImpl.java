@@ -26,12 +26,14 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 		super();
 	}
 
-	@Override
-	public JobApplication save(JobApplication jobApplication) {
-		JobApplication savedJobApplication = jobApplicationRepository.save(jobApplication);
-		return savedJobApplication;
-	}
 
+	@Override
+	public JobApplicationDTO createJobApplication(JobApplicationDTO jobApplication) {
+		JobApplication jobApplicationEntity=modelMapper.map(jobApplication, JobApplication.class);
+		JobApplication savedjobApplication=jobApplicationRepository.save(jobApplicationEntity);
+		jobApplication=modelMapper.map(savedjobApplication,JobApplicationDTO.class );
+		return jobApplication;
+	}
 
 	@Override
 	public List<JobApplicationDTO> createJobApplication(List<JobApplicationDTO> jobApplication) {
@@ -49,7 +51,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 		return user;
 	}
 	@Override
-	public JobApplicationDTO findJobApplicationId(Long id) {
+	public JobApplicationDTO findByJobApplicationId(Long id) {
 		JobApplication user=jobApplicationRepository.findById(id).orElse(null);
 		JobApplicationDTO userDTO=modelMapper.map(user, JobApplicationDTO.class);
 		return userDTO;
