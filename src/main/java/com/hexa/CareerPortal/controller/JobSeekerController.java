@@ -33,7 +33,7 @@ public class JobSeekerController {
     public ResponseEntity<JobSeekerDTO> getJobSeekerById(@PathVariable Long id) {
         JobSeekerDTO jobSeeker = jobSeekerService.findByUserId(id);
         if (jobSeeker != null) {
-        	return new ResponseEntity<>(jobSeeker, HttpStatus.OK);
+            return new ResponseEntity<>(jobSeeker, HttpStatus.OK);
         } else {
             throw new ResourceNotFoundException("User not found with id: " + id);
         }
@@ -42,11 +42,10 @@ public class JobSeekerController {
     @GetMapping
     public ResponseEntity<List<JobSeekerDTO>> getAllJobSeekers() {
         List<JobSeekerDTO> jobSeekers = jobSeekerService.findAll();
-        JobSeekerDTO updatedUser = jobSeekerService.updateUser(id , jobSeekers);
         if (jobSeekers != null) {
-        	 return new ResponseEntity<>(jobSeekers, HttpStatus.OK);;
+            return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
         } else {
-            throw new ResourceNotFoundException("User not found with id: " + id);
+            throw new ResourceNotFoundException("Users not found");
         }
     }
 
@@ -54,11 +53,10 @@ public class JobSeekerController {
     public ResponseEntity<JobSeekerDTO> updateJobSeeker(@PathVariable Long id, @RequestBody @Validated JobSeekerDTO jobSeekerDto) {
         JobSeekerDTO updatedJobSeeker = jobSeekerService.updateJobSeeker(id, jobSeekerDto);
         if (updatedJobSeeker != null) {
-       	 return new ResponseEntity<>(updatedJobSeeker, HttpStatus.OK);;
-       } else {
-           throw new ResourceNotFoundException("User not found with id: " + id);
-       }
-        
+            return new ResponseEntity<>(updatedJobSeeker, HttpStatus.OK);
+        } else {
+            throw new ResourceNotFoundException("User not found with id: " + id);
+        }
     }
 
     @DeleteMapping("/{id}")

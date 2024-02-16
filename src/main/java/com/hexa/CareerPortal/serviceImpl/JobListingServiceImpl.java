@@ -6,9 +6,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.hexa.CareerPortal.dto.JobListingDTO;
 import com.hexa.CareerPortal.entity.JobListing;
 import com.hexa.CareerPortal.repository.JobListingRepository;
 import com.hexa.CareerPortal.service.JobListingService;
+
+import jakarta.validation.Valid;
 
 @Service
 public class JobListingServiceImpl implements JobListingService {

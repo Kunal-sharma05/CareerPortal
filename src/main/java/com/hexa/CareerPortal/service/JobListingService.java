@@ -3,7 +3,10 @@ package com.hexa.CareerPortal.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.hexa.CareerPortal.dto.JobListingDTO;
 import com.hexa.CareerPortal.entity.JobListing;
+
+import jakarta.validation.Valid;
 
 public interface JobListingService {
 	public JobListing postJob(JobListing jobListing);

@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
 		return savedUser;
 	}
 
+	
 	@Override
 	public List<User> createUsers(List<User> user) {
 		List<User> savedUsers=userRepository.saveAll(user);

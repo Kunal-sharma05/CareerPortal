@@ -29,7 +29,7 @@ public class JobSeekerDTO {
     private List<ResumeDTO> resumes;
     
 
-    public JobSeekerDTO() {
+    public JobSeekerDTO(String string, String string2) {
     }
 
     public JobSeekerDTO(String fullName, String professionalDetails, String educationDetail, String mobileNumber,Date dateOfBirth, String email) {
@@ -94,4 +94,9 @@ public class JobSeekerDTO {
    				+ ", educationDetail=" + educationDetail + ", mobileNumber=" + mobileNumber + ", dateOfBirth="
    				+ dateOfBirth + ", email=" + email + "]";
    	}
+
+	public Object getCompanyName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
