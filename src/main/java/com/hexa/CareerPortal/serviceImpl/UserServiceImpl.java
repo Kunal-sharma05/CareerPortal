@@ -51,23 +51,29 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateName(Long id,String name) {
+	public UserDTO updateName(Long id,String name) {
 		User user=userRepository.findById(id).orElse(null);
+		UserDTO userDTO=null;
 		if(user!=null)
 		{
 			user.setName(name);
+			userRepository.save(user);
+			userDTO=modelMapper.map(user,UserDTO.class );
 		}
-		return user;
+		return userDTO;
 	}
 
 	@Override
-	public User updateEmail(Long id,String email) {
+	public UserDTO updateEmail(Long id,String email) {
 		User user=userRepository.findById(id).orElse(null);
+		UserDTO userDTO=null;
 		if(user!=null)
 		{
 			user.setEmail(email);
+			userRepository.save(user);
+			userDTO=modelMapper.map(user,UserDTO.class );
 		}
-		return user;
+		return userDTO;
 	}
 
 	@Override
@@ -81,9 +87,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByName(String name) {
-		User user=userRepository.findByName(name).orElse(null);
-		return user;
+	public List<UserDTO> findByName(String name) {
+		List<User> user=userRepository.findByName(name).orElse(null);
+		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		return users;
 	}
 
 	@Override
@@ -102,32 +109,36 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByEmail(String email) {
+	public UserDTO findByEmail(String email) {
 		User user=userRepository.findByEmail(email).orElse(null);
-		return user;	
+		UserDTO userDTO=modelMapper.map(user, UserDTO.class);
+		return userDTO;
 		}
 
 	@Override
-	public List<User> findByRole(Role role) 
+	public List<UserDTO> findByRole(Role role) 
 	{
 		List<User> user=new ArrayList<>();
 		user.addAll(userRepository.findByRole(role));
-		return user;	
+		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		return users;	
 	}
 
 	@Override
-	public List<User> findByNameContaining(String name) 
+	public List<UserDTO> findByNameContaining(String name) 
 	{
 		List<User> user=new ArrayList<>();
 		user.addAll(userRepository.findByNameContaining(name));
-		return user;	
+		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		return users;		
 	}
 
 	@Override
-	public List<User> findByNameIn(List<String> names) {
+	public List<UserDTO> findByNameIn(List<String> names) {
 		List<User> user=new ArrayList<>();
 		user.addAll(userRepository.findByNameIn(names));
-		return user;
+		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		return users;
 	}
 
 	@Override
@@ -142,14 +153,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> deleteAll() {
+	public List<UserDTO> deleteAll() {
 		List<User> users=new ArrayList<>();
 		users.addAll(userRepository.findAll());
 		if(users!=null)
 		{
 			userRepository.deleteAll();
 		}
-		return users;
+		List<UserDTO> userDTOs=users.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		return userDTOs;
 	}
 	@Override
 	public long count() {

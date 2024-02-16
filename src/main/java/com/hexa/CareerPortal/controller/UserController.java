@@ -60,15 +60,30 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-        userService.deleteById(userId);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) throws ResourceNotFoundException {
+        User user=userService.deleteById(userId);
+        if(user!=null)
+        {
+        	return ResponseEntity.noContent().build();
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("User not found with id: " + userId);
+        }
+        
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
+    public ResponseEntity<List<UserDTO>> getAllUsers() throws ResourceNotFoundException {
         List<UserDTO> users = userService.findAll();
-        return ResponseEntity.ok(users);
+        if(users!=null)
+        {
+        	return ResponseEntity.ok(users);
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("Users not found with id: ");
+        }
     }
 
 
@@ -80,62 +95,120 @@ public class UserController {
 
 
     @GetMapping("/findByName")
-    public User findByName(@RequestParam String name) {
-        return userService.findByName(name);
+    public ResponseEntity<List<UserDTO>> findByName(@RequestParam String name) throws ResourceNotFoundException {
+        List<UserDTO> userDTO=userService.findByName(name);
+        if(userDTO!=null)
+        {
+        	return ResponseEntity.ok(userDTO); 
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
     }
 
     @GetMapping("/findByEmail")
-    public User findByEmail(@RequestParam String email) {
-        return userService.findByEmail(email);
+    public ResponseEntity<UserDTO> findByEmail(@RequestParam String email) throws ResourceNotFoundException {
+        UserDTO user=userService.findByEmail(email);
+        if(user!=null)
+        {
+        	return ResponseEntity.ok(user); 
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
     }
 
     @GetMapping("/findByRole")
-    public List<User> findByRole(@RequestParam Role role) {
-        return userService.findByRole(role);
+    public ResponseEntity<List<UserDTO>> findByRole(@RequestParam Role role) throws ResourceNotFoundException {
+        List<UserDTO> userDTOs= userService.findByRole(role);
+        if(userDTOs!=null) {
+        	return ResponseEntity.ok(userDTOs); 
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
     }
 
     @GetMapping("/findByNameContaining")
-    public List<User> findByNameContaining(@RequestParam String name) {
-        return userService.findByNameContaining(name);
+    public ResponseEntity<List<UserDTO>> findByNameContaining(@RequestParam String name) throws ResourceNotFoundException {
+    	List<UserDTO> userDTOs= userService.findByNameContaining(name);
+        if(userDTOs!=null) {
+        	return ResponseEntity.ok(userDTOs); 
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
     }
 
     @PostMapping("/findByNameIn")
-    public List<User> findByNameIn(@RequestBody List<String> names) {
-        return userService.findByNameIn(names);
-    }
-
-    @DeleteMapping("/{id}")
-    public User deleteById(@PathVariable Long id) {
-        return userService.deleteById(id);
+    public ResponseEntity<List<UserDTO>> findByNameIn(@RequestBody List<String> names) throws ResourceNotFoundException {
+    	List<UserDTO> userDTOs=userService.findByNameIn(names);
+        if(userDTOs!=null) {
+        	return ResponseEntity.ok(userDTOs); 
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
     }
 
     @DeleteMapping("/deleteAll")
-    public List<User> deleteAllUsers() {
-        return userService.deleteAll();
+    public ResponseEntity<List<UserDTO>> deleteAllUsers() throws ResourceNotFoundException {
+    	List<UserDTO> userDTOs=userService.deleteAll();
+        if(userDTOs!=null) {
+        	return ResponseEntity.ok(userDTOs); 
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
     }
 
     @GetMapping("/count")
-    public long count() {
-        return userService.count();
+    public ResponseEntity<Long> count() {
+        long count= userService.count();
+        return ResponseEntity.ok(count);
     }
 
-    @PostMapping("/deleteAll")
-    public List<User> deleteAll(@RequestBody List<User> users) {
-        return userService.deleteAll(users);
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> updateName(@PathVariable Long id, @RequestBody String name) throws ResourceNotFoundException {
+    	UserDTO userDTO=userService.updateName(id, name);
+        if(userDTO!=null) {
+        	return ResponseEntity.ok(userDTO);
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
+
     }
 
-    @PutMapping("/{id}/updateName")
-    public User updateName(@PathVariable Long id, @RequestParam String name) {
-        return userService.updateName(id, name);
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> updateEmail(@PathVariable Long id, @RequestBody String email) throws ResourceNotFoundException {
+        UserDTO userDTO= userService.updateEmail(id, email);
+        if(userDTO!=null) {
+        	return ResponseEntity.ok(userDTO);
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
     }
 
-    @PutMapping("/{id}/updateEmail")
-    public User updateEmail(@PathVariable Long id, @RequestParam String email) {
-        return userService.updateEmail(id, email);
-    }
-
-    @PutMapping("/{id}/changePassword")
-    public User changePassword(@PathVariable Long id, @RequestParam String password) {
-        return userService.changePassword(id, password);
+    @PutMapping("/{id}")
+    public ResponseEntity<User> changePassword(@PathVariable Long id, @RequestBody String password) throws ResourceNotFoundException {
+        User user= userService.changePassword(id, password);
+        if(user!=null) {
+        	return ResponseEntity.ok(user);
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
     }
 }
