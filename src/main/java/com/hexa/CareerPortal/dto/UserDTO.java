@@ -29,10 +29,7 @@ public class UserDTO {
     }
 
     public UserDTO(
-			@NotEmpty(message = "Name should not be empty") @Size(min = 2, message = "Name should have at least 2 characters") String name,
-			@NotEmpty(message = "Email should not be empty") @Email(message = "Email should be valid") String email,
-			@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character") String password,
-			@NotNull(message = "Role should not be null") Role role, EmployerDTO employer, JobSeekerDTO jobSeeker) {
+			 String name,String email,String password, Role role, EmployerDTO employer, JobSeekerDTO jobSeeker) {
 		super();
 		this.name = name;
 		this.email = email;
