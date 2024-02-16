@@ -16,9 +16,10 @@ import java.util.List;
 @RequestMapping("/api/jobseekers")
 public class JobSeekerController {
 
+	@Autowired
     private final JobSeekerService jobSeekerService;
 
-    @Autowired
+   
     public JobSeekerController(JobSeekerService jobSeekerService) {
         this.jobSeekerService = jobSeekerService;
     }

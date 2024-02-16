@@ -175,7 +175,7 @@ public class UserController {
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateName/{id}")
     public ResponseEntity<UserDTO> updateName(@PathVariable Long id, @RequestBody String name) throws ResourceNotFoundException {
     	UserDTO userDTO=userService.updateName(id, name);
         if(userDTO!=null) {
@@ -188,7 +188,7 @@ public class UserController {
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateEmail/{id}")
     public ResponseEntity<UserDTO> updateEmail(@PathVariable Long id, @RequestBody String email) throws ResourceNotFoundException {
         UserDTO userDTO= userService.updateEmail(id, email);
         if(userDTO!=null) {
@@ -200,7 +200,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/changePassword/{id}")
     public ResponseEntity<User> changePassword(@PathVariable Long id, @RequestBody String password) throws ResourceNotFoundException {
         User user= userService.changePassword(id, password);
         if(user!=null) {
