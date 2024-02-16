@@ -26,7 +26,7 @@ public class EmployerDTO {
     public EmployerDTO() {
     }
 
-    public EmployerDTO(String fullName, String companyName, String mobileNo, String email, List<JobListingDTO> jobListings) {
+    public EmployerDTO(String fullName, String companyName, String mobileNo, String email) {
         this.fullName = fullName;
         this.companyName = companyName;
         this.mobileNo = mobileNo;

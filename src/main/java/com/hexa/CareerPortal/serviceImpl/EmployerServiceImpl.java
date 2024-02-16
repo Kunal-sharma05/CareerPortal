@@ -2,14 +2,20 @@ package com.hexa.CareerPortal.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hexa.CareerPortal.dto.EmployerDTO;
 import com.hexa.CareerPortal.entity.Employer;
 import com.hexa.CareerPortal.repository.EmployerRepository;
 import com.hexa.CareerPortal.service.EmployerService;
 @Service
 public class EmployerServiceImpl implements EmployerService {
+	@Autowired
+	private ModelMapper modelMapper;
 	private EmployerRepository employerRepository;
 	public EmployerServiceImpl(EmployerRepository employerRepository) {
 		super();
@@ -17,16 +23,19 @@ public class EmployerServiceImpl implements EmployerService {
 	}
 
 	@Override
-	public Employer createEmployer(Employer employer) {
-		Employer employer1=employerRepository.save(employer);
-		return employer1;
+	public EmployerDTO createEmployer(EmployerDTO employer) {
+		Employer employerEntity=modelMapper.map(employer, Employer.class);
+		Employer employer1=employerRepository.save(employerEntity);
+		employer=modelMapper.map(employer1,EmployerDTO.class);
+		return employer;
 	}
 
 	@Override
-	public List<Employer> createEmployers(List<Employer> employer) {
-		List<Employer> employers=new ArrayList<>();
-		employers.addAll(employerRepository.saveAll(employer));
-		return employers;
+	public List<EmployerDTO> createEmployers(List<EmployerDTO> employer) {
+		List<Employer> employers=employer.stream().map(employer1->modelMapper.map(employer1, Employer.class)).toList();
+		employers.addAll(employerRepository.saveAll(employers));
+		employer=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		return employer;
 
 	}
 
@@ -61,9 +70,10 @@ public class EmployerServiceImpl implements EmployerService {
 	}
 
 	@Override
-	public Employer findById(Long id) {
+	public EmployerDTO findById(Long id) {
 		Employer employe=employerRepository.findById(id).orElse(null);
-		return employe;
+		EmployerDTO employer=modelMapper.map(employe,EmployerDTO.class);
+		return employer;
 	}
 
 	@Override
@@ -119,10 +129,11 @@ public class EmployerServiceImpl implements EmployerService {
 	}
 
 	@Override
-	public List<Employer> findAll() {
+	public List<EmployerDTO> findAll() {
 		List<Employer> employers=new ArrayList<>();
 		employers.addAll(employerRepository.findAll());
-		return employers;
+		List<EmployerDTO> employersDTO=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		return employersDTO;
 	}
 
 	@Override
@@ -137,6 +148,25 @@ public class EmployerServiceImpl implements EmployerService {
 		List<Employer> employers=new ArrayList<>();
 		employers.addAll(employerRepository.findByFullName(fullName));
 		return employers;
+	}
+
+	@Override
+	public EmployerDTO updateEmployer(Long employerId, EmployerDTO employerDTO) {
+	    Optional<Employer> optionalEmployer = employerRepository.findById(employerId);
+	    EmployerDTO employeDTO=null;
+	    if (optionalEmployer.isPresent()) {
+	        Employer existingEmployer = optionalEmployer.get();
+	        // Update the existing employer with the new information
+	        existingEmployer.setFullName(employerDTO.getFullName());
+	        existingEmployer.setCompanyName(employerDTO.getCompanyName());
+	        existingEmployer.setMobileNo(employerDTO.getMobileNo());
+	        existingEmployer.setEmail(employerDTO.getEmail());
+	        
+	        Employer updatedEmployer = employerRepository.save(existingEmployer);
+	        
+	        employeDTO=modelMapper.map(updatedEmployer, EmployerDTO.class);
+	    }
+	    return employeDTO;
 	}
 
 }

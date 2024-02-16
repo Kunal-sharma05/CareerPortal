@@ -1,19 +1,24 @@
 package com.hexa.CareerPortal.controller;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.hexa.CareerPortal.dto.EmployerDTO;
-import com.hexa.CareerPortal.entity.Employer;
 import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.EmployerService;
 
 import jakarta.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/employers")
@@ -21,7 +26,6 @@ public class EmployerController {
 
     private final EmployerService employerService;
 
-    @Autowired
     public EmployerController(EmployerService employerService) {
         this.employerService = employerService;
     }
@@ -33,7 +37,7 @@ public class EmployerController {
     }
 
     @GetMapping("/{employerId}")
-    public ResponseEntity<EmployerDTO> getEmployerById(@PathVariable Long employerId) {
+    public ResponseEntity<EmployerDTO> getEmployerById(@PathVariable Long employerId) throws ResourceNotFoundException {
         EmployerDTO employerDTO = employerService.findById(employerId);
         if (employerDTO != null) {
             return ResponseEntity.ok(employerDTO);
@@ -43,7 +47,7 @@ public class EmployerController {
     }
 
     @PutMapping("/{employerId}")
-    public ResponseEntity<EmployerDTO> updateEmployer(@PathVariable Long employerId, @Validated @RequestBody EmployerDTO employerDTO) {
+    public ResponseEntity<EmployerDTO> updateEmployer(@PathVariable Long employerId, @Validated @RequestBody EmployerDTO employerDTO) throws ResourceNotFoundException {
         EmployerDTO updatedEmployer = employerService.updateEmployer(employerId, employerDTO);
         if (updatedEmployer != null) {
             return ResponseEntity.ok(updatedEmployer);

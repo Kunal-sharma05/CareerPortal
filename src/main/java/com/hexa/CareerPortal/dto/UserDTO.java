@@ -13,7 +13,7 @@ public class UserDTO {
     @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
 
-    @NotEmpty(message = "Email should not be empty")
+    @NotEmpty( message = "Email should not be empty")
     @Email(message = "Email should be valid")
     private String email;
     
@@ -39,9 +39,10 @@ public class UserDTO {
 		this.jobSeeker = jobSeeker;
 	}
 
-	public UserDTO(String name, String email, Role role) {
+	public UserDTO(String name, String email,String password, Role role) {
     this.name = name;
     this.email = email;
+    this.password=password;
     this.role = role;
     }
 

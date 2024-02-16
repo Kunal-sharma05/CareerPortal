@@ -11,7 +11,7 @@ import com.hexa.CareerPortal.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-	public Optional<User> findByName(String name);
+	public Optional<List<User>> findByName(String name);
 	public Optional<User> findByUserId(Long id);
 	public Optional<User> findByEmail(String email);
 	public List<User> findByRole(Role role);
