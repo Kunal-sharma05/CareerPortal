@@ -26,7 +26,18 @@ public class JobListingDTO {
         this.description = description;
         this.title = title;
     }
-    public String getRequirements() {
+    public JobListingDTO(@NotEmpty(message = "Requirements should not be empty") String requirements,
+			@NotEmpty(message = "Description should not be empty") String description,
+			@NotEmpty(message = "Title should not be empty") String title,
+			@PastOrPresent(message = "Title should not be empty") LocalDateTime dateOfPosting) {
+		super();
+		this.requirements = requirements;
+		this.description = description;
+		this.title = title;
+		this.dateOfPosting = dateOfPosting;
+	}
+
+	public String getRequirements() {
         return requirements;
     }
 

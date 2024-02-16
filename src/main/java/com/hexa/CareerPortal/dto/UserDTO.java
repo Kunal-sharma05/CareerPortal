@@ -39,9 +39,10 @@ public class UserDTO {
 		this.jobSeeker = jobSeeker;
 	}
 
-	public UserDTO(String name, String email, Role role) {
+	public UserDTO(String name, String email,String password, Role role) {
     this.name = name;
     this.email = email;
+    this.password=password;
     this.role = role;
     }
 

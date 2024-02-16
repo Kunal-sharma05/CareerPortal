@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.info.License;
 				termsOfService = "Not yet decided",
 				contact=@Contact(
 						name="Kunal Sharma and Asim Zohair",
-						email="itsmekunal0501@gmail.com"
+						email="itsmekunal0501@gmail.com,asimzohair@gmail.com"
 						),
 				license=@License(
 						name="License",
