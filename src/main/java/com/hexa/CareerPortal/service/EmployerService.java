@@ -8,19 +8,18 @@ import com.hexa.CareerPortal.entity.Employer;
 public interface EmployerService {
 	public EmployerDTO createEmployer( EmployerDTO employerDTO);
 	public List<EmployerDTO> createEmployers(List<EmployerDTO> employer);
-	public Employer updateMobileNo(Employer employer,String mobileNo);
-	public Employer updateEmail(Employer employer,String email);
-	public Employer updateCompany(Employer employer,String company);
+	public EmployerDTO updateMobileNo(Long id,String mobileNo);
+	public EmployerDTO updateEmail(Long employerId,String email);
+	public EmployerDTO updateCompany(Long employerId,String company);
 	public EmployerDTO findById(Long id);
-	public List<Employer> findByCompanyName(String Name);
-	public List<Employer> findByFullName(String fullName);
-	public Employer findByEmail(String email);
+	public List<EmployerDTO> findByCompanyName(String Name);
+	public List<EmployerDTO> findByFullName(String fullName);
+	public EmployerDTO findByEmail(String email);
 	public Employer deleteById(Long id);
-	public List<Employer> deleteAll();
+	public List<EmployerDTO> deleteAll();
 	public long count();
-	public List<Employer> deleteAll(List<Employer> employer);
+	public void deleteAll(List<EmployerDTO> employers);
 	public List<EmployerDTO> findAll();
 	public List<Employer> findAll(List<Employer> employers);
-	public EmployerDTO updateEmployer(Long employerId, EmployerDTO employerDTO);
-	
+	public EmployerDTO updateEmployer(Long employerId, EmployerDTO employerDTO);	
 }

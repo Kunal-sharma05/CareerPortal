@@ -14,8 +14,6 @@ import com.hexa.CareerPortal.entity.JobListing;
 import com.hexa.CareerPortal.repository.JobListingRepository;
 import com.hexa.CareerPortal.service.JobListingService;
 
-import jakarta.validation.Valid;
-
 @Service
 public class JobListingServiceImpl implements JobListingService {
 	@Autowired
@@ -45,13 +43,16 @@ public class JobListingServiceImpl implements JobListingService {
 	}
 
 	@Override
-	public JobListing updateRequirements(Long id,String requirements) {
+	public JobListingDTO updateRequirements(Long id,String requirements) {
 		JobListing jobListing=jobListingRepository.findById(id).orElse(null);
+		JobListingDTO jobListingDTO=null;
 		if(jobListing!=null)
 		{
 			jobListing.setRequirements(requirements);
+			jobListingRepository.save(jobListing);
+			jobListingDTO= modelMapper.map(jobListing, JobListingDTO.class);
 		}
-		return jobListing;
+		return jobListingDTO;
 	}
 
 	@Override
@@ -62,46 +63,52 @@ public class JobListingServiceImpl implements JobListingService {
 	}
 
 	@Override
-	public List<JobListing> findByRequirements(String requirements) {
+	public List<JobListingDTO> findByRequirements(String requirements) {
 		List<JobListing> jobListing=jobListingRepository.findByRequirements(requirements);
-		return jobListing;	
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+	    return savedJobListingsDTO;
 		}
 
 	@Override
-	public List<JobListing> findByRequirementsContaining(String requirements) {
+	public List<JobListingDTO> findByRequirementsContaining(String requirements) {
 		List<JobListing> jobListing=jobListingRepository.findByRequirementsContaining(requirements);
-		return jobListing;
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+	    return savedJobListingsDTO;
 	}
 
 	@Override
-	public List<JobListing> findByDescription(String description) {
+	public List<JobListingDTO> findByDescription(String description) {
 		List<JobListing> jobListing=jobListingRepository.findByDescription(description);
-		return jobListing;	
-		}
-
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+	    return savedJobListingsDTO;
+	}
 	@Override
-	public List<JobListing> findByDescriptionContaining(String description) {
+	public List<JobListingDTO> findByDescriptionContaining(String description) {
 		List<JobListing> jobListing=jobListingRepository.findByDescriptionContaining(description);
-		return jobListing;	
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+	    return savedJobListingsDTO;
 	}
 
 	@Override
-	public List<JobListing> findByTitle(String title) {
+	public List<JobListingDTO> findByTitle(String title) {
 		List<JobListing> jobListing=jobListingRepository.findByTitle(title);
-		return jobListing;	
-		}
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+	    return savedJobListingsDTO;
+	}
 
 	@Override
-	public List<JobListing> findByTitleContaining(String title) {
+	public List<JobListingDTO> findByTitleContaining(String title) {
 		List<JobListing> jobListing=jobListingRepository.findByTitleContaining(title);
-		return jobListing;		
-		}
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+	    return savedJobListingsDTO;
+	}
 
 	@Override
-	public List<JobListing> findByDate(LocalDateTime date) {
+	public List<JobListingDTO> findByDate(LocalDateTime date) {
 		List<JobListing> jobListing=jobListingRepository.findByDateOfPosting(date);
-		return jobListing;	
-		}
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+	    return savedJobListingsDTO;
+	}
 
 	@Override
 	public JobListing deleteById(Long id) {
@@ -114,14 +121,16 @@ public class JobListingServiceImpl implements JobListingService {
 	}
 
 	@Override
-	public List<JobListing> deleteAll() {
+	public List<JobListingDTO> deleteAll() {
 		List<JobListing> jobListing=new ArrayList<>();
 		jobListing.addAll(jobListingRepository.findAll());
+		List<JobListingDTO> savedJobListingsDTO=null;
 		if(jobListing!=null)
 		{
 			jobListingRepository.deleteAll();
+			savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
 		}
-		return jobListing;
+		return savedJobListingsDTO;
 
 	}
 
@@ -132,34 +141,43 @@ public class JobListingServiceImpl implements JobListingService {
 	}
 
 	@Override
-	public List<JobListing> deleteAll(List<JobListing> jobListing) {
+	public List<JobListingDTO> deleteAll(List<JobListing> jobListing) {
 		List<JobListing> jobListings=new ArrayList<>();
 		jobListings.addAll(jobListing);
+		List<JobListingDTO> savedJobListingsDTO=null;
 		if(jobListings!=null)
 		{
 			jobListingRepository.deleteAll(jobListing);
+			savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
 		}
-		return jobListings;
+		return savedJobListingsDTO;
 	}
 
 	@Override
-	public JobListing updateDescription(Long id, String description) {
+	public JobListingDTO updateDescription(Long id, String description) {
 		JobListing jobListing=jobListingRepository.findById(id).orElse(null);
+		JobListingDTO jobListingDTO=null;
 		if(jobListing!=null)
 		{
-			jobListing.setRequirements(description);
+			jobListing.setDescription(description);
+			jobListingRepository.save(jobListing);
+			jobListingDTO= modelMapper.map(jobListing, JobListingDTO.class);
 		}
-		return jobListing;
+		return jobListingDTO;
+
 	}
 
 	@Override
-	public JobListing updateTitle(Long id, String title) {
+	public JobListingDTO updateTitle(Long id, String title) {
 		JobListing jobListing=jobListingRepository.findById(id).orElse(null);
+		JobListingDTO jobListingDTO=null;
 		if(jobListing!=null)
 		{
 			jobListing.setTitle(title);
+			jobListingRepository.save(jobListing);
+			jobListingDTO= modelMapper.map(jobListing, JobListingDTO.class);
 		}
-		return jobListing;
+		return jobListingDTO;
 	}
 
 	@Override

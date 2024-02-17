@@ -40,33 +40,45 @@ public class EmployerServiceImpl implements EmployerService {
 	}
 
 	@Override
-	public Employer updateMobileNo(Employer employer,String mobileNumber) {
-		Employer employe=employerRepository.findById(employer.getEmployerId()).orElse(null);
+	public EmployerDTO updateMobileNo(Long id,String mobileNumber) {
+		Employer employe=employerRepository.findById(id).orElse(null);
+		EmployerDTO employer=null;
 		if(employe!=null)
 		{
 			employe.setMobileNo(mobileNumber);
+			employerRepository.save(employe);
+			employer=modelMapper.map(employe,EmployerDTO.class);
+			return employer;
 		}
-		return employe;
+		return employer;
 	}
 
 	@Override
-	public Employer updateEmail(Employer employer,String email) {
-		Employer employe=employerRepository.findById(employer.getEmployerId()).orElse(null);
+	public EmployerDTO updateEmail(Long id,String email) {
+		Employer employe=employerRepository.findById(id).orElse(null);
+		EmployerDTO employer=null;
 		if(employe!=null)
 		{
 			employe.setEmail(email);
+			employerRepository.save(employe);
+			employer=modelMapper.map(employe,EmployerDTO.class);
+			return employer;
 		}
-		return employe;
+		return employer;
 	}
 
 	@Override
-	public Employer updateCompany(Employer employer,String companyName ) {
-		Employer employe=employerRepository.findById(employer.getEmployerId()).orElse(null);
+	public EmployerDTO updateCompany(Long id,String companyName ) {
+		Employer employe=employerRepository.findById(id).orElse(null);
+		EmployerDTO employer=null;
 		if(employe!=null)
 		{
 			employe.setCompanyName(companyName);
+			employerRepository.save(employe);
+			employer=modelMapper.map(employe,EmployerDTO.class);
+			return employer;
 		}
-		return employe;
+		return employer;
 	}
 
 	@Override
@@ -77,16 +89,18 @@ public class EmployerServiceImpl implements EmployerService {
 	}
 
 	@Override
-	public List<Employer> findByCompanyName(String name) {
+	public List<EmployerDTO> findByCompanyName(String name) {
 		List<Employer> employers=new ArrayList<>();
 		employers.addAll(employerRepository.findByCompanyName(name).orElse(null));
-		return employers;
+		List<EmployerDTO> employersDTO=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		return employersDTO;
 	}
 
 	@Override
-	public Employer findByEmail(String email) {
+	public EmployerDTO findByEmail(String email) {
 		Employer employe=employerRepository.findByEmail(email).orElse(null);
-		return employe;
+		EmployerDTO employer=modelMapper.map(employe,EmployerDTO.class);
+		return employer;
 	}
 
 	@Override
@@ -100,13 +114,14 @@ public class EmployerServiceImpl implements EmployerService {
 	}
 
 	@Override
-	public List<Employer> deleteAll() {
+	public List<EmployerDTO> deleteAll() {
 		List<Employer> employer=employerRepository.findAll();
 		if(employer!=null)
 		{
 			employerRepository.deleteAll();
 		}
-		return employer;
+		List<EmployerDTO> employers=employer.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		return employers;
 
 	}
 
@@ -117,14 +132,13 @@ public class EmployerServiceImpl implements EmployerService {
 	}
 
 	@Override
-	public List<Employer> deleteAll(List<Employer> employer) {
-		List<Employer> employers=new ArrayList<>();
-		employers.addAll(employerRepository.findAllEmployers(employer));
+	public void deleteAll(List<EmployerDTO> employer) {
+		List<Employer> employers=employer.stream().map(employer1->modelMapper.map(employer1, Employer.class)).toList();
+		employers.addAll(employerRepository.findAllEmployers(employers));
 		if(employers!=null)
 		{
-			employerRepository.deleteAll(employer);
+			employerRepository.deleteAll(employers);
 		}
-		return employer;
 
 	}
 
@@ -132,8 +146,8 @@ public class EmployerServiceImpl implements EmployerService {
 	public List<EmployerDTO> findAll() {
 		List<Employer> employers=new ArrayList<>();
 		employers.addAll(employerRepository.findAll());
-		List<EmployerDTO> employersDTO=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
-		return employersDTO;
+		List<EmployerDTO> employersDTOs=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		return employersDTOs;
 	}
 
 	@Override
@@ -144,11 +158,11 @@ public class EmployerServiceImpl implements EmployerService {
 	}
 
 	@Override
-	public List<Employer> findByFullName(String fullName) {
+	public List<EmployerDTO> findByFullName(String fullName) {
 		List<Employer> employers=new ArrayList<>();
 		employers.addAll(employerRepository.findByFullName(fullName));
-		return employers;
-	}
+		List<EmployerDTO> employersDTOs=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		return employersDTOs;	}
 
 	@Override
 	public EmployerDTO updateEmployer(Long employerId, EmployerDTO employerDTO) {

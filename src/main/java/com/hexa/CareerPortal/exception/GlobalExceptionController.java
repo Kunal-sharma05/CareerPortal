@@ -29,7 +29,13 @@ public class GlobalExceptionController extends ResponseEntityExceptionHandler {
 	 @ExceptionHandler(NameAlreadyExistException.class)
 	 	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(NameAlreadyExistException e, WebRequest w)
 	 	{
-	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false),"Product name already exist");
+	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false));
+	 		return new ResponseEntity<>(er,HttpStatus.BAD_REQUEST);
+	 	}
+	 @ExceptionHandler(EmployerNotFoundException.class)
+	 	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(EmployerNotFoundException e, WebRequest w)
+	 	{
+	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false));
 	 		return new ResponseEntity<>(er,HttpStatus.BAD_REQUEST);
 	 	}
 	 @Override

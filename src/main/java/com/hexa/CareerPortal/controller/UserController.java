@@ -157,10 +157,10 @@ public class UserController {
     }
 
     @DeleteMapping("/deleteAll")
-    public ResponseEntity<List<UserDTO>> deleteAllUsers() throws ResourceNotFoundException {
+    public ResponseEntity<Void> deleteAllUsers() throws ResourceNotFoundException {
     	List<UserDTO> userDTOs=userService.deleteAll();
         if(userDTOs!=null) {
-        	return ResponseEntity.ok(userDTOs); 
+        	return ResponseEntity.noContent().build(); 
         }
         else
         {
