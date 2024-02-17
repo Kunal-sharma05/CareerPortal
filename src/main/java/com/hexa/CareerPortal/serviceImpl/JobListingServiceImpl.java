@@ -185,7 +185,7 @@ public class JobListingServiceImpl implements JobListingService {
 		List<JobListing> jobListing=new ArrayList<>();
 		jobListing.addAll(jobListingRepository.findAll());
 		 List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
-		  return savedJobListingsDTO;
+		 return savedJobListingsDTO;
 	}
 
 

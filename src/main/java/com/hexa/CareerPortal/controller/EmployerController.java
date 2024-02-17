@@ -1,7 +1,12 @@
 package com.hexa.CareerPortal.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,9 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexa.CareerPortal.dto.EmployerDTO;
-import com.hexa.CareerPortal.entity.Employer;
 import com.hexa.CareerPortal.exception.EmployerNotFoundException;
-import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.EmployerService;
 
 import jakarta.validation.Valid;
@@ -40,12 +43,15 @@ public class EmployerController {
     }
 
     @GetMapping("/{employerId}")
-    public ResponseEntity<EmployerDTO> getEmployerById(@PathVariable Long employerId) throws EmployerNotFoundException {
+    public EntityModel<EmployerDTO> getEmployerById(@PathVariable Long employerId) throws EmployerNotFoundException {
         EmployerDTO employerDTO = employerService.findById(employerId);
         if (employerDTO != null) {
-            return ResponseEntity.ok(employerDTO);
+            EntityModel<EmployerDTO> resource = EntityModel.of(employerDTO);
+            WebMvcLinkBuilder linkTo = linkTo(methodOn(JobListingController.class).findAll());
+            resource.add(linkTo.withRel("all-Jobs"));
+            return resource;
         } else {
-        	throw new EmployerNotFoundException("Employer not found with id: " + employerId);
+            throw new EmployerNotFoundException("Employer not found with id: " + employerId);
         }
     }
 

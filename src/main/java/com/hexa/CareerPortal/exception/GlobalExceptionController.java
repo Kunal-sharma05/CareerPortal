@@ -29,20 +29,20 @@ public class GlobalExceptionController extends ResponseEntityExceptionHandler {
 	 @ExceptionHandler(NameAlreadyExistException.class)
 	 	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(NameAlreadyExistException e, WebRequest w)
 	 	{
-	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false));
-	 		return new ResponseEntity<>(er,HttpStatus.BAD_REQUEST);
+	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false),"Not_found");
+	 		return new ResponseEntity<>(er,HttpStatus.NOT_FOUND);
 	 	}
 	 @ExceptionHandler(EmployerNotFoundException.class)
 	 	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(EmployerNotFoundException e, WebRequest w)
 	 	{
-	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false));
-	 		return new ResponseEntity<>(er,HttpStatus.BAD_REQUEST);
+	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false),"Not_found");
+	 		return new ResponseEntity<>(er,HttpStatus.NOT_FOUND);
 	 	}
-	 @ExceptionHandler(EmployerNotFoundException.class)
+	 @ExceptionHandler(JobNotFoundException.class)
 	 	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(JobNotFoundException e, WebRequest w)
 	 	{
-	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false));
-	 		return new ResponseEntity<>(er,HttpStatus.BAD_REQUEST);
+	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false),"Not_found");
+	 		return new ResponseEntity<>(er,HttpStatus.NOT_FOUND);
 	 	}
 	 @Override
 		protected ResponseEntity<Object> handleMethodArgumentNotValid(
