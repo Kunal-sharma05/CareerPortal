@@ -38,6 +38,12 @@ public class GlobalExceptionController extends ResponseEntityExceptionHandler {
 	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false));
 	 		return new ResponseEntity<>(er,HttpStatus.BAD_REQUEST);
 	 	}
+	 @ExceptionHandler(EmployerNotFoundException.class)
+	 	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(JobNotFoundException e, WebRequest w)
+	 	{
+	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false));
+	 		return new ResponseEntity<>(er,HttpStatus.BAD_REQUEST);
+	 	}
 	 @Override
 		protected ResponseEntity<Object> handleMethodArgumentNotValid(
 				MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
