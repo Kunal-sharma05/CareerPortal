@@ -99,4 +99,11 @@ public class JobSeekerDTO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void setCompanyName(Object companyName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

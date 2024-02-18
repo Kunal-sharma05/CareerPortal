@@ -14,8 +14,6 @@ import com.hexa.CareerPortal.entity.JobListing;
 import com.hexa.CareerPortal.repository.JobListingRepository;
 import com.hexa.CareerPortal.service.JobListingService;
 
-import jakarta.validation.Valid;
-
 @Service
 public class JobListingServiceImpl implements JobListingService {
 	@Autowired

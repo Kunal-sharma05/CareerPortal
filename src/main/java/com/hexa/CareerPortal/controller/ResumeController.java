@@ -1,17 +1,23 @@
 package com.hexa.CareerPortal.controller;
 
-import com.hexa.CareerPortal.dto.ResumeDTO;
-import com.hexa.CareerPortal.entity.Resume;
-import com.hexa.CareerPortal.exception.ResourceNotFoundException;
-import com.hexa.CareerPortal.service.ResumeService;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.hexa.CareerPortal.dto.ResumeDTO;
+import com.hexa.CareerPortal.exception.ResourceNotFoundException;
+import com.hexa.CareerPortal.service.ResumeService;
 
 @RestController
 @RequestMapping("/api/resumes")
@@ -33,20 +39,26 @@ public class ResumeController {
     @GetMapping("/{resumeId}")
     public ResponseEntity<ResumeDTO> getResumeById(@PathVariable Long resumeId) throws ResourceNotFoundException {
         ResumeDTO resumeDTO = resumeService.findByResumeId(resumeId);
-            if (resumeDTO != null) {
+            if (resumeDTO != null) 
+            {
                 return new ResponseEntity<>(resumeDTO, HttpStatus.OK);
-            } else {
+            }
+            else 
+            {
                 throw new ResourceNotFoundException("User not found with id: " + resumeId);
             }
     }
 
     @PutMapping("/{resumeId}")
-    public ResponseEntity<ResumeDTO> updateResume(@PathVariable Long resumeId, @Validated @RequestBody ResumeDTO resumeDTO) {
-        try {
+    public ResponseEntity<ResumeDTO> updateResume(@PathVariable Long resumeId, @Validated @RequestBody ResumeDTO resumeDTO) throws ResourceNotFoundException {
             ResumeDTO updatedResume = resumeService.updateResume(resumeId, resumeDTO);
-            return ResponseEntity.ok(updatedResume);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            if (resumeDTO != null) 
+            {    
+            return new ResponseEntity<>(updatedResume,HttpStatus.OK);
+        } 
+            else
+        {
+        	throw new ResourceNotFoundException("User not found with id: " + resumeId);
         }
     }
 
@@ -55,10 +67,41 @@ public class ResumeController {
         resumeService.deleteById(resumeId);
         return ResponseEntity.noContent().build();
     }
+    
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<List<ResumeDTO>> deleteAllResumes() throws ResourceNotFoundException {
+    	List<ResumeDTO> userDTOs=resumeService.deleteAll();
+        if(userDTOs!=null) {
+        	return ResponseEntity.ok(userDTOs); 
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
+    }
 
     @GetMapping
-    public ResponseEntity<List<ResumeDTO>> getAllResumes() {
-        List<ResumeDTO> resumes = resumeService.findAll();
-        return ResponseEntity.ok(resumes);
+    public ResponseEntity<List<ResumeDTO>> getAllResumes() throws ResourceNotFoundException {
+        List<ResumeDTO> users = resumeService.findAll();
+        if(users!=null)
+        {
+        	return ResponseEntity.ok(users);
+        }
+         else
+        {
+        	throw new ResourceNotFoundException("Users not found with id: ");
+        }
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> count() {
+        long count= resumeService.count();
+        return ResponseEntity.ok(count);
+    }
+
+    @PostMapping("/createMultiple")
+    public ResponseEntity<List<ResumeDTO>> createResumes(@RequestBody List<ResumeDTO>resumes) {
+        List<ResumeDTO> createdResumes = resumeService.addResumes(resumes);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdResumes);
     }
 }

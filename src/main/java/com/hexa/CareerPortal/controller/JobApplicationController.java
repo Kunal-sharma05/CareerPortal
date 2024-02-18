@@ -1,6 +1,7 @@
 package com.hexa.CareerPortal.controller;
 
 import com.hexa.CareerPortal.dto.JobApplicationDTO;
+import com.hexa.CareerPortal.dto.UserDTO;
 import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.JobApplicationService;
@@ -42,17 +43,18 @@ public class JobApplicationController {
     }
 
     @PutMapping("/{jobApplicationId}")
-    public ResponseEntity<JobApplicationDTO> updateJobApplication(@PathVariable Long jobApplicationId, @Validated @RequestBody JobApplicationDTO jobApplicationDTO) {
-        try {
+    public ResponseEntity<JobApplicationDTO> updateJobApplication(@PathVariable Long jobApplicationId, @Validated @RequestBody JobApplicationDTO jobApplicationDTO) throws ResourceNotFoundException {
+       
             JobApplicationDTO updatedJobApplication = jobApplicationService.updateJobApplication(jobApplicationId, jobApplicationDTO);
-            return ResponseEntity.ok(updatedJobApplication);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        if (jobApplicationDTO != null) {  
+            return new ResponseEntity<>(updatedJobApplication, HttpStatus.OK);
+        } else {
+            throw new ResourceNotFoundException("User not found with id: " + jobApplicationId);
         }
     }
 
     @DeleteMapping("/{jobApplicationId}")
-    public ResponseEntity<Void> deleteJobApplication(@PathVariable Long jobApplicationId) {
+    public ResponseEntity<Void> deleteJobApplicationById(@PathVariable Long jobApplicationId) {
         jobApplicationService.deleteById(jobApplicationId);
         return ResponseEntity.noContent().build();
     }
@@ -62,4 +64,24 @@ public class JobApplicationController {
         List<JobApplicationDTO> jobApplications = jobApplicationService.findAll();
         return ResponseEntity.ok(jobApplications);
     }
+    @GetMapping("/count")
+    public ResponseEntity<Long> count() {
+        long count= jobApplicationService.count();
+        return ResponseEntity.ok(count);
+        
+    }
+    
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<List<JobApplicationDTO>> deleteAllJobApplications() throws ResourceNotFoundException {
+    	List<JobApplicationDTO> userDTOs=jobApplicationService.deleteAll();
+        if(userDTOs!=null) {
+        	return ResponseEntity.ok(userDTOs); 
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
+    }
+
+    
 }
