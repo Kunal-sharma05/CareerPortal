@@ -1,16 +1,7 @@
 package com.hexa.CareerPortal.controller;
 
-import com.hexa.CareerPortal.dto.EmployerDTO;
-import com.hexa.CareerPortal.dto.JobApplicationDTO;
-import com.hexa.CareerPortal.dto.UserDTO;
-import com.hexa.CareerPortal.entity.JobApplication;
-import com.hexa.CareerPortal.entity.Status;
-import com.hexa.CareerPortal.exception.EmployerNotFoundException;
-import com.hexa.CareerPortal.exception.ResourceNotFoundException;
-import com.hexa.CareerPortal.service.JobApplicationService;
 
 import java.util.List;
-
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexa.CareerPortal.dto.JobApplicationDTO;
+import com.hexa.CareerPortal.entity.Status;
+import com.hexa.CareerPortal.exception.EmployerNotFoundException;
+import com.hexa.CareerPortal.exception.JobApplicationNotFoundException;
 import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.JobApplicationService;
 
@@ -102,7 +96,16 @@ public class JobApplicationController {
          {
     	   throw new EmployerNotFoundException("employer not found ");
          }
-       }
-
-    
+    }
+    @PutMapping("/{employerId}/updateMobile")
+    public ResponseEntity<JobApplicationDTO> updateMobileNo(@PathVariable Long jobApplicationId, @RequestParam String mobileNo) throws JobApplicationNotFoundException {
+   	 JobApplicationDTO updatedMobileNo = jobApplicationService.updatemobileNo(jobApplicationId, mobileNo);
+        if(updatedMobileNo!=null) {
+            return ResponseEntity.ok(updatedMobileNo);
+        }
+         else
+         {
+    	   throw new JobApplicationNotFoundException("Job Application not found ");
+         }
+       } 
 }

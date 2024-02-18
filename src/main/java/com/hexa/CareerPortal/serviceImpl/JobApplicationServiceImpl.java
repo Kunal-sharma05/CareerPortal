@@ -119,13 +119,16 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	}
 
 	@Override
-	public JobApplication updatemobileNo(JobApplication jobApplications, String mobileNo) {
-		JobApplication jobApplication = jobApplicationRepository.findById(jobApplications.getJobApplicationId()).orElse(null);
+	public JobApplicationDTO updatemobileNo(Long id, String mobileNo) {
+		JobApplication jobApplication = jobApplicationRepository.findById(id).orElse(null);
+		JobApplicationDTO jobApplicationDTO=null;
 		if(jobApplication!=null)
 		{
 			jobApplication.setMobileNo(mobileNo);
+			jobApplicationRepository.save(jobApplication);
+			jobApplicationDTO=modelMapper.map(jobApplication,JobApplicationDTO.class );
 		}
-		return jobApplication;
+		return jobApplicationDTO;
 
 	}
 	@Override
@@ -143,4 +146,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	    }
 	    return employeDTO;
 	}
+
 }
+
+

@@ -33,7 +33,7 @@ public class CareerPortalApplication {
 		SpringApplication.run(CareerPortalApplication.class, args);
 	}
 	@Bean
-    public ModelMapper getModelMapper() { 
+     ModelMapper getModelMapper() { 
         return new ModelMapper(); 
     } 
 
