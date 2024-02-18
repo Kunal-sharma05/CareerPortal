@@ -74,14 +74,13 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	}
 
 	@Override
-	public List<JobApplicationDTO> deleteAll() {
-		List<JobApplicationDTO> jobApplication=new ArrayList<>();
+	public void deleteAll() {
+		List<JobApplication> jobApplication=new ArrayList<>();
 		jobApplication.addAll(jobApplicationRepository.findAll());
 		if(jobApplication!=null)
 		{
 			jobApplicationRepository.deleteAll();
 		}
-		return jobApplication;
 		
 	}
 
@@ -104,13 +103,18 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	}
 
 	@Override
-	public JobApplication updateStatus(JobApplication jobApplication, Status status) {
-		JobApplication jobApplications =jobApplicationRepository.findById(jobApplication.getJobApplicationId()).orElse(null);
+	public JobApplicationDTO updateStatus(Long id, Status status) {
+		JobApplication jobApplications =jobApplicationRepository.findById(id).orElse(null);
+		JobApplicationDTO jobApplicationDTO=null;
 		if(jobApplications!=null)
 		{
 			jobApplications.setStatus(status);
+			jobApplicationRepository.save(jobApplications);
+			jobApplicationDTO=modelMapper.map(jobApplications,JobApplicationDTO.class );
+			
+			
 		}
-		return jobApplications;
+		return jobApplicationDTO;
 		
 	}
 

@@ -1,8 +1,11 @@
 package com.hexa.CareerPortal.controller;
 
+import com.hexa.CareerPortal.dto.EmployerDTO;
 import com.hexa.CareerPortal.dto.JobApplicationDTO;
 import com.hexa.CareerPortal.dto.UserDTO;
 import com.hexa.CareerPortal.entity.JobApplication;
+import com.hexa.CareerPortal.entity.Status;
+import com.hexa.CareerPortal.exception.EmployerNotFoundException;
 import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.JobApplicationService;
 
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexa.CareerPortal.dto.JobApplicationDTO;
@@ -83,16 +87,22 @@ public class JobApplicationController {
     }
     
     @DeleteMapping("/deleteAll")
-    public ResponseEntity<List<JobApplicationDTO>> deleteAllJobApplications() throws ResourceNotFoundException {
-    	List<JobApplicationDTO> userDTOs=jobApplicationService.deleteAll();
-        if(userDTOs!=null) {
-        	return ResponseEntity.ok(userDTOs); 
-        }
-        else
-        {
-        	throw new ResourceNotFoundException("user is not found");
-        }
+    public ResponseEntity<Void> deleteAllJobApplications() {
+    	jobApplicationService.deleteAll();
+        
+    	return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{id}/updateStatus")
+    public ResponseEntity<JobApplicationDTO> updateStatus(@PathVariable Long id, @RequestParam Status status) throws EmployerNotFoundException {
+   	 JobApplicationDTO updatedjobApplicationDTO = jobApplicationService.updateStatus(id, status);
+        if(updatedjobApplicationDTO!=null) {
+            return ResponseEntity.ok(updatedjobApplicationDTO);
+         }
+         else
+         {
+    	   throw new EmployerNotFoundException("employer not found ");
+         }
+       }
 
     
 }

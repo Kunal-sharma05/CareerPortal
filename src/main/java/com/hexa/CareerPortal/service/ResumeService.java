@@ -10,7 +10,7 @@ public ResumeDTO addResume(ResumeDTO resumeDTO);
 
 	public ResumeDTO findByResumeId(Long id);
 	public void deleteById(Long resumeId);
-	public List<ResumeDTO> deleteAll();
+	public void deleteAll();
 	public long count();
 	public List<ResumeDTO> deleteAll(List<ResumeDTO> resume);
 

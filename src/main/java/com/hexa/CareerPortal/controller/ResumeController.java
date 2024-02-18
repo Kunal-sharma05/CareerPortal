@@ -69,15 +69,10 @@ public class ResumeController {
     }
     
     @DeleteMapping("/deleteAll")
-    public ResponseEntity<List<ResumeDTO>> deleteAllResumes() throws ResourceNotFoundException {
-    	List<ResumeDTO> userDTOs=resumeService.deleteAll();
-        if(userDTOs!=null) {
-        	return ResponseEntity.ok(userDTOs); 
-        }
-        else
-        {
-        	throw new ResourceNotFoundException("user is not found");
-        }
+    public ResponseEntity<Void> deleteAllResumes() {
+    	resumeService.deleteAll();
+    	return ResponseEntity.noContent().build();
+        
     }
 
     @GetMapping

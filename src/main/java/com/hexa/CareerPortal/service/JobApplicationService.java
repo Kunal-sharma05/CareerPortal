@@ -15,10 +15,10 @@ public interface JobApplicationService {
 	
 	public List<JobApplication> findByStatus(Status status);//ww
 	public JobApplication deleteById(Long jobApplicationId);
-	public List<JobApplicationDTO> deleteAll();//
+	public void deleteAll();//
 	public long count();//ww
 	public List<JobApplicationDTO> deleteAll(List<JobApplicationDTO> jobApplications);
-	public JobApplication updateStatus(JobApplication jobApplication,Status status);//ww
+	public JobApplicationDTO updateStatus(Long id,Status status);//ww
 	public JobApplication updatemobileNo(JobApplication jobApplications,String mobileno);//ww
 	public JobApplicationDTO updateJobApplication(Long jobApplicationId, JobApplicationDTO jobApplicationDTO);
 	public List<JobApplicationDTO> createJobApplication(List<JobApplicationDTO> jobApplication);
