@@ -2,10 +2,11 @@ package com.hexa.CareerPortal.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.hexa.CareerPortal.dto.ResumeDTO;
 
 public interface ResumeService {
-
 public ResumeDTO addResume(ResumeDTO resumeDTO);
 
 	public ResumeDTO findByResumeId(Long id);

@@ -1,13 +1,16 @@
 package com.hexa.CareerPortal.exception;
 
+import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -20,6 +23,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class GlobalExceptionController extends ResponseEntityExceptionHandler {
+	
 	 @ExceptionHandler(ResourceNotFoundException.class)
  	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException e, WebRequest w)
  	{
@@ -62,6 +66,7 @@ public class GlobalExceptionController extends ResponseEntityExceptionHandler {
 	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false),"Not_found");
 	 		return new ResponseEntity<>(er,HttpStatus.NOT_FOUND);
 	 	}
+	 
 
 	 
 	 @Override

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.entity.Status;
 
-@Repository
+
 public interface JobApplicationRepository extends JpaRepository<JobApplication, Long>{
 
 	public List<JobApplication> findByStatus(Status status);

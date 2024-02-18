@@ -5,6 +5,7 @@ import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDateTime;
 
+import com.hexa.CareerPortal.entity.Employer;
 import com.hexa.CareerPortal.entity.JobApplication;
 
 public class JobListingDTO {
@@ -16,10 +17,8 @@ public class JobListingDTO {
 
     @NotEmpty(message = "Title should not be empty")
     private String title;
-    @PastOrPresent(message = "Title should not be empty")
-    private LocalDateTime dateOfPosting;
     private EmployerDTO employer;
-    private JobApplication jobApplication;
+	private JobApplicationDTO jobApplication;
 
     public JobListingDTO() {
     }
@@ -29,29 +28,18 @@ public class JobListingDTO {
         this.description = description;
         this.title = title;
     }
-    public JobListingDTO(@NotEmpty(message = "Requirements should not be empty") String requirements,
-			@NotEmpty(message = "Description should not be empty") String description,
-			@NotEmpty(message = "Title should not be empty") String title,
-			@PastOrPresent(message = "Title should not be empty") LocalDateTime dateOfPosting, EmployerDTO employer,
-			JobApplication jobApplication) {
-		super();
-		this.requirements = requirements;
-		this.description = description;
-		this.title = title;
-		this.dateOfPosting = dateOfPosting;
-		this.employer = employer;
-		this.jobApplication = jobApplication;
-	}
+   
 
 	public JobListingDTO(@NotEmpty(message = "Requirements should not be empty") String requirements,
 			@NotEmpty(message = "Description should not be empty") String description,
-			@NotEmpty(message = "Title should not be empty") String title,
-			@PastOrPresent(message = "Title should not be empty") LocalDateTime dateOfPosting) {
+			@NotEmpty(message = "Title should not be empty") String title, EmployerDTO employer,
+			JobApplicationDTO jobApplication) {
 		super();
 		this.requirements = requirements;
 		this.description = description;
 		this.title = title;
-		this.dateOfPosting = dateOfPosting;
+		this.employer = employer;
+		this.jobApplication = jobApplication;
 	}
 
 	public String getRequirements() {
@@ -78,14 +66,6 @@ public class JobListingDTO {
         this.title = title;
     }
 
-    public LocalDateTime getDateOfPosting() {
-        return dateOfPosting;
-    }
-
-    public void setDateOfPosting(LocalDateTime dateOfPosting) {
-        this.dateOfPosting = dateOfPosting;
-    }
-
     public EmployerDTO getEmployer() {
         return employer;
     }
@@ -97,14 +77,14 @@ public class JobListingDTO {
 	@Override
 	public String toString() {
 		return "JobListingDTO [requirements=" + requirements + ", description=" + description + ", title=" + title
-				+ ", dateOfPosting=" + dateOfPosting + ", employer=" + employer + "]";
+			 + ", employer=" + employer + "]";
 	}
 
-	public JobApplication getJobApplication() {
+	public JobApplicationDTO getJobApplication() {
 		return jobApplication;
 	}
 
-	public void setJobApplication(JobApplication jobApplication) {
+	public void setJobApplication(JobApplicationDTO jobApplication) {
 		this.jobApplication = jobApplication;
 	}
 }

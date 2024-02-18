@@ -16,8 +16,6 @@ public class UserDTO {
     @NotEmpty( message = "Email should not be empty")
     @Email(message = "Email should be valid")
     private String email;
-    
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character")
 	private String password;
 
     @NotNull(message = "Role should not be null")

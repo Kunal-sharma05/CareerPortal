@@ -20,6 +20,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
 	private JobApplicationRepository jobApplicationRepository;
 	
 	public JobApplicationServiceImpl() {
@@ -138,7 +139,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	    if (optionalEmployer.isPresent()) {
 	    	JobApplication existingEmployer = optionalEmployer.get();
 	        // Update the existing employer with the new information
-	        existingEmployer.setMobileNo(jobApplicationDTO.getMobileNumber());
+	    	existingEmployer.setStatus(jobApplicationDTO.getStatus());
 	        
 	        JobApplication updatedEmployer = jobApplicationRepository.save(existingEmployer);
 	        

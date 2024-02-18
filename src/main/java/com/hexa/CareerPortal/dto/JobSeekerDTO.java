@@ -20,8 +20,6 @@ public class JobSeekerDTO {
 	@NotEmpty(message = "contact number should not be empty")
 	@Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits")
     private String mobileNumber;
-	@NotEmpty(message = "birth date should not be empty")
-	@Past
     private Date dateOfBirth;
 	@NotEmpty(message = "email should be valid")
 	@Email(message = "email should be valid")
@@ -38,7 +36,7 @@ public class JobSeekerDTO {
 			@NotEmpty(message = "details should not be empty") String professionalDetails,
 			@NotEmpty(message = "details should not be empty") String educationDetail,
 			@NotEmpty(message = "contact number should not be empty") @Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits") String mobileNumber,
-			@NotEmpty(message = "birth date should not be empty") @Past Date dateOfBirth,
+			 Date dateOfBirth,
 			@NotEmpty(message = "email should be valid") @Email(message = "email should be valid") String email,
 			List<ResumeDTO> resumes) {
 		super();
