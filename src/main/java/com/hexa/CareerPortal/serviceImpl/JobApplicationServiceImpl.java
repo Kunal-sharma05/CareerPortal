@@ -74,8 +74,8 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	}
 
 	@Override
-	public List<JobApplication> deleteAll() {
-		List<JobApplication> jobApplication=new ArrayList<>();
+	public List<JobApplicationDTO> deleteAll() {
+		List<JobApplicationDTO> jobApplication=new ArrayList<>();
 		jobApplication.addAll(jobApplicationRepository.findAll());
 		if(jobApplication!=null)
 		{
@@ -92,12 +92,12 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	}
 
 	@Override
-	public List<JobApplication> deleteAll(List<JobApplication> jobApplications) {
-		List<JobApplication> jobApplication=new ArrayList<>();
+	public List<JobApplicationDTO> deleteAll(List<JobApplicationDTO> jobApplications) {
+		List<JobApplicationDTO> jobApplication=new ArrayList<>();
 		jobApplication.addAll(jobApplications);
 		if(jobApplication!=null)
 		{
-			jobApplicationRepository.deleteAll(jobApplications);
+			jobApplicationRepository.deleteAll();
 		}
 		return jobApplication;
 		

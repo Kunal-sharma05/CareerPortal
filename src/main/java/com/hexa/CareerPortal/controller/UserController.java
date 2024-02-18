@@ -54,7 +54,9 @@ public class UserController {
         UserDTO updatedUser = userService.updateUser(userId, userDTO);
         if (updatedUser != null) {
             return ResponseEntity.ok(updatedUser);
-        } else {
+        }
+        else
+        {
             throw new ResourceNotFoundException("User not found with id: " + userId);
         }
     }

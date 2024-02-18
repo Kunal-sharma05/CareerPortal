@@ -24,8 +24,8 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		this.jobSeekerRepository = jobSeekerRepository;
 	}
 	@Override
-	public JobSeeker updateName(Long id, String name) {
-		JobSeeker jobSeeker = jobSeekerRepository.findById(id).orElse(null);
+	public JobSeekerDTO updateName(Long id, String name) {
+		JobSeekerDTO jobSeeker = jobSeekerRepository.findById(id).orElse(null);
 		if(jobSeeker!=null)
 		{
 			jobSeeker.setFullName(name);
@@ -34,8 +34,8 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public JobSeeker updateEmail(Long id, String email) {
-		JobSeeker jobseeker = jobSeekerRepository.findByEmail(email);
+	public JobSeekerDTO updateEmail(Long id, String email) {
+		JobSeekerDTO jobseeker = jobSeekerRepository.findByEmail(email);
 		if(jobseeker!=null)
 		{
 			jobseeker.setEmail(email);
@@ -44,8 +44,8 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public JobSeeker updatemobileNo(JobSeeker jobSeekers,String mobileNo) {
-		JobSeeker jobSeeker=jobSeekerRepository.findById(jobSeekers.getJobSeekerId()).orElse(null);
+	public JobSeekerDTO updatemobileNo(JobSeeker jobSeekers,String mobileNo) {
+		JobSeekerDTO jobSeeker=jobSeekerRepository.findById(jobSeekers.getJobSeekerId()).orElse(null);
 		if(jobSeeker!=null)
 		{
 			jobSeeker.setMobileNumber(mobileNo);
@@ -55,60 +55,48 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public JobSeeker createJobSeeker(JobSeeker jobseeker) {
-		JobSeeker savedJobSeeker = jobSeekerRepository.save(jobseeker);
-		return savedJobSeeker;
-	}
-
-	@Override
 	public JobSeekerDTO createJobSeeker(JobSeekerDTO jobSeekerDTO) {
-		JobSeeker JobSeekerEntity=  modelMapper.map(jobSeekerDTO, JobSeeker.class);
-		JobSeeker savedJobSeeker= jobSeekerRepository.save(JobSeekerEntity);
+		JobSeekerDTO JobSeekerEntity=  modelMapper.map(jobSeekerDTO, JobSeekerDTO.class);
+		JobSeekerDTO savedJobSeeker= jobSeekerRepository.save(JobSeekerEntity);
 		jobSeekerDTO=modelMapper.map(savedJobSeeker,JobSeekerDTO.class );
 		return jobSeekerDTO;
 	}
 	@Override
-	public List<JobSeeker> findJobSeeker(List<JobSeeker> jobseeker) {
-		List<JobSeeker> jobseekers = jobSeekerRepository.saveAll(jobseeker);
+	public List<JobSeekerDTO> findJobSeeker(List<JobSeekerDTO> jobseeker) {
+		List<JobSeekerDTO> jobseekers = jobSeekerRepository.saveAll(jobseeker);
 		return jobseekers;
 	}
 
 	@Override
-	public JobSeeker findByName(String name) {
-		JobSeeker jobseeker = jobSeekerRepository.findByFullName(name);
+	public List<JobSeekerDTO> findByName(String name) {
+		List<JobSeekerDTO> jobseeker = jobSeekerRepository.findByFullName(name);
 		return jobseeker;
 	}
 
 	@Override
 	public List<JobSeekerDTO> findAll() {
-		List<JobSeeker> users=new ArrayList<>();
+		List<JobSeekerDTO> users=new ArrayList<>();
 		users.addAll(jobSeekerRepository.findAll());
 		List<JobSeekerDTO> user=users.stream().map(User->modelMapper.map(users, JobSeekerDTO.class)).toList();
 		return user;
 	}
-	@Override
-	public JobSeekerDTO findByUserId(Long id) {
-		JobSeeker jobSeeker = jobSeekerRepository.findById(id).orElse(null);
-		JobSeekerDTO jobSeekerDTO=modelMapper.map(jobSeeker,JobSeekerDTO.class );
-		return jobSeekerDTO;
 	
-	}
 
 	@Override
 	public JobSeekerDTO findByJobSeekerId(Long id) {
-		JobSeeker jobSeeker= jobSeekerRepository.findByJobSeekerId(id).orElse(null);
+		JobSeekerDTO jobSeeker= jobSeekerRepository.findByJobSeekerId(id).orElse(null);
 		JobSeekerDTO jobSeekerDTO=modelMapper.map(jobSeeker, JobSeekerDTO.class);
 		return jobSeekerDTO;
 	}
 	@Override
-	public JobSeeker findByEmail(String Email) {
-		JobSeeker jobseeker = jobSeekerRepository.findByEmail(Email);
+	public JobSeekerDTO findByEmail(String Email) {
+		JobSeekerDTO jobseeker = jobSeekerRepository.findByEmail(Email);
 		return jobseeker;
 	}
 
 	@Override
-	public JobSeeker deleteById(Long jobSeekerId) {
-		JobSeeker jobSeeker=jobSeekerRepository.findById(jobSeekerId).orElse(null);
+	public JobSeekerDTO deleteById(Long jobSeekerId) {
+		JobSeekerDTO jobSeeker=jobSeekerRepository.findById(jobSeekerId).orElse(null);
 		if(jobSeeker!=null)
 		{
 			jobSeekerRepository.deleteById(jobSeekerId);
@@ -117,8 +105,8 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public List <JobSeeker> deleteAll() {
-		List<JobSeeker> jobseekers = new ArrayList<>();
+	public List<JobSeekerDTO> deleteAll() {
+		List<JobSeekerDTO> jobseekers = new ArrayList<>();
 		jobseekers.addAll(jobSeekerRepository.findAll());
 		if(jobseekers!= null)
 		{
@@ -139,7 +127,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		jobseeker.addAll(jobseekers);
 		if(jobseeker!=null)
 		{
-			jobSeekerRepository.deleteAll(jobseekers);
+			jobSeekerRepository.deleteAll();
 		}
 		return jobseeker;
 		
@@ -147,7 +135,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 	@Override
 	public JobSeekerDTO updateJobSeekerDTO(Long jobSeekerId, JobSeekerDTO jobSeekerDTO) {
-		JobSeeker jobSeeker= jobSeekerRepository.findById(jobSeekerId).orElse(null);
+		JobSeekerDTO jobSeeker= jobSeekerRepository.findById(jobSeekerId).orElse(null);
 		if(jobSeeker!=null)
 		{
 			jobSeeker.setEmail(jobSeekerDTO.getEmail());
@@ -160,21 +148,20 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 	
 	public JobSeekerDTO updateJobSeeker(Long jobSeekerId, JobSeekerDTO jobSeekerDTO) {
-	    Optional<JobSeeker> optionalEmployer = jobSeekerRepository.findById(jobSeekerId);
+	    Optional<JobSeekerDTO> optionalEmployer = jobSeekerRepository.findById(jobSeekerId);
 	    JobSeekerDTO jobSeekerDTO1=null;
 	    if (optionalEmployer.isPresent()) {
-	        JobSeeker existingEmployer = optionalEmployer.get();
+	        JobSeekerDTO existingEmployer = optionalEmployer.get();
 	        // Update the existing employer with the new information
 	        existingEmployer.setFullName(jobSeekerDTO1.getFullName());
-	        existingEmployer.setCompanyName(jobSeekerDTO1.getCompanyName());
 	        existingEmployer.setMobileNumber(jobSeekerDTO1.getMobileNumber());
 	        existingEmployer.setEmail(jobSeekerDTO1.getEmail());
 	        
-	        JobSeeker updatedEmployer = jobSeekerRepository.save(existingEmployer);
+	        JobSeekerDTO updatedEmployer = jobSeekerRepository.save(existingEmployer);
 	        
 	        jobSeekerDTO1= modelMapper.map(updatedEmployer, JobSeekerDTO.class);
 	    }
 	    return jobSeekerDTO1;
 	}
-
+	
 }

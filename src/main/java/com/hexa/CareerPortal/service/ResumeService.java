@@ -3,17 +3,16 @@ package com.hexa.CareerPortal.service;
 import java.util.List;
 
 import com.hexa.CareerPortal.dto.ResumeDTO;
-import com.hexa.CareerPortal.entity.Resume;
 
 public interface ResumeService {
 
 public ResumeDTO addResume(ResumeDTO resumeDTO);
 
 	public ResumeDTO findByResumeId(Long id);
-	public Resume deleteById(Long resumeId);
-	public List<Resume> deleteAll();
+	public void deleteById(Long resumeId);
+	public List<ResumeDTO> deleteAll();
 	public long count();
-	public List<Resume> deleteAll(List<Resume> resume);
+	public List<ResumeDTO> deleteAll(List<ResumeDTO> resume);
 
 	public ResumeDTO updateResume(Long resumeId, ResumeDTO resumeDTO);
 
@@ -22,6 +21,9 @@ public ResumeDTO addResume(ResumeDTO resumeDTO);
 	
 
 	public List<ResumeDTO> addResumes(List<ResumeDTO> resume);
+
 	
+
+
 	
 }
