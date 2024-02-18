@@ -19,7 +19,7 @@ public interface JobApplicationService {
 	public long count();//ww
 	public List<JobApplicationDTO> deleteAll(List<JobApplicationDTO> jobApplications);
 	public JobApplication updateStatus(JobApplication jobApplication,Status status);//ww
-	public JobApplication updatemobileNo(JobApplication jobApplications,String mobileno);//ww
+	public JobApplicationDTO updateMobileNo(Long employerId,String mobileno);//ww
 	public JobApplicationDTO updateJobApplication(Long jobApplicationId, JobApplicationDTO jobApplicationDTO);
 	public List<JobApplicationDTO> createJobApplication(List<JobApplicationDTO> jobApplication);
 
