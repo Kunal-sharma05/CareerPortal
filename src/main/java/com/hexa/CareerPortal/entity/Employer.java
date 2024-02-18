@@ -27,6 +27,7 @@ public class Employer {
 	private String companyName;
 	@Column(name="mobile_number")
 	private String mobileNo;
+	@Column(unique=true)
 	private String email;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="Employer_jobListing_mapping",joinColumns=@JoinColumn(name="employer_id"),inverseJoinColumns=@JoinColumn(name="job_Listing_id"))

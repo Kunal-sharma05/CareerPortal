@@ -6,13 +6,24 @@ import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.JobApplicationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.hexa.CareerPortal.dto.JobApplicationDTO;
+import com.hexa.CareerPortal.exception.ResourceNotFoundException;
+import com.hexa.CareerPortal.service.JobApplicationService;
 
 @RestController
 @RequestMapping("/api/jobapplications")
@@ -20,7 +31,7 @@ public class JobApplicationController {
 
     private final JobApplicationService jobApplicationService;
 
-    @Autowired
+
     public JobApplicationController(JobApplicationService jobApplicationService) {
         this.jobApplicationService = jobApplicationService;
     }
