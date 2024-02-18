@@ -44,6 +44,26 @@ public class GlobalExceptionController extends ResponseEntityExceptionHandler {
 	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false),"Not_found");
 	 		return new ResponseEntity<>(er,HttpStatus.NOT_FOUND);
 	 	}
+	 @ExceptionHandler(JobApplicationNotFoundException.class)
+	 	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(JobApplicationNotFoundException e, WebRequest w)
+	 	{
+	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false),"Not_found");
+	 		return new ResponseEntity<>(er,HttpStatus.NOT_FOUND);
+	 	}
+	 @ExceptionHandler(JobSeekerNotFoundException.class)
+	 	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(JobSeekerNotFoundException e, WebRequest w)
+	 	{
+	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false),"Not_found");
+	 		return new ResponseEntity<>(er,HttpStatus.NOT_FOUND);
+	 	}
+	 @ExceptionHandler(ResumeNotFoundException.class)
+	 	public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResumeNotFoundException e, WebRequest w)
+	 	{
+	 		ErrorDetails er= new ErrorDetails(LocalDateTime.now(),e.getMessage(),w.getDescription(false),"Not_found");
+	 		return new ResponseEntity<>(er,HttpStatus.NOT_FOUND);
+	 	}
+
+	 
 	 @Override
 		protected ResponseEntity<Object> handleMethodArgumentNotValid(
 				MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {

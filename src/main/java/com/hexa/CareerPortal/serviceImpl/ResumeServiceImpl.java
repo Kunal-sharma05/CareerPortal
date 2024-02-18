@@ -50,9 +50,13 @@ public class ResumeServiceImpl implements ResumeService{
 	
 	@Override
 	public ResumeDTO findByResumeId(Long id) {
-		Resume resume=resumeRepository.findByResumeId(id).orElse(null);
-		ResumeDTO userDTO=modelMapper.map(resume, ResumeDTO.class);
-		return userDTO;
+		Resume resume=resumeRepository.findById(id).orElse(null);
+		ResumeDTO resumeDTO=null;
+		if(resume!=null)
+		{
+		resumeDTO=modelMapper.map(resume, ResumeDTO.class);
+		}
+		return resumeDTO;
 	}
 	@Override
 	public void deleteById(Long resumeId) {

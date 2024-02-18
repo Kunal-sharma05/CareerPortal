@@ -83,6 +83,7 @@ public class UserServiceImpl implements UserService {
 		if(user!=null)
 		{
 			user.setPassword(password);
+			userRepository.save(user);
 		}
 		return user;
 	}
@@ -105,7 +106,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDTO findByUserId(Long id) {
 		User user=userRepository.findByUserId(id).orElse(null);
-		UserDTO userDTO=modelMapper.map(user, UserDTO.class);
+		UserDTO userDTO=null;
+		if(user!=null)
+		{
+		userDTO=modelMapper.map(user, UserDTO.class);
+		}
 		return userDTO;
 	}
 

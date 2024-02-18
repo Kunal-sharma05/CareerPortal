@@ -33,6 +33,20 @@ public class EmployerDTO {
         this.email = email;
     }
 
+	public EmployerDTO(
+			@NotEmpty(message = "Full name should not be empty") @Size(min = 2, message = "Name should be more than 2 letters ") String fullName,
+			@NotEmpty(message = "Company name should not be empty") String companyName,
+			@NotEmpty(message = "Mobile number should not be empty") @Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits") String mobileNo,
+			@NotEmpty(message = "Email should not be empty") @Email(message = "Email should be valid") String email,
+			List<JobListingDTO> jobListings) {
+		super();
+		this.fullName = fullName;
+		this.companyName = companyName;
+		this.mobileNo = mobileNo;
+		this.email = email;
+		this.jobListings = jobListings;
+	}
+
 	public String getFullName() {
         return fullName;
     }

@@ -35,6 +35,7 @@ public class JobSeeker {
 	private String educationDetail;
 	@Column(name="mobile_number")
 	private String mobileNumber;
+	@Column(unique=true)
 	private String email;
 	@Column(name="date_of_birth")
 	private Date dateOfBirth;

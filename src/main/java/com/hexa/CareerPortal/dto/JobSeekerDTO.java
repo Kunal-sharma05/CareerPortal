@@ -29,10 +29,29 @@ public class JobSeekerDTO {
     private List<ResumeDTO> resumes;
     
 
-    public JobSeekerDTO(String string, String string2) {
-    }
+    public JobSeekerDTO() {
+		super();
+	}
 
-    public JobSeekerDTO(String fullName, String professionalDetails, String educationDetail, String mobileNumber,Date dateOfBirth, String email) {
+    public JobSeekerDTO(
+			@NotEmpty(message = "status should not be empty") @Size(message = "size should not be lesser than 2") String fullName,
+			@NotEmpty(message = "details should not be empty") String professionalDetails,
+			@NotEmpty(message = "details should not be empty") String educationDetail,
+			@NotEmpty(message = "contact number should not be empty") @Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits") String mobileNumber,
+			@NotEmpty(message = "birth date should not be empty") @Past Date dateOfBirth,
+			@NotEmpty(message = "email should be valid") @Email(message = "email should be valid") String email,
+			List<ResumeDTO> resumes) {
+		super();
+		this.fullName = fullName;
+		this.professionalDetails = professionalDetails;
+		this.educationDetail = educationDetail;
+		this.mobileNumber = mobileNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.email = email;
+		this.resumes = resumes;
+	}
+
+	public JobSeekerDTO(String fullName, String professionalDetails, String educationDetail, String mobileNumber,Date dateOfBirth, String email) {
         this.fullName = fullName;
         this.professionalDetails = professionalDetails;
         this.educationDetail = educationDetail;
@@ -96,13 +115,20 @@ public class JobSeekerDTO {
    	}
 
 	public Object getCompanyName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void setCompanyName(Object companyName) {
-		// TODO Auto-generated method stub
 		
+	}
+
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	

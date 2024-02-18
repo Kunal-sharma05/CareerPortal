@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @Validated @RequestBody UserDTO userDTO) throws ResourceNotFoundException {
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @Valid @RequestBody UserDTO userDTO) throws ResourceNotFoundException {
         UserDTO updatedUser = userService.updateUser(userId, userDTO);
         if (updatedUser != null) {
             return ResponseEntity.ok(updatedUser);
@@ -90,7 +90,7 @@ public class UserController {
 
 
     @PostMapping("/createMultiple")
-    public ResponseEntity<List<UserDTO>> createUsers(@RequestBody List<UserDTO> users) {
+    public ResponseEntity<List<UserDTO>> createUsers(@Valid @RequestBody List<UserDTO> users) {
         List<UserDTO> createdUsers = userService.createUsers(users);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUsers);
     }
@@ -146,7 +146,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/findByNameIn")
+    @GetMapping("/findByNameIn")
     public ResponseEntity<List<UserDTO>> findByNameIn(@RequestBody List<String> names) throws ResourceNotFoundException {
     	List<UserDTO> userDTOs=userService.findByNameIn(names);
         if(userDTOs!=null) {

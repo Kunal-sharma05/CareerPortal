@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hexa.CareerPortal.dto.ResumeDTO;
 import com.hexa.CareerPortal.exception.ResourceNotFoundException;
+import com.hexa.CareerPortal.exception.ResumeNotFoundException;
 import com.hexa.CareerPortal.service.ResumeService;
 
 @RestController
@@ -37,7 +38,7 @@ public class ResumeController {
     }
 
     @GetMapping("/{resumeId}")
-    public ResponseEntity<ResumeDTO> getResumeById(@PathVariable Long resumeId) throws ResourceNotFoundException {
+    public ResponseEntity<ResumeDTO> getResumeById(@PathVariable Long resumeId) throws ResumeNotFoundException {
         ResumeDTO resumeDTO = resumeService.findByResumeId(resumeId);
             if (resumeDTO != null) 
             {
@@ -45,12 +46,12 @@ public class ResumeController {
             }
             else 
             {
-                throw new ResourceNotFoundException("User not found with id: " + resumeId);
+                throw new ResumeNotFoundException("Resume not found with id: " + resumeId);
             }
     }
 
     @PutMapping("/{resumeId}")
-    public ResponseEntity<ResumeDTO> updateResume(@PathVariable Long resumeId, @Validated @RequestBody ResumeDTO resumeDTO) throws ResourceNotFoundException {
+    public ResponseEntity<ResumeDTO> updateResume(@PathVariable Long resumeId, @Validated @RequestBody ResumeDTO resumeDTO) throws ResumeNotFoundException {
             ResumeDTO updatedResume = resumeService.updateResume(resumeId, resumeDTO);
             if (resumeDTO != null) 
             {    
@@ -58,7 +59,7 @@ public class ResumeController {
         } 
             else
         {
-        	throw new ResourceNotFoundException("User not found with id: " + resumeId);
+            	 throw new ResumeNotFoundException("Resume not found with id: " + resumeId);
         }
     }
 
@@ -76,7 +77,7 @@ public class ResumeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ResumeDTO>> getAllResumes() throws ResourceNotFoundException {
+    public ResponseEntity<List<ResumeDTO>> getAllResumes() throws ResumeNotFoundException {
         List<ResumeDTO> users = resumeService.findAll();
         if(users!=null)
         {
@@ -84,7 +85,7 @@ public class ResumeController {
         }
          else
         {
-        	throw new ResourceNotFoundException("Users not found with id: ");
+        	 throw new ResumeNotFoundException("Resumes not found ");
         }
     }
 

@@ -5,6 +5,8 @@ import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDateTime;
 
+import com.hexa.CareerPortal.entity.JobApplication;
+
 public class JobListingDTO {
     @NotEmpty(message = "Requirements should not be empty")
     private String requirements;
@@ -17,6 +19,7 @@ public class JobListingDTO {
     @PastOrPresent(message = "Title should not be empty")
     private LocalDateTime dateOfPosting;
     private EmployerDTO employer;
+    private JobApplication jobApplication;
 
     public JobListingDTO() {
     }
@@ -27,6 +30,20 @@ public class JobListingDTO {
         this.title = title;
     }
     public JobListingDTO(@NotEmpty(message = "Requirements should not be empty") String requirements,
+			@NotEmpty(message = "Description should not be empty") String description,
+			@NotEmpty(message = "Title should not be empty") String title,
+			@PastOrPresent(message = "Title should not be empty") LocalDateTime dateOfPosting, EmployerDTO employer,
+			JobApplication jobApplication) {
+		super();
+		this.requirements = requirements;
+		this.description = description;
+		this.title = title;
+		this.dateOfPosting = dateOfPosting;
+		this.employer = employer;
+		this.jobApplication = jobApplication;
+	}
+
+	public JobListingDTO(@NotEmpty(message = "Requirements should not be empty") String requirements,
 			@NotEmpty(message = "Description should not be empty") String description,
 			@NotEmpty(message = "Title should not be empty") String title,
 			@PastOrPresent(message = "Title should not be empty") LocalDateTime dateOfPosting) {
@@ -81,5 +98,13 @@ public class JobListingDTO {
 	public String toString() {
 		return "JobListingDTO [requirements=" + requirements + ", description=" + description + ", title=" + title
 				+ ", dateOfPosting=" + dateOfPosting + ", employer=" + employer + "]";
+	}
+
+	public JobApplication getJobApplication() {
+		return jobApplication;
+	}
+
+	public void setJobApplication(JobApplication jobApplication) {
+		this.jobApplication = jobApplication;
 	}
 }

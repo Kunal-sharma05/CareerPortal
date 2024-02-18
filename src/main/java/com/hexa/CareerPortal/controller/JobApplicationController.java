@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexa.CareerPortal.dto.JobApplicationDTO;
+import com.hexa.CareerPortal.dto.UserDTO;
 import com.hexa.CareerPortal.entity.Status;
-import com.hexa.CareerPortal.exception.EmployerNotFoundException;
 import com.hexa.CareerPortal.exception.JobApplicationNotFoundException;
-import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.JobApplicationService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/jobapplications")
@@ -35,30 +36,32 @@ public class JobApplicationController {
     }
 
     @PostMapping
-    public ResponseEntity<JobApplicationDTO> createJobApplication(@Validated @RequestBody JobApplicationDTO jobApplicationDTO) {
+    public ResponseEntity<JobApplicationDTO> createJobApplication(@Valid @RequestBody JobApplicationDTO jobApplicationDTO) {
         JobApplicationDTO createdJobApplication = jobApplicationService.createJobApplication(jobApplicationDTO);
         return new ResponseEntity<>(createdJobApplication, HttpStatus.CREATED);
     }
 
     @GetMapping("/{jobApplicationId}")
-    public ResponseEntity<JobApplicationDTO> getJobApplicationById(@PathVariable Long jobApplicationId) throws ResourceNotFoundException {
+    public ResponseEntity<JobApplicationDTO> getJobApplicationById(@PathVariable Long jobApplicationId) throws JobApplicationNotFoundException {
        
             JobApplicationDTO jobApplicationDTO = jobApplicationService.findByJobApplicationId(jobApplicationId);
             if (jobApplicationDTO != null) {
                 return new ResponseEntity<>(jobApplicationDTO, HttpStatus.OK);
             } else {
-                throw new ResourceNotFoundException("User not found with id: " + jobApplicationId);
+            	throw new JobApplicationNotFoundException("jobApplication not found with id " + jobApplicationId);
+
             }
     }
 
     @PutMapping("/{jobApplicationId}")
-    public ResponseEntity<JobApplicationDTO> updateJobApplication(@PathVariable Long jobApplicationId, @Validated @RequestBody JobApplicationDTO jobApplicationDTO) throws ResourceNotFoundException {
+    public ResponseEntity<JobApplicationDTO> updateJobApplication(@PathVariable Long jobApplicationId, @Validated @RequestBody JobApplicationDTO jobApplicationDTO) throws  JobApplicationNotFoundException {
        
             JobApplicationDTO updatedJobApplication = jobApplicationService.updateJobApplication(jobApplicationId, jobApplicationDTO);
         if (jobApplicationDTO != null) {  
             return new ResponseEntity<>(updatedJobApplication, HttpStatus.OK);
         } else {
-            throw new ResourceNotFoundException("User not found with id: " + jobApplicationId);
+        	throw new JobApplicationNotFoundException("jobApplication not found with id " + jobApplicationId);
+
         }
     }
 
@@ -87,14 +90,14 @@ public class JobApplicationController {
     	return ResponseEntity.noContent().build();
     }
     @PutMapping("/{id}/updateStatus")
-    public ResponseEntity<JobApplicationDTO> updateStatus(@PathVariable Long id, @RequestParam Status status) throws EmployerNotFoundException {
+    public ResponseEntity<JobApplicationDTO> updateStatus(@PathVariable Long id, @RequestParam Status status) throws JobApplicationNotFoundException {
    	 JobApplicationDTO updatedjobApplicationDTO = jobApplicationService.updateStatus(id, status);
         if(updatedjobApplicationDTO!=null) {
             return ResponseEntity.ok(updatedjobApplicationDTO);
          }
          else
          {
-    	   throw new EmployerNotFoundException("employer not found ");
+    	   throw new JobApplicationNotFoundException("jobApplication not found ");
          }
     }
     @PutMapping("/{employerId}/updateMobile")
@@ -108,4 +111,10 @@ public class JobApplicationController {
     	   throw new JobApplicationNotFoundException("Job Application not found ");
          }
        } 
+    @PostMapping("/createMultipleJobApplications")
+    public ResponseEntity<List<JobApplicationDTO>> createJobApplication(@Valid @RequestBody List<JobApplicationDTO> jobApplications)
+    {
+    	 List<JobApplicationDTO> createdUsers = jobApplicationService.createJobApplication(jobApplications);
+         return ResponseEntity.status(HttpStatus.CREATED).body(createdUsers);
+    }
 }

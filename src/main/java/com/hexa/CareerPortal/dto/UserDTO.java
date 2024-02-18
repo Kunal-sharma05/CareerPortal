@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class UserDTO {
-
+	
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
@@ -17,7 +17,7 @@ public class UserDTO {
     @Email(message = "Email should be valid")
     private String email;
     
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character")
 	private String password;
 
     @NotNull(message = "Role should not be null")
@@ -85,6 +85,20 @@ public class UserDTO {
     public void setJobSeeker(JobSeekerDTO jobSeeker) {
     this.jobSeeker = jobSeeker;
     }
+
+	@Override
+	public String toString() {
+		return "UserDTO [name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
+				+ ", employer=" + employer + ", jobSeeker=" + jobSeeker + "]";
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
     }
 
