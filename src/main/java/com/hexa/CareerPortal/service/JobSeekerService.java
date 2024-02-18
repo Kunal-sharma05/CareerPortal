@@ -19,7 +19,7 @@ public interface JobSeekerService {
 	public List<JobSeeker>  deleteAll(List<JobSeeker> jobseekers);
 	public JobSeekerDTO updateName(Long id,String name);
 	public JobSeekerDTO updateEmail(Long id, String email);
-	public JobSeekerDTO updatemobileNo(JobSeeker jobSeeker, String mobileNo);
+	public JobSeekerDTO updateMobileNo(Long jobSeekerId, String mobileNo);
 	public JobSeekerDTO createJobSeeker(JobSeekerDTO jobSeekerDTO);
 	public JobSeekerDTO updateJobSeeker(Long id, JobSeekerDTO jobSeekerDto);
 	public JobSeekerDTO updateJobSeekerDTO(Long jobSeekerId, JobSeekerDTO userDTO);

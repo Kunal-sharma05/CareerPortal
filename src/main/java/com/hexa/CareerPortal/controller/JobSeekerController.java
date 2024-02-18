@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexa.CareerPortal.dto.JobSeekerDTO;
+import com.hexa.CareerPortal.exception.JobSeekerNotFoundException;
 import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.JobSeekerService;
 
@@ -131,9 +132,9 @@ public class JobSeekerController {
         }
     }
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) throws ResourceNotFoundException {
-    	JobSeekerDTO user=jobSeekerService.deleteById(userId);
-        if(user!=null)
+    public ResponseEntity<Void> deleteJobSeeker(@PathVariable Long userId) throws ResourceNotFoundException {
+    	JobSeekerDTO jobSeeker=jobSeekerService.deleteById(userId);
+        if(jobSeeker!=null)
         {
         	return ResponseEntity.noContent().build();
         }
@@ -144,7 +145,7 @@ public class JobSeekerController {
         
     }
     @DeleteMapping("/deleteAll")
-    public ResponseEntity<List<JobSeekerDTO>> deleteAllUsers() throws ResourceNotFoundException {
+    public ResponseEntity<List<JobSeekerDTO>> deleteAllJobSeeker() throws ResourceNotFoundException {
     	List<JobSeekerDTO> jobSeekerDTOs=jobSeekerService.deleteAll();
         if(jobSeekerDTOs!=null) {
         	return ResponseEntity.ok(jobSeekerDTOs); 
@@ -154,5 +155,16 @@ public class JobSeekerController {
         	throw new ResourceNotFoundException("user is not found");
         }
     }
+    @PutMapping("/{employerId}/updateMobile")
+    public ResponseEntity<JobSeekerDTO> updateMobileNo(@PathVariable Long jobSeekerId, @RequestParam String mobileNo) throws JobSeekerNotFoundException {
+   	 JobSeekerDTO updatedMobileNo = jobSeekerService.updateMobileNo(jobSeekerId, mobileNo);
+        if(updatedMobileNo!=null) {
+            return ResponseEntity.ok(updatedMobileNo);
+         }
+         else
+         {
+    	   throw new JobSeekerNotFoundException("Job seeker not found ");
+         }
+       }
     
 }
