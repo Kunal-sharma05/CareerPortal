@@ -3,6 +3,7 @@ package com.hexa.CareerPortal.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +50,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDTO> createUsers(List<UserDTO> user) {
-		List<User> users=user.stream().map(userDTO->modelMapper.map(userDTO,User.class)).toList();
+		List<User> users=user.stream().map(userDTO->modelMapper.map(userDTO,User.class)).collect(Collectors.toList());
 		List<User> savedUsers=userRepository.saveAll(users);
-		user=savedUsers.stream().map(User->modelMapper.map(savedUsers, UserDTO.class)).toList();
+		user=savedUsers.stream().map(User->modelMapper.map(savedUsers, UserDTO.class)).collect(Collectors.toList());
 		return user;
 	}
 
@@ -95,17 +96,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserDTO> findByName(String name) {
 		List<User> user=userRepository.findByName(name).orElse(null);
-		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).collect(Collectors.toList());
 		return users;
 	}
 
 	@Override
 	public List<UserDTO> findAll() {
-		List<User> users=new ArrayList<>();
-		users.addAll(userRepository.findAll());
-		List<UserDTO> user=users.stream().map(User->modelMapper.map(users, UserDTO.class)).toList();
-		System.out.println(""+users.toString());
-		return user;
+	    List<User> users = userRepository.findAll();
+	    List<UserDTO> userDTOs = users.stream()
+	                                  .map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList());
+	    System.out.println(""+ userDTOs.toString());
+	    return userDTOs;
 	}
 
 	@Override
@@ -131,7 +132,7 @@ public class UserServiceImpl implements UserService {
 	{
 		List<User> user=new ArrayList<>();
 		user.addAll(userRepository.findByRole(role));
-		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).collect(Collectors.toList());
 		return users;	
 	}
 
@@ -140,7 +141,7 @@ public class UserServiceImpl implements UserService {
 	{
 		List<User> user=new ArrayList<>();
 		user.addAll(userRepository.findByNameContaining(name));
-		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).collect(Collectors.toList());
 		return users;		
 	}
 
@@ -148,7 +149,7 @@ public class UserServiceImpl implements UserService {
 	public List<UserDTO> findByNameIn(List<String> names) {
 		List<User> user=new ArrayList<>();
 		user.addAll(userRepository.findByNameIn(names));
-		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		List<UserDTO> users=user.stream().map(User->modelMapper.map(User, UserDTO.class)).collect(Collectors.toList());
 		return users;
 	}
 
@@ -171,7 +172,7 @@ public class UserServiceImpl implements UserService {
 		{
 			userRepository.deleteAll();
 		}
-		List<UserDTO> userDTOs=users.stream().map(User->modelMapper.map(User, UserDTO.class)).toList();
+		List<UserDTO> userDTOs=users.stream().map(User->modelMapper.map(User, UserDTO.class)).collect(Collectors.toList());
 		return userDTOs;
 	}
 	@Override
