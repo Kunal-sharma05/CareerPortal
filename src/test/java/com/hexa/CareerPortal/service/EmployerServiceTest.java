@@ -10,26 +10,26 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.hexa.CareerPortal.dto.UserDTO;
-import com.hexa.CareerPortal.repository.UserRepository;
-import com.hexa.CareerPortal.serviceImpl.UserServiceImpl;
+import com.hexa.CareerPortal.dto.EmployerDTO;
+import com.hexa.CareerPortal.repository.EmployerRepository;
+import com.hexa.CareerPortal.serviceImpl.EmployerServiceImpl;
 
 
 @SpringBootTest
-public class UserServiceTest {
+public class EmployerServiceTest {
 	public final static Logger LOGGER=Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	
 	@Autowired
-	UserServiceImpl userServiceImpl;
+	EmployerServiceImpl employerServiceImpl;
 	@Autowired
-	UserRepository userRepository;
+	EmployerRepository employerRepository;
 
 	@Disabled
 	@Test
 	void saveMethodTest()
 	{
-		UserDTO p=new UserDTO();
-		UserDTO savedProduct=userServiceImpl.createUser(p);
+		EmployerDTO p=new EmployerDTO();
+		EmployerDTO savedProduct=employerServiceImpl.createEmployer(p);
 		LOGGER.log(Level.INFO, "SavedProduct in db using JPA save()"+savedProduct);
 	}
 
@@ -38,12 +38,12 @@ public class UserServiceTest {
 	void saveMethodUpdateTest()
 	{
 		Long id = 10L;
-		UserDTO  existingProductOptional=userServiceImpl.findByUserId(id);
+		EmployerDTO  existingProductOptional=employerServiceImpl.findById(id);
 		if(existingProductOptional!=null) {
 		LOGGER.log(Level.INFO, "existingProduct in db using JPA save()"+existingProductOptional);
 		existingProductOptional.setEmail("itsmekunal0501@gmail.com");
-		existingProductOptional.setName("Kunal");
-		UserDTO savedProduct=userServiceImpl.createUser(existingProductOptional);
+		existingProductOptional.setFullName(null);
+		EmployerDTO savedProduct=employerServiceImpl.createEmployer(existingProductOptional);
 		LOGGER.log(Level.INFO, "ExistingProduct in db using JPA save()"+savedProduct);
 		}
 		else
@@ -55,16 +55,16 @@ public class UserServiceTest {
 	@Test
 	public void saveAll()
 	{
-		List<UserDTO> userDTO=new ArrayList<>();
+		List<EmployerDTO> EmployerDTO=new ArrayList<>();
 		
-		List<UserDTO> savedProductList=userServiceImpl.createUsers(userDTO);
+		List<EmployerDTO> savedProductList=employerServiceImpl.createEmployers(EmployerDTO);
 		LOGGER.log(Level.INFO,"saved all product"+savedProductList);
 	}
 	@Disabled
 	@Test
 	void findAllMethodTest()
 	{
-		List<UserDTO> productList=userServiceImpl.findAll();
+		List<EmployerDTO> productList=employerServiceImpl.findAll();
 		LOGGER.log(Level.INFO,"Found record");
 		productList.forEach((p)->{LOGGER.log(Level.INFO,"recor: "+p);});
 	}
@@ -73,8 +73,8 @@ public class UserServiceTest {
 	void deleteBYIdMethodTest()
 	{
 		Long id=10L;
-		userServiceImpl.deleteById(id);
-		UserDTO opt=userServiceImpl.findByUserId(id);
+		employerServiceImpl.deleteById(id);
+		EmployerDTO opt=employerServiceImpl.findById(id);
 		LOGGER.log(Level.INFO,"recor deleted: "+opt);
 	}
 	@Disabled
@@ -82,8 +82,8 @@ public class UserServiceTest {
 	void deleteMethodTest()
 	{
 		Long id =11L;
-		UserDTO opt=userServiceImpl.findByUserId(id);
-		userServiceImpl.deleteById(id);
+		EmployerDTO opt=employerServiceImpl.findById(id);
+		employerServiceImpl.deleteById(id);
 		if(opt!=null)
 		{
 			LOGGER.log(Level.INFO,"recor deleted: "+opt);
@@ -94,16 +94,16 @@ public class UserServiceTest {
 	@Test
 	void deleteAllMethod()
 	{
-		userServiceImpl.deleteAll();
+		employerServiceImpl.deleteAll();
 	}
 	@Disabled
 	@Test
 	void deleteAllWithSelectedTest() {
-		UserDTO p1 = userServiceImpl.findByUserId(1L); // Use orElse(null) to handle the case when the entity is not found
-	    UserDTO p2 = userServiceImpl.findByUserId(2L); //
+		EmployerDTO p1 = employerServiceImpl.findById(1L); // Use orElse(null) to handle the case when the entity is not found
+	    EmployerDTO p2 = employerServiceImpl.findById(2L); //
 	    
 	    if (p1 != null && p2 != null) { // Check if both entities are found before deleting
-	        userServiceImpl.deleteAll();
+	        employerServiceImpl.deleteAll();
 	        LOGGER.log(Level.INFO, "Records deleted: ");
 	    } else {
 	        LOGGER.log(Level.INFO, "Unable to delete records: One or both records not found");
@@ -113,22 +113,22 @@ public class UserServiceTest {
 	@Test
 	void existByIdMethodTest()
 	{
-		boolean existStatus=userRepository.existsById((long)2);
+		boolean existStatus=employerRepository.existsById((long)2);
 		LOGGER.log(Level.INFO, "Record found" +existStatus);
 	}
 	@Disabled
 	@Test
 	void countMethodTest()
 	{
-		Long count=userServiceImpl.count();
+		Long count=employerServiceImpl.count();
 		LOGGER.log(Level.INFO, "Number of recors: " +count);
 	}
 	@Disabled
 	@Test
 	void saveMethod2Test()
 	{
-		UserDTO p=new UserDTO();
-		UserDTO savedProduct=userServiceImpl.createUser(p);
+		EmployerDTO p=new EmployerDTO();
+		EmployerDTO savedProduct=employerServiceImpl.createEmployer(p);
 		LOGGER.log(Level.INFO, "SavedProduct in db using JPA save()"+savedProduct);
 	}
 

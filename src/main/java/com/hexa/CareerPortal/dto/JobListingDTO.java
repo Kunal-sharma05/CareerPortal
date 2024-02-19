@@ -1,12 +1,6 @@
 package com.hexa.CareerPortal.dto;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.PastOrPresent;
-
-import java.time.LocalDateTime;
-
-import com.hexa.CareerPortal.entity.Employer;
-import com.hexa.CareerPortal.entity.JobApplication;
 
 public class JobListingDTO {
     @NotEmpty(message = "Requirements should not be empty")
