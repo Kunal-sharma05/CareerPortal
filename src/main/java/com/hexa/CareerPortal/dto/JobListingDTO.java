@@ -17,7 +17,6 @@ public class JobListingDTO {
 
     @NotEmpty(message = "Title should not be empty")
     private String title;
-    private EmployerDTO employer;
 	private JobApplicationDTO jobApplication;
 
     public JobListingDTO() {
@@ -32,13 +31,12 @@ public class JobListingDTO {
 
 	public JobListingDTO(@NotEmpty(message = "Requirements should not be empty") String requirements,
 			@NotEmpty(message = "Description should not be empty") String description,
-			@NotEmpty(message = "Title should not be empty") String title, EmployerDTO employer,
+			@NotEmpty(message = "Title should not be empty") String title,
 			JobApplicationDTO jobApplication) {
 		super();
 		this.requirements = requirements;
 		this.description = description;
 		this.title = title;
-		this.employer = employer;
 		this.jobApplication = jobApplication;
 	}
 
@@ -66,18 +64,10 @@ public class JobListingDTO {
         this.title = title;
     }
 
-    public EmployerDTO getEmployer() {
-        return employer;
-    }
-
-    public void setEmployer(EmployerDTO employer) {
-        this.employer = employer;
-    }
-
 	@Override
 	public String toString() {
 		return "JobListingDTO [requirements=" + requirements + ", description=" + description + ", title=" + title
-			 + ", employer=" + employer + "]";
+			 + "]";
 	}
 
 	public JobApplicationDTO getJobApplication() {

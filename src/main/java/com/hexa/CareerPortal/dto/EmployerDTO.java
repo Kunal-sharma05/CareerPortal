@@ -22,7 +22,7 @@ public class EmployerDTO {
     @Email(message = "Email should be valid")
     private String email;
 
-    private List<JobListingDTO> jobListings;
+    private List<JobListingDTO> jobListing;
     public EmployerDTO() {
     }
 
@@ -38,13 +38,13 @@ public class EmployerDTO {
 			@NotEmpty(message = "Company name should not be empty") String companyName,
 			@NotEmpty(message = "Mobile number should not be empty") @Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits") String mobileNo,
 			@NotEmpty(message = "Email should not be empty") @Email(message = "Email should be valid") String email,
-			List<JobListingDTO> jobListings) {
+			List<JobListingDTO> jobListing) {
 		super();
 		this.fullName = fullName;
 		this.companyName = companyName;
 		this.mobileNo = mobileNo;
 		this.email = email;
-		this.jobListings = jobListings;
+		this.jobListing = jobListing;
 	}
 
 	public String getFullName() {
@@ -79,12 +79,12 @@ public class EmployerDTO {
         this.email = email;
     }
 
-    public List<JobListingDTO> getJobListings() {
-        return jobListings;
+    public List<JobListingDTO> getJobListing() {
+        return jobListing;
     }
 
-    public void setJobListings(List<JobListingDTO> jobListings) {
-        this.jobListings = jobListings;
+    public void setJobListing(List<JobListingDTO> jobListing) {
+        this.jobListing = jobListing;
     }
     @Override
 	public String toString() {

@@ -3,12 +3,13 @@ package com.hexa.CareerPortal.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hexa.CareerPortal.dto.EmployerDTO;
 import com.hexa.CareerPortal.dto.JobSeekerDTO;
 import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.repository.JobSeekerRepository;
@@ -16,8 +17,10 @@ import com.hexa.CareerPortal.service.JobSeekerService;
 
 @Service
 public class JobSeekerServiceImpl implements JobSeekerService {
+	public static final Logger LOGGER=Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
 	private JobSeekerRepository jobSeekerRepository;
 	public JobSeekerServiceImpl(JobSeekerRepository jobSeekerRepository) 
 	{
@@ -66,7 +69,10 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Override
 	public JobSeekerDTO createJobSeeker(JobSeekerDTO jobSeekerDTO) {
+		
+		LOGGER.log(Level.INFO, "User in db using JPA save()"+jobSeekerDTO.toString());
 		JobSeeker JobSeekerEntity=  modelMapper.map(jobSeekerDTO, JobSeeker.class);
+		LOGGER.log(Level.INFO, "User in db using JPA save()"+JobSeekerEntity.toString());
 		JobSeeker savedJobSeeker= jobSeekerRepository.save(JobSeekerEntity);
 		jobSeekerDTO=modelMapper.map(savedJobSeeker,JobSeekerDTO.class );
 		return jobSeekerDTO;

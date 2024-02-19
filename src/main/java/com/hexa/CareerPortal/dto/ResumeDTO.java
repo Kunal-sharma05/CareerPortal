@@ -1,17 +1,14 @@
 package com.hexa.CareerPortal.dto;
 
-
-import com.hexa.CareerPortal.entity.JobSeeker;
-
 public class ResumeDTO {
 
     private String fileUrl;
-	public ResumeDTO( String fileUrl, JobSeeker jobSeeker) {
+	public ResumeDTO( String fileUrl) {
 		super();
 		this.fileUrl = fileUrl;
-		this.jobSeeker = jobSeeker;
+	
 	}
-	private JobSeeker jobSeeker;
+	
 	
 	
 	public ResumeDTO() {
@@ -25,16 +22,11 @@ public class ResumeDTO {
 		this.fileUrl = fileUrl;
 	}
 	
-	public JobSeeker getJobSeeker() {
-		return jobSeeker;
-	}
-	public void setJobSeeker(JobSeeker jobSeeker) {
-		this.jobSeeker = jobSeeker;
-	}
+
 	@Override
 	public String toString() {
 		return "ResumeDTO [ fileUrl=" + fileUrl
-				+ ", jobSeeker=" + jobSeeker +  "]";
+				+  "]";
 	}
   
 }

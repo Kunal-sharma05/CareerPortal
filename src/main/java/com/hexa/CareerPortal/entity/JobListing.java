@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,9 +31,6 @@ public class JobListing {
 	@CreationTimestamp
 	@Column(name="date_of_posting")
 	private LocalDateTime dateOfPosting;
-	@ManyToOne
-	@JoinColumn(name="employer_id")
-	private Employer employer;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="job_application_id")
 	private JobApplication jobApplication;
@@ -39,14 +38,13 @@ public class JobListing {
 		super();
 	}
 	public JobListing(Long jobListingId, String requirements, String description, String title,
-			LocalDateTime dateOfPosting, Employer employer) {
+			LocalDateTime dateOfPosting) {
 		super();
 		this.jobListingId = jobListingId;
 		this.requirements = requirements;
 		this.description = description;
 		this.title = title;
 		this.dateOfPosting = dateOfPosting;
-		this.employer = employer;
 	}
 	public Long getJobListingId() {
 		return jobListingId;
@@ -78,16 +76,11 @@ public class JobListing {
 	public void setDateOfPosting(LocalDateTime dateOfPosting) {
 		this.dateOfPosting = dateOfPosting;
 	}
-	public Employer getEmployer() {
-		return employer;
-	}
-	public void setEmployer(Employer employer) {
-		this.employer = employer;
-	}
+	
 	@Override
 	public String toString() {
 		return "JobListing [jobListingId=" + jobListingId + ", requirements=" + requirements + ", description="
-				+ description + ", title=" + title + ", dateOfPosting=" + dateOfPosting + ", employer=" + employer
+				+ description + ", title=" + title + ", dateOfPosting=" + dateOfPosting
 				+ "]";
 	}
 	

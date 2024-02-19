@@ -27,20 +27,15 @@ public class Resume {
 	private LocalDateTime uploadDate;
 	@UpdateTimestamp
 	private LocalDateTime updateDate;
-	@ManyToOne
-	@JoinColumn(name="job_seeker_id")
-	private JobSeeker jobSeeker;
 	public Resume() {
 		super();
 	}
-	public Resume(Long resumeId, String fileUrl, LocalDateTime uploadDate, LocalDateTime updateDate,
-			JobSeeker jobSeeker) {
+	public Resume(Long resumeId, String fileUrl, LocalDateTime uploadDate, LocalDateTime updateDate) {
 		super();
 		this.resumeId = resumeId;
 		this.fileUrl = fileUrl;
 		this.uploadDate = uploadDate;
 		this.updateDate = updateDate;
-		this.jobSeeker = jobSeeker;
 	}
 	public Long getResumeId() {
 		return resumeId;
@@ -66,16 +61,10 @@ public class Resume {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public JobSeeker getJobSeeker() {
-		return jobSeeker;
-	}
-	public void setJobSeeker(JobSeeker jobSeeker) {
-		this.jobSeeker = jobSeeker;
-	}
 	@Override
 	public String toString() {
 		return "Resume [resumeId=" + resumeId + ", fileUrl=" + fileUrl + ", uploadDate=" + uploadDate + ", updateDate="
-				+ updateDate + ", jobSeeker=" + jobSeeker + "]";
+				+ updateDate + "]";
 	} 
 	
 	

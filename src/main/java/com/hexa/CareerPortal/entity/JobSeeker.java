@@ -1,6 +1,7 @@
 package com.hexa.CareerPortal.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,10 +46,10 @@ public class JobSeeker {
 	private LocalDateTime dateUpdated;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="jobSeeker_jobApplication_mapping",joinColumns=@JoinColumn(name="job_seeker_id"),inverseJoinColumns=@JoinColumn(name="job_application_id"))
-	private List<JobApplication> jobApplication;
+	private List<JobApplication> jobApplication=new ArrayList<>();
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="jobSeeker_resume_mapping",joinColumns=@JoinColumn(name="job_seeker_id"),inverseJoinColumns=@JoinColumn(name="resume_id"))
-	private List<Resume> resume;
+	private List<Resume> resumes=new ArrayList<>();
 	public JobSeeker() {
 		super();
 	}
@@ -66,7 +67,7 @@ public class JobSeeker {
 		this.dateCreated = dateCreated;
 		this.dateUpdated = dateUpdated;
 		this.jobApplication = jobApplication;
-		this.resume = resume;
+		this.resumes = resume;
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -128,12 +129,12 @@ public class JobSeeker {
 		this.jobApplication = jobApplication;
 	}
 
-	public List<Resume> getResume() {
-		return resume;
+	public List<Resume> getResumes() {
+		return resumes;
 	}
 
-	public void setResume(List<Resume> resume) {
-		this.resume = resume;
+	public void setResumes(List<Resume> resume) {
+		this.resumes = resume;
 	}
 	
 	public Date getDateOfBirth() {
@@ -149,12 +150,7 @@ public class JobSeeker {
 		return "JobSeeker [jobSeekerId=" + jobSeekerId + ", fullName=" + fullName + ", professionalDetails="
 				+ professionalDetails + ", educationDetail=" + educationDetail + ", mobileNumber=" + mobileNumber
 				+ ", email=" + email + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
-				+ ", jobApplication=" + jobApplication + ", resume=" + resume + "dateOfBirth =" + dateOfBirth+ "]";
-		
-	}
-
-	public void setCompanyName(Object companyName) {
-		// TODO Auto-generated method stub
+				+ ", jobApplication=" + jobApplication + ", resume=" + resumes + "dateOfBirth =" + dateOfBirth+ "]";
 		
 	}
 	

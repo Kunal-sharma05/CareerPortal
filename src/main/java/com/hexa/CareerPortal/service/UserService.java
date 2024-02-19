@@ -2,8 +2,6 @@ package com.hexa.CareerPortal.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.hexa.CareerPortal.dto.UserDTO;
 import com.hexa.CareerPortal.entity.Role;
 import com.hexa.CareerPortal.entity.User;

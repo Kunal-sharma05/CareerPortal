@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,20 +30,17 @@ public class JobApplication {
 	@UpdateTimestamp
 	@Column(name="application_updated_date")
 	private LocalDateTime applicationUpadtedDate;
-	@ManyToOne
-	@JoinColumn(name="job_seeker_id")
-	private JobSeeker jobSeeker;
 	public JobApplication() {
 		super();
 	}
 	public JobApplication(Long jobApplicationId, Status status, LocalDateTime applicationDate,
-			LocalDateTime applicationUpadtedDate, JobSeeker jobSeeker) {
+			LocalDateTime applicationUpadtedDate) {
 		super();
 		this.jobApplicationId = jobApplicationId;
 		this.status = status;
 		this.applicationDate = applicationDate;
 		this.applicationUpadtedDate = applicationUpadtedDate;
-		this.jobSeeker = jobSeeker;
+		
 	}
 	public Long getJobApplicationId() {
 		return jobApplicationId;
@@ -68,16 +66,10 @@ public class JobApplication {
 	public void setApplicationUpadtedDate(LocalDateTime applicationUpadtedDate) {
 		this.applicationUpadtedDate = applicationUpadtedDate;
 	}
-	public JobSeeker getJobSeeker() {
-		return jobSeeker;
-	}
-	public void setJobSeeker(JobSeeker jobSeeker) {
-		this.jobSeeker = jobSeeker;
-	}
 	@Override
 	public String toString() {
 		return "JobApplication [jobApplicationId=" + jobApplicationId + ", status=" + status + ", applicationDate="
-				+ applicationDate + ", applicationUpadtedDate=" + applicationUpadtedDate + ", jobSeeker=" + jobSeeker
+				+ applicationDate + ", applicationUpadtedDate=" + applicationUpadtedDate
 				+ "]";
 	}
 	public void setMobileNo(String mobileNo) {
