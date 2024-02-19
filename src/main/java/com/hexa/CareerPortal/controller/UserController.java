@@ -78,6 +78,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() throws ResourceNotFoundException {
         List<UserDTO> users = userService.findAll();
+        System.out.println(""+users.toString());
         if(users!=null)
         {
         	return ResponseEntity.ok(users);
@@ -99,7 +100,7 @@ public class UserController {
     @GetMapping("/findByName")
     public ResponseEntity<List<UserDTO>> findByName(@RequestParam String name) throws ResourceNotFoundException {
         List<UserDTO> userDTO=userService.findByName(name);
-        if(userDTO!=null)
+        if(!userDTO.isEmpty())
         {
         	return ResponseEntity.ok(userDTO); 
         }
@@ -125,7 +126,7 @@ public class UserController {
     @GetMapping("/findByRole")
     public ResponseEntity<List<UserDTO>> findByRole(@RequestParam Role role) throws ResourceNotFoundException {
         List<UserDTO> userDTOs= userService.findByRole(role);
-        if(userDTOs!=null) {
+        if(!userDTOs.isEmpty()) {
         	return ResponseEntity.ok(userDTOs); 
         }
         else
@@ -137,7 +138,7 @@ public class UserController {
     @GetMapping("/findByNameContaining")
     public ResponseEntity<List<UserDTO>> findByNameContaining(@RequestParam String name) throws ResourceNotFoundException {
     	List<UserDTO> userDTOs= userService.findByNameContaining(name);
-        if(userDTOs!=null) {
+        if(!userDTOs.isEmpty()) {
         	return ResponseEntity.ok(userDTOs); 
         }
         else
@@ -149,7 +150,7 @@ public class UserController {
     @GetMapping("/findByNameIn")
     public ResponseEntity<List<UserDTO>> findByNameIn(@RequestBody List<String> names) throws ResourceNotFoundException {
     	List<UserDTO> userDTOs=userService.findByNameIn(names);
-        if(userDTOs!=null) {
+        if(!userDTOs.isEmpty()) {
         	return ResponseEntity.ok(userDTOs); 
         }
         else
@@ -161,7 +162,7 @@ public class UserController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<Void> deleteAllUsers() throws ResourceNotFoundException {
     	List<UserDTO> userDTOs=userService.deleteAll();
-        if(userDTOs!=null) {
+        if(!userDTOs.isEmpty()) {
         	return ResponseEntity.noContent().build(); 
         }
         else

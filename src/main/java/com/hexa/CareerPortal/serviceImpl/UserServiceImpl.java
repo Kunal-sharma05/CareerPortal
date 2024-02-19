@@ -2,6 +2,7 @@ package com.hexa.CareerPortal.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import com.hexa.CareerPortal.entity.User;
 import com.hexa.CareerPortal.repository.UserRepository;
 import com.hexa.CareerPortal.service.UserService;
 
+import ch.qos.logback.classic.Level;
+
 @Service
 public class UserServiceImpl implements UserService {
 	
+	public final static Logger LOGGER=Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	@Autowired
 	private ModelMapper modelMapper;
 	
@@ -100,6 +104,7 @@ public class UserServiceImpl implements UserService {
 		List<User> users=new ArrayList<>();
 		users.addAll(userRepository.findAll());
 		List<UserDTO> user=users.stream().map(User->modelMapper.map(users, UserDTO.class)).toList();
+		System.out.println(""+users.toString());
 		return user;
 	}
 

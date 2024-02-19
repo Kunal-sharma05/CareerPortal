@@ -77,6 +77,12 @@ public class JobListing {
 		this.dateOfPosting = dateOfPosting;
 	}
 	
+	public JobApplication getJobApplication() {
+		return jobApplication;
+	}
+	public void setJobApplication(JobApplication jobApplication) {
+		this.jobApplication = jobApplication;
+	}
 	@Override
 	public String toString() {
 		return "JobListing [jobListingId=" + jobListingId + ", requirements=" + requirements + ", description="
