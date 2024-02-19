@@ -3,6 +3,7 @@ package com.hexa.CareerPortal.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +36,16 @@ public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public List<ResumeDTO> addResumes(List<ResumeDTO> resume) {
-		List<Resume> resumes=resume.stream().map(userDTO->modelMapper.map(userDTO,Resume.class)).toList();
+		List<Resume> resumes=resume.stream().map(userDTO->modelMapper.map(userDTO,Resume.class)).collect(Collectors.toList());
 		List<Resume> savedUsers=resumeRepository.saveAll(resumes);
-		resume=savedUsers.stream().map(User->modelMapper.map(savedUsers, ResumeDTO.class)).toList();
+		resume=savedUsers.stream().map(User->modelMapper.map(savedUsers, ResumeDTO.class)).collect(Collectors.toList());
 		return resume;
 	}
 	@Override
 	public List<ResumeDTO> findAll() {
 		List<Resume> users=new ArrayList<>();
 		users.addAll(resumeRepository.findAll());
-		List<ResumeDTO> user=users.stream().map(User->modelMapper.map(users, ResumeDTO.class)).toList();
+		List<ResumeDTO> user=users.stream().map(User->modelMapper.map(users, ResumeDTO.class)).collect(Collectors.toList());
 		return user;
 	}
 	

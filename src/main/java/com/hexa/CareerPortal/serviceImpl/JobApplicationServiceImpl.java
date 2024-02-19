@@ -3,6 +3,7 @@ package com.hexa.CareerPortal.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,9 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 
 	@Override
 	public List<JobApplicationDTO> createJobApplication(List<JobApplicationDTO> jobApplication) {
-		List<JobApplication> jobApplications=jobApplication.stream().map(userDTO->modelMapper.map(userDTO,JobApplication.class)).toList();
+		List<JobApplication> jobApplications=jobApplication.stream().map(userDTO->modelMapper.map(userDTO,JobApplication.class)).collect(Collectors.toList());
 		List<JobApplication> savedJobApplication=jobApplicationRepository.saveAll(jobApplications);
-		jobApplication=savedJobApplication.stream().map(JobApplication->modelMapper.map(JobApplication, JobApplicationDTO.class)).toList();
+		jobApplication=savedJobApplication.stream().map(JobApplication->modelMapper.map(JobApplication, JobApplicationDTO.class)).collect(Collectors.toList());
 		return jobApplication;
 	}
 	
@@ -48,7 +49,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	public List<JobApplicationDTO> findAll() {
 		List<JobApplication> jobApplications=new ArrayList<>();
 		jobApplications.addAll(jobApplicationRepository.findAll());
-		List<JobApplicationDTO> user=jobApplications.stream().map(User->modelMapper.map(jobApplications, JobApplicationDTO.class)).toList();
+		List<JobApplicationDTO> user=jobApplications.stream().map(User->modelMapper.map(jobApplications, JobApplicationDTO.class)).collect(Collectors.toList());
 		return user;
 	}
 	@Override

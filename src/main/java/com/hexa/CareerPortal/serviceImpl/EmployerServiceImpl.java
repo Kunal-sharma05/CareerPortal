@@ -3,6 +3,7 @@ package com.hexa.CareerPortal.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,12 @@ public class EmployerServiceImpl implements EmployerService {
 
 	@Override
 	public List<EmployerDTO> createEmployers(List<EmployerDTO> employer) {
-		List<Employer> employers=employer.stream().map(employer1->modelMapper.map(employer1, Employer.class)).toList();
+		List<Employer> employers=employer.stream().map(employer1->modelMapper.map(employer1, Employer.class)).collect(Collectors.toList());
 		employers.addAll(employerRepository.saveAll(employers));
 		employer=null;
 		if(employers!=null)
 		{
-		employer=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		employer=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).collect(Collectors.toList());
 		}
 		return employer;
 
@@ -103,7 +104,7 @@ public class EmployerServiceImpl implements EmployerService {
 		List<EmployerDTO> employer=null;
 		if(employers!=null)
 		{
-		employer=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		employer=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).collect(Collectors.toList());
 		}
 		return employer;
 	}
@@ -136,7 +137,7 @@ public class EmployerServiceImpl implements EmployerService {
 		if(employer!=null)
 		{
 			employerRepository.deleteAll();
-			employers=employer.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+			employers=employer.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).collect(Collectors.toList());
 		}
 		
 		return employers;
@@ -151,7 +152,7 @@ public class EmployerServiceImpl implements EmployerService {
 
 	@Override
 	public void deleteAll(List<EmployerDTO> employer) {
-		List<Employer> employers=employer.stream().map(employer1->modelMapper.map(employer1, Employer.class)).toList();
+		List<Employer> employers=employer.stream().map(employer1->modelMapper.map(employer1, Employer.class)).collect(Collectors.toList());
 		employers.addAll(employerRepository.findAllEmployers(employers));
 		if(employers!=null)
 		{
@@ -167,7 +168,7 @@ public class EmployerServiceImpl implements EmployerService {
 		List<EmployerDTO> employer=null;
 		if(employers!=null)
 		{
-		employer=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		employer=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).collect(Collectors.toList());
 		}
 		return employer;	}
 
@@ -185,7 +186,7 @@ public class EmployerServiceImpl implements EmployerService {
 		List<EmployerDTO> employer=null;
 		if(employers!=null)
 		{
-		employer=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).toList();
+		employer=employers.stream().map(employer1->modelMapper.map(employer1, EmployerDTO.class)).collect(Collectors.toList());
 		}
 		return employer;	
 		}

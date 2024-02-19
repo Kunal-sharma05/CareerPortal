@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,9 @@ public class JobListingServiceImpl implements JobListingService {
 	public List<JobListingDTO> postJobs(List<JobListingDTO> jobListingDTOs) {
 	    List<JobListing> jobListings = jobListingDTOs.stream()
 	            .map(jobListingDTO -> modelMapper.map(jobListingDTO, JobListing.class))
-	            .toList();
+	            .collect(Collectors.toList());
 	    List<JobListing> savedJobListings = jobListingRepository.saveAll(jobListings);		
-	    List<JobListingDTO> savedJobListingsDTO=savedJobListings.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+	    List<JobListingDTO> savedJobListingsDTO=savedJobListings.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
 	}
 
@@ -65,48 +66,48 @@ public class JobListingServiceImpl implements JobListingService {
 	@Override
 	public List<JobListingDTO> findByRequirements(String requirements) {
 		List<JobListing> jobListing=jobListingRepository.findByRequirements(requirements);
-		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
 		}
 
 	@Override
 	public List<JobListingDTO> findByRequirementsContaining(String requirements) {
 		List<JobListing> jobListing=jobListingRepository.findByRequirementsContaining(requirements);
-		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
 	}
 
 	@Override
 	public List<JobListingDTO> findByDescription(String description) {
 		List<JobListing> jobListing=jobListingRepository.findByDescription(description);
-		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
 	}
 	@Override
 	public List<JobListingDTO> findByDescriptionContaining(String description) {
 		List<JobListing> jobListing=jobListingRepository.findByDescriptionContaining(description);
-		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
 	}
 
 	@Override
 	public List<JobListingDTO> findByTitle(String title) {
 		List<JobListing> jobListing=jobListingRepository.findByTitle(title);
-		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
 	}
 
 	@Override
 	public List<JobListingDTO> findByTitleContaining(String title) {
 		List<JobListing> jobListing=jobListingRepository.findByTitleContaining(title);
-		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
 	}
 
 	@Override
 	public List<JobListingDTO> findByDate(LocalDateTime date) {
 		List<JobListing> jobListing=jobListingRepository.findByDateOfPosting(date);
-		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
 	}
 
@@ -128,7 +129,7 @@ public class JobListingServiceImpl implements JobListingService {
 		if(jobListing!=null)
 		{
 			jobListingRepository.deleteAll();
-			savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+			savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 		}
 		return savedJobListingsDTO;
 
@@ -148,7 +149,7 @@ public class JobListingServiceImpl implements JobListingService {
 		if(jobListings!=null)
 		{
 			jobListingRepository.deleteAll(jobListing);
-			savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+			savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 		}
 		return savedJobListingsDTO;
 	}
@@ -184,7 +185,7 @@ public class JobListingServiceImpl implements JobListingService {
 	public List<JobListingDTO> findAll() {
 		List<JobListing> jobListing=new ArrayList<>();
 		jobListing.addAll(jobListingRepository.findAll());
-		 List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).toList();
+		 List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 		 return savedJobListingsDTO;
 	}
 

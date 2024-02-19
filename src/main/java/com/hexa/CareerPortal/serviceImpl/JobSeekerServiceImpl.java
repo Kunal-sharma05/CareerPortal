@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +85,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		List<JobSeekerDTO> jobSeekerDTO=null;
 		if(jobSeeker!=null)
 		{
-			jobSeekerDTO=jobSeeker.stream().map(js->modelMapper.map(js, JobSeekerDTO.class)).toList();
+			jobSeekerDTO=jobSeeker.stream().map(js->modelMapper.map(js, JobSeekerDTO.class)).collect(Collectors.toList());
 		}
 		return jobSeekerDTO;
 	}
@@ -93,7 +94,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	public List<JobSeekerDTO> findAll() {
 		List<JobSeeker> users=new ArrayList<>();
 		users.addAll(jobSeekerRepository.findAll());
-		List<JobSeekerDTO> user=users.stream().map(User->modelMapper.map(users, JobSeekerDTO.class)).toList();
+		List<JobSeekerDTO> user=users.stream().map(User->modelMapper.map(users, JobSeekerDTO.class)).collect(Collectors.toList());
 		return user;
 	}
 	
