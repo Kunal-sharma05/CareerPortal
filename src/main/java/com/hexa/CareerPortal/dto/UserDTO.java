@@ -5,6 +5,7 @@ import com.hexa.CareerPortal.entity.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class UserDTO {
@@ -16,6 +17,8 @@ public class UserDTO {
     @NotEmpty( message = "Email should not be empty")
     @Email(message = "Email should be valid")
     private String email;
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",message="minimum 8 character,One lower case, one uper case,"
+    		+ " one number and 1 special character")
 	private String password;
 
     @NotNull(message = "Role should not be null")
