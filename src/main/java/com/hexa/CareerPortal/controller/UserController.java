@@ -78,7 +78,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() throws ResourceNotFoundException {
         List<UserDTO> users = userService.findAll();
-        System.out.println(""+users.toString());
+        //System.out.println(""+users.toString());
         if(users!=null)
         {
         	return ResponseEntity.ok(users);

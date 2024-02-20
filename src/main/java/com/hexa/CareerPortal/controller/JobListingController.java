@@ -70,7 +70,7 @@ public class JobListingController {
     @GetMapping
     public ResponseEntity<List<JobListingDTO>> getAllJobListings() throws JobNotFoundException {
         List<JobListingDTO> jobListings = jobListingService.findAll();
-        if (jobListings != null) {
+        if (!jobListings.isEmpty()) {
             return ResponseEntity.ok(jobListings);
         } else {
         	throw new JobNotFoundException("Jobs not found ");
@@ -116,7 +116,7 @@ public class JobListingController {
         @GetMapping("/findByRequirements")
         public ResponseEntity<List<JobListingDTO>> findByRequirements(@RequestParam String requirements) throws JobNotFoundException {
         	List<JobListingDTO> jobListings = jobListingService.findByRequirements(requirements);
-            if (jobListings != null) {
+            if (!jobListings.isEmpty()) {
                 return ResponseEntity.ok(jobListings);
             } else {
             	throw new JobNotFoundException("Jobs not found ");
@@ -126,7 +126,7 @@ public class JobListingController {
         @GetMapping("/findByRequirementsContaining")
         public ResponseEntity<List<JobListingDTO>> findByRequirementsContaining(@RequestParam String requirement) throws JobNotFoundException {
             List<JobListingDTO> jobListings = jobListingService.findByRequirementsContaining(requirement);
-            if (jobListings != null) {
+            if (!jobListings.isEmpty()) {
                 return ResponseEntity.ok(jobListings);
             } else {
             	throw new JobNotFoundException("Jobs not found ");
@@ -136,7 +136,7 @@ public class JobListingController {
         @GetMapping("/findByDescription")
         public ResponseEntity<List<JobListingDTO>> findByDescription(@RequestParam String description) throws JobNotFoundException {
             List<JobListingDTO> jobListings = jobListingService.findByDescription(description);
-            if (jobListings != null) {
+            if (!jobListings.isEmpty()) {
                 return ResponseEntity.ok(jobListings);
             } else {
             	throw new JobNotFoundException("Jobs not found ");
@@ -146,7 +146,7 @@ public class JobListingController {
         @GetMapping("/findByDescriptionContaining")
         public ResponseEntity<List<JobListingDTO>> findByDescriptionContaining(@RequestParam String description) throws JobNotFoundException {
             List<JobListingDTO> jobListings = jobListingService.findByDescriptionContaining(description);
-            if (jobListings != null) {
+            if (!jobListings.isEmpty()) {
                 return ResponseEntity.ok(jobListings);
             } else {
             	throw new JobNotFoundException("Jobs not found ");
@@ -156,7 +156,7 @@ public class JobListingController {
         @GetMapping("/findByTitle")
         public ResponseEntity<List<JobListingDTO>> findByTitle(@RequestParam String title) throws JobNotFoundException {
             List<JobListingDTO> jobListings = jobListingService.findByTitle(title);
-            if (jobListings != null) {
+            if (!jobListings.isEmpty()) {
                 return ResponseEntity.ok(jobListings);
             } else {
             	throw new JobNotFoundException("Jobs not found ");
@@ -166,7 +166,7 @@ public class JobListingController {
         @GetMapping("/findByTitleContaining")
         public ResponseEntity<List<JobListingDTO>> findByTitleContaining(@RequestParam String title) throws JobNotFoundException {
             List<JobListingDTO> jobListings = jobListingService.findByTitleContaining(title);
-            if (jobListings != null) {
+            if (!jobListings.isEmpty()) {
                 return ResponseEntity.ok(jobListings);
             } else {
             	throw new JobNotFoundException("Jobs not found ");
@@ -176,7 +176,7 @@ public class JobListingController {
         @GetMapping("/findByDate")
         public ResponseEntity<List<JobListingDTO>> findByDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) throws JobNotFoundException {
             List<JobListingDTO> jobListings = jobListingService.findByDate(date);
-            if (jobListings != null) {
+            if (!jobListings.isEmpty()) {
                 return ResponseEntity.ok(jobListings);
             } else {
             	throw new JobNotFoundException("Jobs not found ");
@@ -186,7 +186,7 @@ public class JobListingController {
         @DeleteMapping("/deleteAll")
         public ResponseEntity<List<JobListingDTO>> deleteAll() throws JobNotFoundException {
             List<JobListingDTO> deletedJobListings = jobListingService.deleteAll();
-            if (deletedJobListings != null) {
+            if (!deletedJobListings.isEmpty()) {
                 return ResponseEntity.ok(deletedJobListings);
             } else {
             	throw new JobNotFoundException("Jobs not found ");

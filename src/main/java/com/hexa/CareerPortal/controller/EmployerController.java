@@ -121,7 +121,7 @@ public class EmployerController {
       @GetMapping("/findByCompanyName")
        public ResponseEntity<List<EmployerDTO>> findByCompanyName(@RequestParam String name) throws EmployerNotFoundException {
     	  List<EmployerDTO> employers = employerService.findByCompanyName(name);
-          if(employers!=null) {
+          if(!employers.isEmpty()) {
               return ResponseEntity.ok(employers);
          }
          else
@@ -133,7 +133,7 @@ public class EmployerController {
       @GetMapping("/findByFullName")
       public ResponseEntity<List<EmployerDTO>> findByFullName(@RequestParam String fullName) throws EmployerNotFoundException {
       List<EmployerDTO> employers = employerService.findByFullName(fullName);
-      if(employers!=null) {
+      if(!employers.isEmpty()) {
           return ResponseEntity.ok(employers);
      }
      else

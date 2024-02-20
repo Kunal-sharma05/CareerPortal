@@ -55,7 +55,7 @@ public class JobSeekerController {
     @GetMapping("/getAllJobSeekers")
     public ResponseEntity<List<JobSeekerDTO>> getAllJobSeekers() throws JobSeekerNotFoundException {
         List<JobSeekerDTO> jobSeekers = jobSeekerService.findAll();
-        if (jobSeekers != null)
+        if (!jobSeekers.isEmpty())
         {
             return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
         }
@@ -109,7 +109,7 @@ public class JobSeekerController {
     @GetMapping("/findByName")
     public ResponseEntity<List<JobSeekerDTO>> findByName(@RequestParam String name) throws JobSeekerNotFoundException {
         List<JobSeekerDTO> jobSeekerDTO=jobSeekerService.findByName(name);
-        if(jobSeekerDTO!=null)
+        if(!jobSeekerDTO.isEmpty())
         {
         	return ResponseEntity.ok(jobSeekerDTO); 
         }

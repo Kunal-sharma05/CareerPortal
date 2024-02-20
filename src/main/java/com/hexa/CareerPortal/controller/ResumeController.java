@@ -78,10 +78,10 @@ public class ResumeController {
 
     @GetMapping
     public ResponseEntity<List<ResumeDTO>> getAllResumes() throws ResumeNotFoundException {
-        List<ResumeDTO> users = resumeService.findAll();
-        if(users!=null)
+        List<ResumeDTO> resumes = resumeService.findAll();
+        if(!resumes.isEmpty())
         {
-        	return ResponseEntity.ok(users);
+        	return ResponseEntity.ok(resumes);
         }
          else
         {
