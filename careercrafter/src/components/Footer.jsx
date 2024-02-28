@@ -5,7 +5,7 @@ export const Footer = () => {
         <div>
             <footer className='footer'>
                 <span >
-                    ©️ All Rights reseerved 2024 @abccompany. terms of use | Privacy policy
+                    ©️ All Rights reseerved 2024 @CareerCrafter<br/> Terms of use | Privacy policy
                 </span>
             </footer>
         </div>

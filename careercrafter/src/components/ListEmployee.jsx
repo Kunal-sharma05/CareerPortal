@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import UserService from '../services/UserService';
+// import UserService from '../services/UserService';
 import { Link } from 'react-router-dom';
 import EmployerService from '../services/EmployerService';
 
