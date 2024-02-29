@@ -9,14 +9,14 @@ class EmployerService{
     {
         return axios.post(BASE_REST_API_URL,employer);
     }
-    deleteEmployer(id){
+    deleteEmployerById(id){
         return axios.delete(BASE_REST_API_URL+"/"+id);
     }
-    getEmployer(id)
+    getEmployerById(id)
     {
         return axios.get(BASE_REST_API_URL+"/"+id);
     }
-    updateEmployer(id,employer)
+    updateEmployerById(id,employer)
     {
         return axios.put(BASE_REST_API_URL+"/"+id,employer);
     }

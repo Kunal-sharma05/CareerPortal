@@ -6,6 +6,20 @@ import EmployerService from '../services/EmployerService';
 export const ListEmployee = () => {
     //const [state variable, function that acn change the state varible]
     const [employeeArray,setEmployeeArray]=useState([]);
+    const deleteEmployer=(id)=>{
+        console.log("Delete employer is fired.....");
+        EmployerService.deleteEmployerById(id).then((response)=>{
+            console.log("response recieved from the API in the List Employer component...",JSON.stringify(response.data))
+            fetchAllEmployer();
+        }).catch(error=>{console.log("Error recieved in the list employer component in delete employer ",error)})
+    }
+    const fetchAllEmployer=()=>{
+        console.log("Feth all employers is fired");
+        EmployerService.getAllEmployers().then((response)=>{
+            console.log("respnse recieved from the APU in the List Employer...",JSON.stringify(response.data))
+            setEmployeeArray(response.data);
+        }).catch(error=>{console.log("Error recieved in the list employer component in fetch all employeer",error )})
+    }
     useEffect(()=>{
         console.log("use effect of user listing....");
         EmployerService.getAllEmployers().then((response)=>{

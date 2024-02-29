@@ -5,19 +5,19 @@ class JobSeekerService{
     getAllJobSeekers(){
         return axios.get(BASE_REST_API_URL)
     }
-    addJobSeeker(user){
-        return axios.post(BASE_REST_API_URL,user);
+    addJobSeeker(jobSeeker){
+        return axios.post(BASE_REST_API_URL,jobSeeker);
     }
-    deleteJobSeeker(id)
+    deleteJobSeekerById(id)
     {
         return axios.delete(BASE_REST_API_URL +"/"+id);
     }
-    getJobSeeker(id){
+    getJobSeekerById(id){
         return axios.get(BASE_REST_API_URL+"/"+id);
     }
-    updateJobSeeker(id,user)
+    updateJobSeekerById(id,jobSeeker)
     {
-        return axios.put(BASE_REST_API_URL+"/"+id,user);
+        return axios.put(BASE_REST_API_URL+"/"+id,jobSeeker);
     }
 }
 export default new JobSeekerService();

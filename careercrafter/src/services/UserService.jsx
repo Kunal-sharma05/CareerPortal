@@ -8,14 +8,14 @@ class UserService{
     addUser(user){
         return axios.post(BASE_REST_API_URL,user);
     }
-    deleteUser(id)
+    deleteUserById(id)
     {
         return axios.delete(BASE_REST_API_URL +"/"+id);
     }
-    getUser(id){
+    getUserById(id){
         return axios.get(BASE_REST_API_URL+"/"+id);
     }
-    updateUser(id,user)
+    updateUserById(id,user)
     {
         return axios.put(BASE_REST_API_URL+"/"+id,user);
     }

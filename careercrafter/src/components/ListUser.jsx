@@ -4,42 +4,57 @@ import { Link } from 'react-router-dom';
 
 export const ListUser = () => {
     //const [state variable, function that acn change the state varible]
-    const [userArray,setUserArray]=useState([]);
-    useEffect(()=>{
-        console.log("use effect of user listing....");
-        UserService.getAllUsers().then((response)=>{
-            console.log("responsive recieved from the API of user controller ", response.data)
+    const [userArray, setUserArray] = useState([]);
+    const fetchAllUsers = () => {
+        console.log("fetch all users.....")
+        UserService.getAllUsers().then((response) => {
+            console.log("response recieved from the api in list user component ", response.data)
             setUserArray(response.data);
-            console.log('Response recieved from api after setting setUserArray',response.data);
         })
+    }
+    const deleteUser = (id) => {
+        console.log("Delete user handler fired. Id value recieved = ", id);
+        UserService.deleteUserById(id)
+            .then((response) => {
+                console.log("response recieved from saved API" + JSON.stringify(response))
+                fetchAllUsers();
+            }).catch(error => { console.log("error recieved from saved API...", error) });
+    }
+    useEffect(() => {
+        console.log("use effect of user listing....");
+        fetchAllUsers();
+    }, []);
 
-    },[])
     return (
-    <div className="container">
-         {console.log("User Part Rendered ")}
-        <h1 className='text-center'>Users</h1>
-        <Link to="/addUser" className = "btn btn-primary mb-3">Add User</Link>
-        <table className='table table-bordered table-info table-striped'>
-            <thead>
-                <tr className='table-dark'>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>password</th>
-                    <th>role</th>                
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    userArray.map((user,key)=><tr key={key}>
-                        <td>{user.name}</td>
-                        <td>{user.email}</td>
-                        <td>{user.password}</td>
-                        <td>{user.role}</td>
+        <div className="container">
+            {console.log("User Part Rendered ")}
+            <h1 className='text-center'>Users</h1>
+            <Link to="/addUser" className="btn btn-primary mb-3">Add User</Link>
+            <table className='table table-bordered table-info table-striped'>
+                <thead>
+                    <tr className='table-dark'>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>password</th>
+                        <th>role</th>
+                        <th>Actions</th>
                     </tr>
-                    )
-                }
-            </tbody>
-        </table>
-    </div>
-  );
+                </thead>
+                <tbody>
+                    {
+                        userArray.map((user, key) => <tr key={key}>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>{user.password}</td>
+                            <td>{user.role}</td>
+                            <td><Link to={`/update/${user.id}`} className='btn btn-success'/>update<br/>
+                                <button className="btn btn-danger float-end" onClick={()=>deleteUser(user.id)}>Delete</button>
+                            </td>
+                        </tr>
+                        )
+                    }
+                </tbody>
+            </table>
+        </div>
+    );
 };

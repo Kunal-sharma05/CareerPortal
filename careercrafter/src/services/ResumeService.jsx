@@ -5,19 +5,19 @@ class ResumeService{
     getAllResumes(){
         return axios.get(BASE_REST_API_URL)
     }
-    addResume(user){
-        return axios.post(BASE_REST_API_URL,user);
+    addResume(resume){
+        return axios.post(BASE_REST_API_URL,resume);
     }
-    deleteResume(id)
+    deleteResumeById(id)
     {
         return axios.delete(BASE_REST_API_URL +"/"+id);
     }
-    getResume(id){
+    getResumeById(id){
         return axios.get(BASE_REST_API_URL+"/"+id);
     }
-    updateResume(id,user)
+    updateResumeById(id,resume)
     {
-        return axios.put(BASE_REST_API_URL+"/"+id,user);
+        return axios.put(BASE_REST_API_URL+"/"+id,resume);
     }
 }
 export default new ResumeService();
