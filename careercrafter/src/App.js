@@ -9,7 +9,7 @@ import { Footer } from './components/Footer';
 function App() {
   return (
     <div className="App">
-      <LoginSignup />
+     {/* <LoginSignup /> */}
       <BrowserRouter>
       <Header/>
         <div className='container'>
