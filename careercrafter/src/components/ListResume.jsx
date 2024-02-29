@@ -10,9 +10,10 @@ export const ListResume = () => {
             .then((response) => {
                 console.log("response recieved in the fetchAllResume list resume component", JSON.stringify(response.data))
                 setResumeArray(response.data);
-            }).catch(err => { console.log("error recieved in the fetch all method of list resume component", err) })
+            }).catch(err => { console.log("error recieved in the fetch all method of list resume component", err) 
+        })
     }
-    const deleteResumeById = () => {
+    const deleteResumeById = (id) => {
         console.log("delete resume method of list resume is fired");
         ResumeService.deleteResumeById(id)
             .then((response) => {
@@ -24,6 +25,25 @@ return (
     <div className='container'>
         {console.log("List resume application rendered")}
         <h2 className='text-center'>Resume Data</h2>
+        <Link to={`/addResume`} className='btn btn-primary mb-3'>Add Resume</Link>   
+        <table className='table table-bordered table-info table-striped'>
+            <thead>
+                <tr className='table-dark'>
+                    <th>File URL</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    resumeArray.map((resume,key)=><tr key={key}>
+                        <td>{resume.fileUrl}</td>
+                        <td><Link to={`/update/${resume.fileUrl}`} className='btn btn-success'>Update</Link><br />
+                        <button className='btn btn-danger' onClick={()=>deleteResumeById(resume.id)}>Delete</button>
+                        </td>
+                    </tr>)
+                }
+            </tbody>
+        </table>
     </div>
 )
 }
