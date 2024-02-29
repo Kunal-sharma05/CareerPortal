@@ -47,8 +47,8 @@ export const ListUser = () => {
                             <td>{user.email}</td>
                             <td>{user.password}</td>
                             <td>{user.role}</td>
-                            <td><Link to={`/update/${user.id}`} className='btn btn-success'/>update<br/>
-                                <button className="btn btn-danger float-end" onClick={()=>deleteUser(user.id)}>Delete</button>
+                            <td><Link to={`/update/${user.userId}`} className='btn btn-success'/>update<br/>
+                                <button className="btn btn-danger" onClick={()=>deleteUser(user.userId)}>Delete</button>
                             </td>
                         </tr>
                         )

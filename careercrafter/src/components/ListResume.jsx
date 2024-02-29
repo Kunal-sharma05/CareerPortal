@@ -37,8 +37,8 @@ return (
                 {
                     resumeArray.map((resume,key)=><tr key={key}>
                         <td>{resume.fileUrl}</td>
-                        <td><Link to={`/update/${resume.fileUrl}`} className='btn btn-success'>Update</Link><br />
-                        <button className='btn btn-danger' onClick={()=>deleteResumeById(resume.id)}>Delete</button>
+                        <td><Link to={`/update/${resume.resumeId}`} className='btn btn-success'>Update</Link><br />
+                        <button className='btn btn-danger' onClick={()=>deleteResumeById(resume.resumeId)}>Delete</button>
                         </td>
                     </tr>)
                 }

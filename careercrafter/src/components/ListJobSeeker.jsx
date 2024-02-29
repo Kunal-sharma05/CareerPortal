@@ -47,8 +47,8 @@ export const ListJobSeeker = () => {
                        <td>{jobSeeker.mobileNumber}</td> 
                        <td>{jobSeeker.dateOfBirth}</td> 
                        <td>{jobSeeker.email}</td> 
-                       <td><Link to={`/update/${jobSeeker.id}`}className='btn btn-success'>update</Link><br/>
-                            <button className='btn btn-danger' onClick={()=>deleteJobSeekerById(jobSeeker.id)}>Delete</button>
+                       <td><Link to={`/update/${jobSeeker.jobSeekerId}`}className='btn btn-success'>update</Link><br/>
+                            <button className='btn btn-danger' onClick={()=>deleteJobSeekerById(jobSeeker.jobSeekerId)}>Delete</button>
                         </td>
                     </tr>
                     )

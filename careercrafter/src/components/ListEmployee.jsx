@@ -50,6 +50,9 @@ export const ListEmployee = () => {
                         <td>{employee.companyName}</td>
                         <td>{employee.mobileNo}</td>
                         <td>{employee.email}</td>
+                        <td><Link to={`/update/${employee.id}`} className='btn btn-success'/>update<br/>
+                                <button className="btn btn-danger" onClick={()=>deleteEmployerById(user.id)}>Delete</button>
+                       </td>
                     </tr>
                     )
                 }
