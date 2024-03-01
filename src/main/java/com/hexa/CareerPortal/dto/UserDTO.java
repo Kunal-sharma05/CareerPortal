@@ -2,6 +2,8 @@ package com.hexa.CareerPortal.dto;
 
 import com.hexa.CareerPortal.entity.Role;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +11,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class UserDTO {
-	
+	private Long userId;
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
@@ -17,8 +19,6 @@ public class UserDTO {
     @NotEmpty( message = "Email should not be empty")
     @Email(message = "Email should be valid")
     private String email;
-    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",message="minimum 8 character,One lower case, one uper case,"
-    		+ " one number and 1 special character")
 	private String password;
 
     @NotNull(message = "Role should not be null")
@@ -87,11 +87,6 @@ public class UserDTO {
     this.jobSeeker = jobSeeker;
     }
 
-	@Override
-	public String toString() {
-		return "UserDTO [name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
-				+ ", employer=" + employer + ", jobSeeker=" + jobSeeker + "]";
-	}
 
 	public String getPassword() {
 		return password;
@@ -100,6 +95,35 @@ public class UserDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", role=" + role + ", employer=" + employer + ", jobSeeker=" + jobSeeker + "]";
+	}
+
+	public UserDTO(Long userId,
+			@NotEmpty(message = "Name should not be empty") @Size(min = 2, message = "Name should have at least 2 characters") String name,
+			@NotEmpty(message = "Email should not be empty") @Email(message = "Email should be valid") String email,String password,
+			@NotNull(message = "Role should not be null") Role role, EmployerDTO employer, JobSeekerDTO jobSeeker) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.employer = employer;
+		this.jobSeeker = jobSeeker;
+	}
+
 
     }
 

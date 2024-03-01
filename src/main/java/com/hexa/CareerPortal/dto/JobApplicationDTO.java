@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class JobApplicationDTO {
 	
+	private Long jobApplicationId;
 	@NotNull(message = "status should not be empty")
     private Status status;
 	    
@@ -23,9 +24,21 @@ public class JobApplicationDTO {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+	public Long getJobApplicationId() {
+		return jobApplicationId;
+	}
+	public void setJobApplicationId(Long jobApplicationId) {
+		this.jobApplicationId = jobApplicationId;
+	}
 	@Override
 	public String toString() {
-		return "JobApplicationDTO [status=" + status + "]";
+		return "JobApplicationDTO [jobApplicationId=" + jobApplicationId + ", status=" + status + "]";
+	}
+	public JobApplicationDTO(Long jobApplicationId, @NotNull(message = "status should not be empty") Status status) {
+		super();
+		this.jobApplicationId = jobApplicationId;
+		this.status = status;
 	}
 
 

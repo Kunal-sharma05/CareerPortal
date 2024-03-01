@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_REST_API_URL ="http://localhost:8080/api/jobseekers"
 class JobSeekerService{
     getAllJobSeekers(){
-        return axios.get(BASE_REST_API_URL)
+        return axios.get(BASE_REST_API_URL+"/getAllJobSeekers")
     }
     addJobSeeker(jobSeeker){
         return axios.post(BASE_REST_API_URL,jobSeeker);

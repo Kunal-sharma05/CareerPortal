@@ -22,11 +22,7 @@ export const ListJobListing = () => {
     }
     useEffect(()=>{
         console.log("use effect of user listing....");
-        JobListingService.getAllJobListings().then((response)=>{
-            console.log("responsive recieved from the API of user controller ", response.data)
-            setJobListingArray(response.data);
-            console.log('Response recieved from api after setting setUserArray',response.data);
-        })
+        fetchAllJobListing();
 
     },[])
     return (
@@ -40,6 +36,7 @@ export const ListJobListing = () => {
                     <th>Requirements</th>                
                     <th>Descriptions</th>                
                     <th>Title</th>                              
+                    <th>Actions</th>                              
                 </tr>
             </thead>
             <tbody>
@@ -48,7 +45,7 @@ export const ListJobListing = () => {
                         <td>{jobListing.requirements}</td>
                         <td>{jobListing.description}</td>
                         <td>{jobListing.title}</td>
-                        <td><Link to={`/update/${jobListing.jobListingId}`} className='btn btn-success'/>update<br/>
+                        <td><Link to={`/jobListing/update/${jobListing.jobListingId}`} className='btn btn-success'>update</Link><br/>
                                 <button className="btn btn-danger" onClick={()=>deleteJobListingById(jobListing.jobListingId)}>Delete</button>
                        </td>
                     </tr>

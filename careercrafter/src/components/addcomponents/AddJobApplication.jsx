@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import JobApplicationService from '../services/JobApplicationService';
+import JobApplicationService from '../../services/JobApplicationService';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
@@ -74,7 +74,7 @@ export const AddJobApplications = () => {
                                 <label className="form-label">Status</label>
                                 <input
                                     type="text"
-                                    placeholder='Enter the title of the event'
+                                    placeholder='Enter the Status of the application'
                                     name="titleJobApplication"
                                     value={status}
                                     className='form-control'

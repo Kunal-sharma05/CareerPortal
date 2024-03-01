@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import JobSeekerService from '../services/JobSeekerService';
+import JobSeekerService from '../../services/JobSeekerService';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 export const AddJobSeeker = () => {
     const [fullName, setFullName] = useState('');
     const [professionalDetails, setProfessionalDetails] = useState('');
-    const [educationDetails, setEducationDetails] = useState('');
-    const [mobileNo, setMobileNumber] = useState('');
+    const [educationDetail, setEducationDetails] = useState('');
+    const [mobileNumber, setMobileNumber] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [email, setEmail] = useState('');
     const navigate = useNavigate()
@@ -51,9 +51,10 @@ export const AddJobSeeker = () => {
         }
     }, [])
     const saveOrUpdateJobSeeker = (e) => {
+        console.log("save or update job seeker function fired");
         e.preventDefault();
         //let emailId=email;
-        const jobSeeker = { fullName, professionalDetails, educationDetails, mobileNo, dateOfBirth, email}
+        const jobSeeker = { fullName, professionalDetails, educationDetail, mobileNumber, dateOfBirth, email}
         console.log("JobSeeker feed from home:", jobSeeker);
         if(id){
             JobSeekerService.updateJobSeekerById(id,jobSeeker)
@@ -108,7 +109,7 @@ export const AddJobSeeker = () => {
                                     type="text"
                                     placeholder='Enter the educational details of the job seeker'
                                     name="educationalDetails"
-                                    value={educationDetails}
+                                    value={educationDetail}
                                     className='form-control'
                                     onChange={(e) => { setEducationDetails(e.target.value) }} />
                             </div>
@@ -119,7 +120,7 @@ export const AddJobSeeker = () => {
                                     type="text"
                                     placeholder='Enter the Moblile number of the job seeker '
                                     name="mobileNumber"
-                                    value={mobileNo}
+                                    value={mobileNumber}
                                     className='form-control'
                                     onChange={(e) => { setMobileNumber(e.target.value) }} />
                             </div>
@@ -127,7 +128,7 @@ export const AddJobSeeker = () => {
                             <div className="form-group mb-2">
                                 <label className="form-label">Date of Birth of the job Seeker</label>
                                 <input
-                                    type="local-date"
+                                    type="datetime-local"
                                     placeholder='Enter the Date of Birth of the job Seeker'
                                     name="Date of Birth "
                                     value={dateOfBirth}

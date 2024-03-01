@@ -12,13 +12,13 @@ export const ListUser = () => {
             setUserArray(response.data);
         })
     }
-    const deleteUser = (id) => {
+    const deleteUserById = (id) => {
         console.log("Delete user handler fired. Id value recieved = ", id);
         UserService.deleteUserById(id)
             .then((response) => {
                 console.log("response recieved from saved API" + JSON.stringify(response))
                 fetchAllUsers();
-            }).catch(error => { console.log("error recieved from saved API...", error) });
+            }).catch(error => { console.log("error recieved from saved API...", error,id) });
     }
     useEffect(() => {
         console.log("use effect of user listing....");
@@ -47,8 +47,8 @@ export const ListUser = () => {
                             <td>{user.email}</td>
                             <td>{user.password}</td>
                             <td>{user.role}</td>
-                            <td><Link to={`/update/${user.userId}`} className='btn btn-success'/>update<br/>
-                                <button className="btn btn-danger" onClick={()=>deleteUser(user.userId)}>Delete</button>
+                            <td><Link to={`/update/${user.userId}`} className='btn btn-success'>Update </Link><br/>
+                                <button className="btn btn-danger" onClick={()=>deleteUserById(user.userId)}>Delete</button>
                             </td>
                         </tr>
                         )

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import JobListingService from '../services/JobListingService';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import JobListingService from '../../services/JobListingService';
 
 
 export const AddJobListing = () => {
@@ -50,7 +50,7 @@ export const AddJobListing = () => {
         const jobListing = { requirements, description, title}
         console.log("Event feed from home:", jobListing);
         if(id){
-            EventService.updateEventById(id,jobListing)
+            JobListingService.updateEventById(id,jobListing)
             .then((response) => {
                 console.log("response recieved from saved API..." + JSON.stringify(response))
                 navigate('/jobListing')

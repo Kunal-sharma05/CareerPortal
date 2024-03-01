@@ -22,29 +22,27 @@ export const ListJobApplication = () => {
     }
     useEffect(()=>{
         console.log("use effect of user listing....");
-        JobApplicationService.getAllJobApplications().then((response)=>{
-            console.log("responsive recieved from the API of user controller ", response.data)
-            setJobApplicationArray(response.data);
-            console.log('Response recieved from api after setting setUserArray',response.data);
-        })
+        fetchAllJobApplication();
 
     },[])
     return (
     <div className="container">
         {console.log("JobApplication Part Rendered ")}
         <h1 className='text-center'>JobApplications</h1>
-        <Link to="/addJobApplications" className = "btn btn-primary mb-3">Add JobApplication</Link>
+        <Link to="/addJobApplication" className = "btn btn-primary mb-3">Add JobApplication</Link>
         <table className='table table-bordered table-info table-striped'>
             <thead>
                 <tr className='table-dark'>
                     <th>Status</th>                
+                    <th>Actions</th>                
                 </tr>
             </thead>
             <tbody>
                 {
                     jobApplicationArray.map((jobApplication,key)=><tr key={key}>
+                        {console.log("Job application return after mapping", key, jobApplication.status)}
                         <td>{jobApplication.status}</td>
-                        <td><Link to={`/update/${jobApplication.jobApplicationId}`} className='btn btn-success'/>update<br/>
+                        <td><Link to={`/jobApplication/update/${jobApplication.jobApplicationId}`} className='btn btn-success'>update</Link><br/>
                                 <button className="btn btn-danger" onClick={()=>deleteJobApplicationById(jobApplication.jobApplicationId)}>Delete</button>
                        </td>
                     </tr>

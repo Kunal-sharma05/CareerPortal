@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import UserService from '../services/UserService';
+import UserService from '../../services/UserService';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
@@ -47,14 +47,14 @@ export const AddUser = () => {
         }
     }, [])
     const saveOrUpdateUser = (e) => {
-        e.pruserDefault();
+        e.preventDefault();
         //let emailId=email;
         const user = { name, email, password, role }
         console.log("User feed from home:", user);
         if(id){
             UserService.updateUserById(id,user)
             .then((response) => {
-                console.log("response recieved from saved API..." + JSON.stringify(response))
+                console.log("response recieved from saved API in add user..." + JSON.stringify(response.data))
                 navigate('/users')
             }).catch(error => { console.log("error recieved from saved API...", error) });
         }

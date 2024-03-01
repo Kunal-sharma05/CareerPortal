@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_REST_API_URL ="http://localhost:8080/api/jobseekers"
+const BASE_REST_API_URL ="http://localhost:8080/api/jobapplications"
 class JobApplicationService{
     getAllJobApplications(){
         return axios.get(BASE_REST_API_URL)

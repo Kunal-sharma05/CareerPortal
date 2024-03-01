@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import ResumeService from '../services/ResumeService';
+import ResumeService from '../../services/ResumeService';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 

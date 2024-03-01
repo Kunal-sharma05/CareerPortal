@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import EmployerService from '../services/EmployerService';
+import EmployerService from '../../services/EmployerService';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
@@ -9,7 +9,7 @@ export const AddEmployer = () => {
     const [mobileNo, setMobileNo] = useState('');
     const [email, setEmail] = useState('');
     const navigate = useNavigate()
-    const {employerId} = useParams()
+    const {id} = useParams()
     const changeTitle=()=>{
         if(id){
             console.log("returned fullname  update event .id",{id});
@@ -38,9 +38,9 @@ export const AddEmployer = () => {
             EmployerService.getEmployerById(id).then((response) => {
                 console.log("Response recieved from getEmployerbyid API", JSON.stringify(response.data));
                 setFullName(response.data.fullName);
-                setCompanyName(response.data.description);
-                setMobileNo(response.data.location);
-                setEmail(response.data.maxAttendees);
+                setCompanyName(response.data.companyName);
+                setMobileNo(response.data.mobileNo);
+                setEmail(response.data.email);
                 console.log("state variable changed. ")
                 
             }).catch(error=>{console.log("Error recieved from save api...",error)})
@@ -77,10 +77,10 @@ export const AddEmployer = () => {
                         <form>
                             {/* Full Name of the event text box */}
                             <div className="form-group mb-2">
-                                <label className="form-label">fullName of the event</label>
+                                <label className="form-label">Full Name of the employer</label>
                                 <input
                                     type="text"
-                                    placeholder='Enter the full Name of the event'
+                                    placeholder='Enter the full Name of the Employer'
                                     name="fullNameEmployer"
                                     value={fullName}
                                     className='form-control'
@@ -88,10 +88,10 @@ export const AddEmployer = () => {
                             </div>
                             {/* Description of the event text box */}
                             <div className="form-group mb-2">
-                                <label className="form-label">Company name of the event</label>
+                                <label className="form-label">Company name of the Employer</label>
                                 <input
                                     type="text"
-                                    placeholder='Enter the company name of the event'
+                                    placeholder='Enter the company name of the Employer'
                                     name="CompanyNameEmployer"
                                     value={companyName}
                                     className='form-control'
@@ -99,10 +99,10 @@ export const AddEmployer = () => {
                             </div>
                             {/* mobileNo. of the event text box */}
                             <div className="form-group mb-2">
-                                <label className="form-label">Mobile Number of the event</label>
+                                <label className="form-label">Mobile Number of the Employer</label>
                                 <input
                                     type="text"
-                                    placeholder='Enter the mobile number of the event'
+                                    placeholder='Enter the mobile number of the Employer'
                                     name="Mobile number"
                                     value={mobileNo}
                                     className='form-control'
@@ -110,7 +110,7 @@ export const AddEmployer = () => {
                             </div>
                             {/* Email of the event text box */}
                             <div className="form-group mb-2">
-                                <label className="form-label">Email of the event</label>
+                                <label className="form-label">Email of the employer</label>
                                 <input
                                     type="text"
                                     placeholder='Enter the Email of employer'
