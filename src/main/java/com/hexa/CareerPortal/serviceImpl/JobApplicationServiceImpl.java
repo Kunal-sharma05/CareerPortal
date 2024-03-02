@@ -49,14 +49,15 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	public List<JobApplicationDTO> findAll() {
 		List<JobApplication> jobApplications=new ArrayList<>();
 		jobApplications.addAll(jobApplicationRepository.findAll());
-		List<JobApplicationDTO> user=jobApplications.stream().map(User->modelMapper.map(jobApplications, JobApplicationDTO.class)).collect(Collectors.toList());
-		return user;
+//		System.out.println(jobApplications);
+		List<JobApplicationDTO> jobApplicationDTO=jobApplications.stream().map(User->modelMapper.map(User, JobApplicationDTO.class)).collect(Collectors.toList());
+		return jobApplicationDTO;
 	}
 	@Override
 	public JobApplicationDTO findByJobApplicationId(Long id) {
-		JobApplication user=jobApplicationRepository.findById(id).orElse(null);
-		JobApplicationDTO userDTO=modelMapper.map(user, JobApplicationDTO.class);
-		return userDTO;
+		JobApplication jobApplication=jobApplicationRepository.findById(id).orElse(null);
+		JobApplicationDTO jobApplicationDTO=modelMapper.map(jobApplication, JobApplicationDTO.class);
+		return jobApplicationDTO;
 	}
 	@Override
 	public List<JobApplication> findByStatus(Status status) {
@@ -135,18 +136,17 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 	}
 	@Override
 	public JobApplicationDTO updateJobApplication(Long jobApplicationId, JobApplicationDTO jobApplicationDTO) {
-	    Optional<JobApplication> optionalEmployer = jobApplicationRepository.findById(jobApplicationId);
-	    JobApplicationDTO employeDTO=null;
-	    if (optionalEmployer.isPresent()) {
-	    	JobApplication existingEmployer = optionalEmployer.get();
-	        // Update the existing employer with the new information
-	    	existingEmployer.setStatus(jobApplicationDTO.getStatus());
+	    Optional<JobApplication> optionalJobApplication = jobApplicationRepository.findById(jobApplicationId);
+	    JobApplicationDTO jobApplicationDTOLocal=null;
+	    if (optionalJobApplication.isPresent()) {
+	    	JobApplication existingJobApplication = optionalJobApplication.get();
+	    	existingJobApplication.setStatus(jobApplicationDTO.getStatus());
 	        
-	        JobApplication updatedEmployer = jobApplicationRepository.save(existingEmployer);
+	        JobApplication updatedJobApplication = jobApplicationRepository.save(existingJobApplication);
 	        
-	        employeDTO=modelMapper.map(updatedEmployer,JobApplicationDTO.class);
+	        jobApplicationDTOLocal=modelMapper.map(updatedJobApplication,JobApplicationDTO.class);
 	    }
-	    return employeDTO;
+	    return jobApplicationDTOLocal;
 	}
 
 }

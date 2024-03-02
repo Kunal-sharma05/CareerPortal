@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ResumeService from '../services/ResumeService';
 import { Link } from 'react-router-dom';
 
@@ -21,6 +21,10 @@ export const ListResume = () => {
                 fetchAllResume();
             }).catch(err => { console.log("error recieved in the deleteResume method of list resume component ", err) })
     }
+    useEffect(()=>{
+        console.log("use effect of user listing....");
+        fetchAllResume();
+    },[])
 return (
     <div className='container'>
         {console.log("List resume application rendered")}
@@ -37,8 +41,8 @@ return (
                 {
                     resumeArray.map((resume,key)=><tr key={key}>
                         <td>{resume.fileUrl}</td>
-                        <td><Link to={`/update/${resume.fileUrl}`} className='btn btn-success'>Update</Link><br />
-                        <button className='btn btn-danger' onClick={()=>deleteResumeById(resume.id)}>Delete</button>
+                        <td><Link to={`/resume/update/${resume.resumeId}`} className='btn btn-success'>Update</Link><br />
+                        <button className='btn btn-danger' onClick={()=>deleteResumeById(resume.resumeId)}>Delete</button>
                         </td>
                     </tr>)
                 }

@@ -35,6 +35,7 @@ public class CareerPortalApplication {
 	@Bean
      ModelMapper getModelMapper() { 
         return new ModelMapper(); 
-    } 
+    }
+	private Long employerId; 
 
 }

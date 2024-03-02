@@ -35,8 +35,9 @@ public class JobSeekerController {
         this.jobSeekerService = jobSeekerService;
     }
 
-    @PostMapping("/createJobSeeker")
+    @PostMapping
     public ResponseEntity<JobSeekerDTO> createJobSeeker(@RequestBody @Validated JobSeekerDTO jobSeekerDto) {
+    	System.out.println("Control in create job seeker");
         JobSeekerDTO createdJobSeeker = jobSeekerService.createJobSeeker(jobSeekerDto);
         return new ResponseEntity<>(createdJobSeeker, HttpStatus.CREATED);
     }

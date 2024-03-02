@@ -71,9 +71,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	@Override
 	public JobSeekerDTO createJobSeeker(JobSeekerDTO jobSeekerDTO) {
 		
-		LOGGER.log(Level.INFO, "User in db using JPA save()"+jobSeekerDTO.toString());
+		LOGGER.log(Level.INFO, "job Seeker in db using JPA save()"+jobSeekerDTO.toString());
 		JobSeeker JobSeekerEntity=  modelMapper.map(jobSeekerDTO, JobSeeker.class);
-		LOGGER.log(Level.INFO, "User in db using JPA save()"+JobSeekerEntity.toString());
+		LOGGER.log(Level.INFO, "Job Seeker in db using JPA save()"+JobSeekerEntity.toString());
 		JobSeeker savedJobSeeker= jobSeekerRepository.save(JobSeekerEntity);
 		jobSeekerDTO=modelMapper.map(savedJobSeeker,JobSeekerDTO.class );
 		return jobSeekerDTO;
@@ -92,10 +92,10 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Override
 	public List<JobSeekerDTO> findAll() {
-		List<JobSeeker> users=new ArrayList<>();
-		users.addAll(jobSeekerRepository.findAll());
-		List<JobSeekerDTO> user=users.stream().map(User->modelMapper.map(users, JobSeekerDTO.class)).collect(Collectors.toList());
-		return user;
+		List<JobSeeker> jobSeeker=new ArrayList<>();
+		jobSeeker.addAll(jobSeekerRepository.findAll());
+		List<JobSeekerDTO> jobSeekerDTO=jobSeeker.stream().map(js->modelMapper.map(js, JobSeekerDTO.class)).collect(Collectors.toList());
+		return jobSeekerDTO;
 	}
 	
 
@@ -127,6 +127,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		if(jobSeeker!=null)
 		{
 		jobSeekerDTO=modelMapper.map(jobSeeker, JobSeekerDTO.class);
+		jobSeekerRepository.deleteById(jobSeekerId);
 		}
 		return jobSeekerDTO;
 		}
@@ -149,20 +150,20 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Override
 	public JobSeekerDTO updateJobSeeker(Long jobSeekerId, JobSeekerDTO jobSeekerDTO) {
-	    Optional<JobSeeker> optionalEmployer = jobSeekerRepository.findById(jobSeekerId);
-	    JobSeekerDTO jobSeekerDTO1=null;
-	    if (optionalEmployer.isPresent()) {
-	        JobSeeker existingEmployer = optionalEmployer.get();
+	    Optional<JobSeeker> optionalJobSeeker = jobSeekerRepository.findById(jobSeekerId);
+	    JobSeekerDTO jobSeekerDTOLocal=null;
+	    if (optionalJobSeeker.isPresent()) {
+	        JobSeeker existingJobSeeker = optionalJobSeeker.get();
 	        // Update the existing employer with the new information
-	        existingEmployer.setFullName(existingEmployer.getFullName());
-	        existingEmployer.setMobileNumber(existingEmployer.getMobileNumber());
-	        existingEmployer.setEmail(existingEmployer.getEmail());
+	        existingJobSeeker.setFullName(jobSeekerDTO.getFullName());
+	        existingJobSeeker.setMobileNumber(jobSeekerDTO.getMobileNumber());
+	        existingJobSeeker.setEmail(jobSeekerDTO.getEmail());
 	        
-	        jobSeekerRepository.save(existingEmployer);
+	        jobSeekerRepository.save(existingJobSeeker);
 	        
-	        jobSeekerDTO1= modelMapper.map(existingEmployer, JobSeekerDTO.class);
+	        jobSeekerDTOLocal= modelMapper.map(existingJobSeeker, JobSeekerDTO.class);
 	    }
-	    return jobSeekerDTO1;
+	    return jobSeekerDTOLocal;
 	}
 	
 }
