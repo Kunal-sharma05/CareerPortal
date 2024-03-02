@@ -1,8 +1,12 @@
 package com.hexa.CareerPortal.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 
 public class JobListingDTO {
+	
+	private Long jobListingId;
+	
     @NotEmpty(message = "Requirements should not be empty")
     private String requirements;
 
@@ -16,22 +20,33 @@ public class JobListingDTO {
     public JobListingDTO() {
     }
 
-    public JobListingDTO(String requirements, String description, String title) {
+    public JobListingDTO(Long jobListingId, String requirements, String description, String title) {
+    	this.jobListingId = jobListingId;
         this.requirements = requirements;
         this.description = description;
         this.title = title;
     }
    
 
-	public JobListingDTO(@NotEmpty(message = "Requirements should not be empty") String requirements,
+	public JobListingDTO(Long jobListingId, @NotEmpty(message = "Requirements should not be empty") String requirements,
 			@NotEmpty(message = "Description should not be empty") String description,
 			@NotEmpty(message = "Title should not be empty") String title,
 			JobApplicationDTO jobApplication) {
 		super();
+		this.jobListingId = jobListingId;
 		this.requirements = requirements;
 		this.description = description;
 		this.title = title;
 		this.jobApplication = jobApplication;
+	}
+
+	
+	public Long getJobListingId() {
+		return jobListingId;
+	}
+
+	public void setJobListingId(Long jobListingId) {
+		this.jobListingId = jobListingId;
 	}
 
 	public String getRequirements() {
@@ -60,7 +75,7 @@ public class JobListingDTO {
 
 	@Override
 	public String toString() {
-		return "JobListingDTO [requirements=" + requirements + ", description=" + description + ", title=" + title
+		return "JobListingDTO [jobListingId"+ jobListingId +", requirements=" + requirements + ", description=" + description + ", title=" + title
 			 + "]";
 	}
 

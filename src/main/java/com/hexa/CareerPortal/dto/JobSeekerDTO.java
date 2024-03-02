@@ -13,6 +13,8 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class JobSeekerDTO {
+	
+	private Long jobSeekerId;
 	@NotEmpty(message = "status should not be empty")
 	@Size(message = "size should not be lesser than 2")
     private String fullName;
@@ -38,6 +40,7 @@ public class JobSeekerDTO {
    
 
 	public JobSeekerDTO(
+			@NotEmpty(message = "id should not be null")Long jobSeekerId,
 			@NotEmpty(message = "status should not be empty") @Size(message = "size should not be lesser than 2") String fullName,
 			@NotEmpty(message = "details should not be empty") String professionalDetails,
 			@NotEmpty(message = "details should not be empty") String educationDetail,
@@ -46,6 +49,7 @@ public class JobSeekerDTO {
 			@NotEmpty(message = "email should be valid") @Email(message = "email should be valid") String email,
 			List<JobApplicationDTO> jobApplication, List<ResumeDTO> resumes) {
 		super();
+		this.jobSeekerId = jobSeekerId;
 		this.fullName = fullName;
 		this.professionalDetails = professionalDetails;
 		this.educationDetail = educationDetail;
@@ -56,6 +60,15 @@ public class JobSeekerDTO {
 		this.resumes = resumes;
 	}
 
+
+
+	public Long getJobSeekerId() {
+		return jobSeekerId;
+	}
+
+	public void setJobSeekerId(Long jobSeekerId) {
+		this.jobSeekerId = jobSeekerId;
+	}
 
 
 	public String getFullName() {
@@ -132,7 +145,7 @@ public class JobSeekerDTO {
 
 	@Override
 	public String toString() {
-		return "JobSeekerDTO [fullName=" + fullName + ", professionalDetails=" + professionalDetails
+		return "JobSeekerDTO [ jobSeekerId"+ jobSeekerId +", fullName=" + fullName + ", professionalDetails=" + professionalDetails
 				+ ", educationDetail=" + educationDetail + ", mobileNumber=" + mobileNumber + ", dateOfBirth="
 				+ dateOfBirth + ", email=" + email + ", jobApplication=" + jobApplication + ", resumes=" + resumes
 				+ "]";

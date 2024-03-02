@@ -2,9 +2,11 @@ package com.hexa.CareerPortal.dto;
 
 public class ResumeDTO {
 
+	private Long resumeId;
     private String fileUrl;
-	public ResumeDTO( String fileUrl) {
+	public ResumeDTO(Long resumeId, String fileUrl) {
 		super();
+		this.resumeId = resumeId;
 		this.fileUrl = fileUrl;
 	
 	}
@@ -14,6 +16,19 @@ public class ResumeDTO {
 	public ResumeDTO() {
 		super();
 	}
+
+	
+	public Long getResumeId() {
+		return resumeId;
+	}
+
+
+
+	public void setResumeId(Long resumeId) {
+		this.resumeId = resumeId;
+	}
+
+
 
 	public String getFileUrl() {
 		return fileUrl;
@@ -25,7 +40,7 @@ public class ResumeDTO {
 
 	@Override
 	public String toString() {
-		return "ResumeDTO [ fileUrl=" + fileUrl
+		return "ResumeDTO [resumeId "+resumeId +", fileUrl=" + fileUrl
 				+  "]";
 	}
   

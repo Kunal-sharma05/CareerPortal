@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Size;
 
 public class UserDTO {
 	
+	private Long userId;
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
@@ -30,8 +31,10 @@ public class UserDTO {
     }
 
     public UserDTO(
-			 String name,String email,String password, Role role, EmployerDTO employer, JobSeekerDTO jobSeeker) {
+    		
+    		Long userId, String name,String email,String password, Role role, EmployerDTO employer, JobSeekerDTO jobSeeker) {
 		super();
+		this.userId = userId;
 		this.name = name;
 		this.email = email;
 		this.password = password;
@@ -40,14 +43,23 @@ public class UserDTO {
 		this.jobSeeker = jobSeeker;
 	}
 
-	public UserDTO(String name, String email,String password, Role role) {
+	public UserDTO(Long userId, String name, String email,String password, Role role) {
+    this.userId = userId;
     this.name = name;
     this.email = email;
     this.password=password;
     this.role = role;
     }
 
-    public String getName() {
+    public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getName() {
     return name;
     }
 
@@ -89,7 +101,7 @@ public class UserDTO {
 
 	@Override
 	public String toString() {
-		return "UserDTO [name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
+		return "UserDTO [userId "+ userId+", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
 				+ ", employer=" + employer + ", jobSeeker=" + jobSeeker + "]";
 	}
 
