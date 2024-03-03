@@ -36,17 +36,17 @@ public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public List<ResumeDTO> addResumes(List<ResumeDTO> resume) {
-		List<Resume> resumes=resume.stream().map(userDTO->modelMapper.map(userDTO,Resume.class)).collect(Collectors.toList());
+		List<Resume> resumes=resume.stream().map(entity->modelMapper.map(entity,Resume.class)).collect(Collectors.toList());
 		List<Resume> savedUsers=resumeRepository.saveAll(resumes);
-		resume=savedUsers.stream().map(User->modelMapper.map(savedUsers, ResumeDTO.class)).collect(Collectors.toList());
+		resume=savedUsers.stream().map(dto->modelMapper.map(dto, ResumeDTO.class)).collect(Collectors.toList());
 		return resume;
 	}
 	@Override
 	public List<ResumeDTO> findAll() {
-		List<Resume> users=new ArrayList<>();
-		users.addAll(resumeRepository.findAll());
-		List<ResumeDTO> user=users.stream().map(User->modelMapper.map(users, ResumeDTO.class)).collect(Collectors.toList());
-		return user;
+		List<Resume> resume=new ArrayList<>();
+		resume.addAll(resumeRepository.findAll());
+		List<ResumeDTO> resumeDTO=resume.stream().map(dto->modelMapper.map(dto, ResumeDTO.class)).collect(Collectors.toList());
+		return resumeDTO;
 	}
 	
 	@Override
@@ -89,13 +89,13 @@ public class ResumeServiceImpl implements ResumeService{
 
 	@Override
 	public List<ResumeDTO> deleteAll(List<ResumeDTO> resume) {
-		List<ResumeDTO> resumes=new ArrayList<>();
-		resumes.addAll(resume);
+		List<Resume> resumes=new ArrayList<>();
+		resumes.addAll(resume.stream().map(dto->modelMapper.map(dto,Resume.class)).collect(Collectors.toList()));
 		if(resumes!=null)
 		{
-			resumeRepository.deleteAll();
+			resumeRepository.deleteAll(resumes);
 		}
-		return resumes;
+		return resume;
 	}
 
 	

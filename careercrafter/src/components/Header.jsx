@@ -30,7 +30,7 @@ export const Header = () => {
           </ul>
         </li>
         <li className="nav-item">
-          <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
+          <a className="nav-link " href="/user" tabIndex="-1" aria-disabled="true">User</a>
         </li>
       </ul>
       <form className="d-flex">

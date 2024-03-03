@@ -71,10 +71,10 @@ export const AddResume = () => {
                         <form>
                             {/* Status of the  text box */}
                             <div className="form-group mb-2">
-                                <label className="form-label">Status</label>
+                                <label className="form-label">File URl</label>
                                 <input
                                     type="text"
-                                    placeholder='Enter the title of the event'
+                                    placeholder='Enter the file URL of the event'
                                     name="titleResume"
                                     value={fileUrl}
                                     className='form-control'

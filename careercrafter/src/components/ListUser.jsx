@@ -29,8 +29,8 @@ export const ListUser = () => {
         <div className="container">
             {console.log("User Part Rendered ")}
             <h1 className='text-center'>Users</h1>
-            <Link to="/addUser" className="btn btn-primary mb-3">Add User</Link>
-            <table className='table table-bordered table-info table-striped'>
+            <Link to="/addUser" className="btn btn-success mb-3">Add User</Link>
+            <table className='table table-bordered table-striped'>
                 <thead>
                     <tr className='table-dark'>
                         <th>Name</th>
@@ -47,7 +47,7 @@ export const ListUser = () => {
                             <td>{user.email}</td>
                             <td>{user.password}</td>
                             <td>{user.role}</td>
-                            <td><Link to={`/update/${user.userId}`} className='btn btn-success'>Update </Link><br/>
+                            <td><Link to={`/update/${user.userId}`} className='btn btn-primary'>Update </Link><br/>
                                 <button className="btn btn-danger" onClick={()=>deleteUserById(user.userId)}>Delete</button>
                             </td>
                         </tr>

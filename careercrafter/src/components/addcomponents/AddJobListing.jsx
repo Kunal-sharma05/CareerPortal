@@ -50,14 +50,14 @@ export const AddJobListing = () => {
         const jobListing = { requirements, description, title}
         console.log("Event feed from home:", jobListing);
         if(id){
-            JobListingService.updateEventById(id,jobListing)
+            JobListingService.updateJobListingById(id,jobListing)
             .then((response) => {
                 console.log("response recieved from saved API..." + JSON.stringify(response))
                 navigate('/jobListing')
             }).catch(error => { console.log("error recieved from saved API...", error) });
         }
         else{
-        JobListingService.AddJobListing(jobListing).
+        JobListingService.addJobListing(jobListing).
             then((response) => {
                 console.log("response recieved from saved API..." + JSON.stringify(response))
                 navigate('/jobListing')

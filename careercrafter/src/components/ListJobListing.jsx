@@ -29,7 +29,7 @@ export const ListJobListing = () => {
     <div className="container">
         {console.log("JobListing Part Rendered ")}
         <h1 className='text-center'>JobListings</h1>
-        <Link to="/addJobListings" className = "btn btn-primary mb-3">Add JobListing</Link>
+        <Link to="/addJobListing" className = "btn btn-primary mb-3">Add JobListing</Link>
         <table className='table table-bordered table-info table-striped'>
             <thead>
                 <tr className='table-dark'>
