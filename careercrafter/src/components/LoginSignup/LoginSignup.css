@@ -1,11 +1,14 @@
 .container{
     display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 200px;
-    width: 600px;
-    background: #fff;
-    padding-bottom: 30px;
+    margin:30px auto;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    width: 30px;
+   
+    background-size: 250px;
+    padding-bottom: 10px;
+    
 }
 
 .header{
@@ -18,7 +21,7 @@
 }
 
 .text{
-    color: #3c009d;
+    color: #5d0456;
     font-size: 48px;
     font-weight: 700;
 }
@@ -26,12 +29,12 @@
 .underline{
     width: 61px;
     height: 6px;
-    background: #3c009d;
+    background: #5d0456;
     border-radius: 9px;
+    
 }
-
-.input{
-    margin-top: 55px;
+.inputs{
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -43,7 +46,7 @@
     align-items: center;
     margin: auto;
     width: 480px;
-    height: 80px;
+    height: 65px;
     background: #eaeaea;
     border-radius: 6px;
 }
@@ -58,26 +61,26 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #797979;
+    color: #0c0c0c;
     font-size: 19px;
 }
 
 .forgot_password{
     padding-left: 62px;
     margin-top: 27px;
-    color: #797979;
+    color: #0b0b0b;
     font-size: 18px;
 }
 
 .forgot_password span{
-    color: #4c00b4;
+    color: #5d0456;
     cursor: pointer;
 }
 
 .submit-container{
     display: flex;
-    gap: 30px;
-    margin: 60px auto;
+    gap: 3px;
+    margin: 10px auto;
 }
 
 .submit{
@@ -87,7 +90,7 @@
     width: 220px;
     height: 59px;
     color: #fff;
-    background: #4c00b4;
+    background: #5d0456;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
