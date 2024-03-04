@@ -35,14 +35,14 @@ public class JobSeekerController {
         this.jobSeekerService = jobSeekerService;
     }
 
-    @PostMapping
+    @PostMapping //checked
     public ResponseEntity<JobSeekerDTO> createJobSeeker(@RequestBody @Validated JobSeekerDTO jobSeekerDto) {
     	System.out.println("Control in create job seeker");
         JobSeekerDTO createdJobSeeker = jobSeekerService.createJobSeeker(jobSeekerDto);
         return new ResponseEntity<>(createdJobSeeker, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //checked
     public ResponseEntity<JobSeekerDTO> getJobSeekerById(@PathVariable Long id) throws  JobSeekerNotFoundException {
         JobSeekerDTO jobSeeker = jobSeekerService.findByJobSeekerId(id);
         if (jobSeeker != null)
@@ -55,7 +55,7 @@ public class JobSeekerController {
         }
     }
 
-    @GetMapping("/getAllJobSeekers")
+    @GetMapping("/getAllJobSeekers") //checked
     public ResponseEntity<List<JobSeekerDTO>> getAllJobSeekers() throws JobSeekerNotFoundException {
         List<JobSeekerDTO> jobSeekers = jobSeekerService.findAll();
         if (!jobSeekers.isEmpty())
@@ -68,7 +68,7 @@ public class JobSeekerController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") //checked
     public ResponseEntity<JobSeekerDTO> updateJobSeeker(@PathVariable Long id, @RequestBody @Validated JobSeekerDTO jobSeekerDto) throws ResourceNotFoundException, JobSeekerNotFoundException {
         JobSeekerDTO updatedJobSeeker = jobSeekerService.updateJobSeeker(id, jobSeekerDto);
         if (updatedJobSeeker != null) 
@@ -104,7 +104,7 @@ public class JobSeekerController {
         	throw new JobSeekerNotFoundException("JobSeeker not found with id: " + id);
         }
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")  //checked
     public ResponseEntity<Void> deleteJobSeekerById(@PathVariable Long id) {
         jobSeekerService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -140,7 +140,7 @@ public class JobSeekerController {
     	return ResponseEntity.noContent().build();
         
     }
-    @PutMapping("/{employerId}/updateMobile")
+    @PutMapping("/{employerId}/updateMobile") //checked
     public ResponseEntity<JobSeekerDTO> updateMobileNo(@PathVariable Long jobSeekerId, @RequestParam String mobileNo) throws JobSeekerNotFoundException {
    	 JobSeekerDTO updatedMobileNo = jobSeekerService.updateMobileNo(jobSeekerId, mobileNo);
         if(updatedMobileNo!=null) {

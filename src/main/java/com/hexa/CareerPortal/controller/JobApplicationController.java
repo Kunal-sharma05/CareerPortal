@@ -37,13 +37,13 @@ public class JobApplicationController {
         this.jobApplicationService = jobApplicationService;
     }
 
-    @PostMapping
+    @PostMapping  //checked
     public ResponseEntity<JobApplicationDTO> createJobApplication(@Valid @RequestBody JobApplicationDTO jobApplicationDTO) {
         JobApplicationDTO createdJobApplication = jobApplicationService.createJobApplication(jobApplicationDTO);
         return new ResponseEntity<>(createdJobApplication, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{jobApplicationId}")
+    @GetMapping("/{jobApplicationId}")  //checked
     public ResponseEntity<JobApplicationDTO> getJobApplicationById(@PathVariable Long jobApplicationId) throws JobApplicationNotFoundException {
        
             JobApplicationDTO jobApplicationDTO = jobApplicationService.findByJobApplicationId(jobApplicationId);
@@ -55,7 +55,7 @@ public class JobApplicationController {
             }
     }
 
-    @PutMapping("/{jobApplicationId}")
+    @PutMapping("/{jobApplicationId}")  //checked
     public ResponseEntity<JobApplicationDTO> updateJobApplication(@PathVariable Long jobApplicationId, @Validated @RequestBody JobApplicationDTO jobApplicationDTO) throws  JobApplicationNotFoundException {
        
             JobApplicationDTO updatedJobApplication = jobApplicationService.updateJobApplication(jobApplicationId, jobApplicationDTO);
@@ -67,13 +67,13 @@ public class JobApplicationController {
         }
     }
 
-    @DeleteMapping("/{jobApplicationId}")
+    @DeleteMapping("/{jobApplicationId}")  //checked
     public ResponseEntity<Void> deleteJobApplicationById(@PathVariable Long jobApplicationId) {
         jobApplicationService.deleteById(jobApplicationId);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
+    @GetMapping  //checked
     public ResponseEntity<List<JobApplicationDTO>> getAllJobApplications() {
         List<JobApplicationDTO> jobApplications = jobApplicationService.findAll();
         return ResponseEntity.ok(jobApplications);

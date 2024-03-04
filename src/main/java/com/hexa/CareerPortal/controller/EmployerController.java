@@ -38,13 +38,13 @@ public class EmployerController {
         this.employerService = employerService;
     }
 
-    @PostMapping
+    @PostMapping  //checked
     public ResponseEntity<EmployerDTO> createEmployer(@Valid @RequestBody EmployerDTO employerDTO) {
         EmployerDTO createdEmployer = employerService.createEmployer(employerDTO);
         return new ResponseEntity<>(createdEmployer, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{employerId}")
+    @GetMapping("/{employerId}")  //checked
     public EntityModel<EmployerDTO> getEmployerById(@PathVariable Long employerId) throws EmployerNotFoundException {
         EmployerDTO employerDTO = employerService.findById(employerId);
         if (employerDTO != null) {
@@ -57,7 +57,7 @@ public class EmployerController {
         }
     }
 
-    @PutMapping("/{employerId}")
+    @PutMapping("/{employerId}")  //checked
     public ResponseEntity<EmployerDTO> updateEmployer(@PathVariable Long employerId, @Validated @RequestBody EmployerDTO employerDTO) throws EmployerNotFoundException {
         EmployerDTO updatedEmployer = employerService.updateEmployer(employerId, employerDTO);
         if (updatedEmployer != null) {
@@ -67,13 +67,13 @@ public class EmployerController {
         }
     }
 
-    @DeleteMapping("/{employerId}")
+    @DeleteMapping("/{employerId}")  //checked
     public ResponseEntity<Void> deleteEmployer(@PathVariable Long employerId) {
         employerService.deleteById(employerId);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
+    @GetMapping  //checked
     public ResponseEntity<List<EmployerDTO>> getAllEmployers() {
         List<EmployerDTO> employers = employerService.findAll();
         return ResponseEntity.ok(employers);

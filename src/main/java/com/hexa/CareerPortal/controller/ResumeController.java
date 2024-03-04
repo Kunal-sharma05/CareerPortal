@@ -33,13 +33,13 @@ public class ResumeController {
         this.resumeService = resumeService;
     }
 
-    @PostMapping
+    @PostMapping //checked
     public ResponseEntity<ResumeDTO> createResume(@Validated @RequestBody ResumeDTO resumeDTO) {
         ResumeDTO createdResume = resumeService.addResume(resumeDTO);
         return new ResponseEntity<>(createdResume, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{resumeId}")
+    @GetMapping("/{resumeId}")  //checked
     public ResponseEntity<ResumeDTO> getResumeById(@PathVariable Long resumeId) throws ResumeNotFoundException {
         ResumeDTO resumeDTO = resumeService.findByResumeId(resumeId);
             if (resumeDTO != null) 
@@ -52,7 +52,7 @@ public class ResumeController {
             }
     }
 
-    @PutMapping("/{resumeId}")
+    @PutMapping("/{resumeId}")  //checked
     public ResponseEntity<ResumeDTO> updateResume(@PathVariable Long resumeId, @Validated @RequestBody ResumeDTO resumeDTO) throws ResumeNotFoundException {
             ResumeDTO updatedResume = resumeService.updateResume(resumeId, resumeDTO);
             if (resumeDTO != null) 
@@ -65,7 +65,7 @@ public class ResumeController {
         }
     }
 
-    @DeleteMapping("/{resumeId}")
+    @DeleteMapping("/{resumeId}")  //checked
     public ResponseEntity<Void> deleteResume(@PathVariable Long resumeId) {
         resumeService.deleteById(resumeId);
         return ResponseEntity.noContent().build();
@@ -78,7 +78,7 @@ public class ResumeController {
         
     }
 
-    @GetMapping
+    @GetMapping  //checked
     public ResponseEntity<List<ResumeDTO>> getAllResumes() throws ResumeNotFoundException {
         List<ResumeDTO> resumes = resumeService.findAll();
         if(!resumes.isEmpty())

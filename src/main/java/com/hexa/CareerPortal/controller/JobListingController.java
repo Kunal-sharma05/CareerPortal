@@ -37,13 +37,13 @@ public class JobListingController {
         this.jobListingService = jobListingService;
     }
 
-    @PostMapping
+    @PostMapping //checked
     public ResponseEntity<JobListingDTO> createJobListing(@Valid @RequestBody JobListingDTO jobListingDTO) {
         JobListingDTO createdJobListing = jobListingService.postJob(jobListingDTO);
         return new ResponseEntity<>(createdJobListing, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{jobListingId}")
+    @GetMapping("/{jobListingId}")  //checked
     public ResponseEntity<JobListingDTO> getJobListingById(@PathVariable Long jobListingId) throws ResourceNotFoundException {
         JobListingDTO jobListingDTO = jobListingService.findByJobListingId(jobListingId);
         if (jobListingDTO != null) {
@@ -53,7 +53,7 @@ public class JobListingController {
         }
     }
 
-    @PutMapping("/{jobListingId}")
+    @PutMapping("/{jobListingId}")  //checked
     public ResponseEntity<JobListingDTO> updateJobListing(@PathVariable Long jobListingId, @Validated @RequestBody JobListingDTO jobListingDTO) throws ResourceNotFoundException {
         JobListingDTO updatedJobListing = jobListingService.updateJobListing(jobListingId, jobListingDTO);
         if (updatedJobListing != null) {
@@ -63,13 +63,13 @@ public class JobListingController {
         }
     }
 
-    @DeleteMapping("/{jobListingId}")
+    @DeleteMapping("/{jobListingId}")  //checked
     public ResponseEntity<Void> deleteJobListing(@PathVariable Long jobListingId) {
         jobListingService.deleteById(jobListingId);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
+    @GetMapping  //checked
     public ResponseEntity<List<JobListingDTO>> getAllJobListings() throws JobNotFoundException {
         List<JobListingDTO> jobListings = jobListingService.findAll();
         if (!jobListings.isEmpty()) {

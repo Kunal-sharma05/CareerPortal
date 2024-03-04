@@ -36,13 +36,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping //checked
     public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
         UserDTO createdUser = userService.createUser(userDTO);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/{userId}")  //checked
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId) throws ResourceNotFoundException {
         UserDTO userDTO = userService.findByUserId(userId);
         if (userDTO != null) {
@@ -52,7 +52,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/{userId}") //checked
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @Valid @RequestBody UserDTO userDTO) throws ResourceNotFoundException {
         UserDTO updatedUser = userService.updateUser(userId, userDTO);
         if (updatedUser != null) {
@@ -64,7 +64,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/{userId}")  //checked
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) throws ResourceNotFoundException {
         User user=userService.deleteById(userId);
         if(user!=null)
@@ -78,7 +78,7 @@ public class UserController {
         
     }
 
-    @GetMapping
+    @GetMapping  //checked
     public ResponseEntity<List<UserDTO>> getAllUsers() throws ResourceNotFoundException {
         List<UserDTO> users = userService.findAll();
         //System.out.println(""+users.toString());
@@ -93,14 +93,14 @@ public class UserController {
     }
 
 
-    @PostMapping("/createMultiple")
+    @PostMapping("/createMultiple")  //checked
     public ResponseEntity<List<UserDTO>> createUsers(@Valid @RequestBody List<UserDTO> users) {
         List<UserDTO> createdUsers = userService.createUsers(users);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUsers);
     }
 
 
-    @GetMapping("/findByName")
+    @GetMapping("/findByName")  //checked
     public ResponseEntity<List<UserDTO>> findByName(@RequestParam String name) throws ResourceNotFoundException {
         List<UserDTO> userDTO=userService.findByName(name);
         if(!userDTO.isEmpty())
@@ -113,7 +113,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/findByEmail")
+    @GetMapping("/findByEmail") 
     public ResponseEntity<UserDTO> findByEmail(@RequestParam String email) throws ResourceNotFoundException {
         UserDTO user=userService.findByEmail(email);
         if(user!=null)
