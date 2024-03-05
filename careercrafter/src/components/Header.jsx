@@ -4,10 +4,10 @@ export const Header = () => {
   return (
     <div>
       <header>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: 'rgb(57, 60, 249)' }}>
           <div className="container-fluid">
             <a className="navbar-brand" href="/user">
-            <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" className="d-inline-block align-text-top"/>CareerCrafter ©️</a>
+            CareerCrafter ©️</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -36,7 +36,7 @@ export const Header = () => {
               </ul>
               <form className="d-flex">
                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                <button className="btn btn-primary" type="submit">Search</button>
+                <button className="btn btn-light" type="submit">Search</button>
               </form>
             </div>
           </div>
