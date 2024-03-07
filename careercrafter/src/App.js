@@ -16,7 +16,7 @@ import { AddJobSeeker } from './components/addcomponents/AddJobSeeker';
 import { AddResume } from './components/addcomponents/AddResume';
 import { ListResume } from './components/ListResume';
 import LoginSignup from './components/LoginSignup/LoginSignup';
-import styles from "./index.css"
+import { HomePage } from './components/HomePage';
 
 
 function App() {
@@ -54,6 +54,7 @@ function App() {
             <Route path='/addResume' element={<AddResume/>}/>
             <Route path='/resume/update/:id' element={<AddResume/>}/>
             <Route path='/signin' element={<LoginSignup/>}/>
+            <Route path='/Home' element={<HomePage/>}/>
           </Routes>
         </div>
         <br/>
