@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../../services/UserService";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { Button } from "../Button";
 
 export const AddUser = () => {
   const [name, setName] = useState("");
@@ -120,7 +121,7 @@ export const AddUser = () => {
               <div className="form-group mb-2">
                 <label className="form-label">Password of the user</label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Enter the password of the user"
                   name="Password"
                   value={password}
@@ -152,9 +153,7 @@ export const AddUser = () => {
                 Save User
               </button>
               &nbsp;&nbsp;
-              <Link to="/users" className="btn btn-danger">
-                Cancel
-              </Link>
+              <Button text="Cancel" color="bg-red-600"></Button>
             </form>
           </div>
         </div>

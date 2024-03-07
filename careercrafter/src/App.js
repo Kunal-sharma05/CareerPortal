@@ -16,6 +16,7 @@ import { AddJobSeeker } from './components/addcomponents/AddJobSeeker';
 import { AddResume } from './components/addcomponents/AddResume';
 import { ListResume } from './components/ListResume';
 import LoginSignup from './components/LoginSignup/LoginSignup';
+import styles from "./index.css"
 
 
 function App() {

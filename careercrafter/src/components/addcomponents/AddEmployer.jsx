@@ -155,7 +155,7 @@ export const AddEmployer = () => {
                 Save Employer
               </button>
               &nbsp;&nbsp;
-              <Link to="/employer" className="btn btn-danger">
+              <Link to="/employer" className=" btn btn-danger ">
                 Cancel
               </Link>
             </form>
