@@ -1,0 +1,13 @@
+*{
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Times-New-Roman";
+}
+html,body{
+  height: 100%;
+  width: 100%;
+}
+.App {
+  text-align: center;
+}
