@@ -43,7 +43,7 @@ export const BrowseJobs = () => {
     <div className=" h-full overflow-visible">
       <div className="w-full h-full flex gap-5 ">
         <SideNav />
-        <div className="w-[80%] h-full flex gap-5 flex-wrap mt-2 overflow-auto ">
+        <div className="w-[80%] h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto ">
           {jobListingArray.map((item, key) => (
             <Card
               key={key}
