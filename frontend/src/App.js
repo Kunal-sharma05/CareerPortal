@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter,Routes,Route} from 'react-router-dom';
+import { Routes,Route} from 'react-router-dom';
 import { Header } from './components/Header';
 import { ListUser } from './components/ListUser';
 import { Error } from './components/Error';
@@ -21,14 +21,11 @@ import { HomePage } from './components/HomePage';
 
 function App() {
   return (
-    <div className="App">
-     {/* <LoginSignup /> */}
-      <BrowserRouter>
+    <div className=" bg-[#1F1E24] w-screen h-screen flex flex-col">
+     {/* <LoginSignup /> */} 
       <Header/>
-        <div className='container'>
-    
           <Routes>
-            <Route path='/' element={<ListUser/>}/>
+            <Route path='/' element={<HomePage/>}/>
             <Route path='/user' element={<ListUser/>}/>
             <Route path='*' element={<Error/>}/>
             <Route path='/addUser' element={<AddUser/>}/>
@@ -56,10 +53,8 @@ function App() {
             <Route path='/signin' element={<LoginSignup/>}/>
             <Route path='/Home' element={<HomePage/>}/>
           </Routes>
-        </div>
         <br/>
-        <Footer></Footer>
-      </BrowserRouter>
+        <Footer/>
     </div>
   );
 }

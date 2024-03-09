@@ -3,9 +3,9 @@ import React from 'react';
 export const Header = () => {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: 'rgb(57, 60, 249)' }}>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-zinc-100">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/user">CareerCrafter ©️</a>
+          <a className="navbar-brand text-black " href="/user">CareerCrafter ©️</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" role="button">
             <span className="navbar-toggler-icon"></span>
           </button>

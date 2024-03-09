@@ -9,7 +9,7 @@ const onClickHandler =()=>{
    //navigate("/user"); 
 };
   return (
-    <div className='w-[20vw] h-full bg-zinc-100 p-3 rounded-md overflow-hidden'>
+    <div className='w-[20vw] h-[27vw] bg-zinc-200 p-3 rounded-md'>
         <div className="w-full h-40 bg-sky-200 ">
             <img className='h-full w-full object-cover' src={image} alt="" />
         </div>

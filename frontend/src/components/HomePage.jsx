@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Card } from "./Card";
+import { SideNav } from "./templates/SideNav";
 
 export const HomePage = () => {
+  document.title= "CareerCrafter | Home";
   const data = [
     {
       title: "Data Analyst",
@@ -49,8 +51,9 @@ export const HomePage = () => {
     });
   };
   return (
-    <>
-      <div className="w-full h-full grid gap-4 grid-cols-4   ">
+    <div className="h-full flex gap-2">
+      <SideNav/>
+      <div className="w-[80%] h-full flex gap-2 flex-wrap mt-2 ">
         {realData.map((item, key) => (
           <Card
             key={key}
@@ -60,6 +63,6 @@ export const HomePage = () => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
