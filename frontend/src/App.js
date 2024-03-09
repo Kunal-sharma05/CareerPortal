@@ -3,7 +3,6 @@ import { Routes,Route} from 'react-router-dom';
 import { Header } from './components/Header';
 import { ListUser } from './components/ListUser';
 import { Error } from './components/Error';
-import { Footer } from './components/Footer';
 import { ListEmployee } from './components/ListEmployee';
 import { AddUser } from './components/addcomponents/AddUser';
 import { AddEmployer } from './components/addcomponents/AddEmployer';
@@ -16,6 +15,7 @@ import { AddJobSeeker } from './components/addcomponents/AddJobSeeker';
 import { AddResume } from './components/addcomponents/AddResume';
 import { ListResume } from './components/ListResume';
 import LoginSignup from './components/LoginSignup/LoginSignup';
+import { BrowseJobs } from './components/BrowseJobs';
 import { HomePage } from './components/HomePage';
 
 
@@ -23,7 +23,7 @@ function App() {
   return (
     <div className=" bg-[#1F1E24] w-screen h-screen flex flex-col">
      {/* <LoginSignup /> */} 
-      <Header/>
+      {/* <Header/> */}
           <Routes>
             <Route path='/' element={<HomePage/>}/>
             <Route path='/user' element={<ListUser/>}/>
@@ -51,10 +51,9 @@ function App() {
             <Route path='/addResume' element={<AddResume/>}/>
             <Route path='/resume/update/:id' element={<AddResume/>}/>
             <Route path='/signin' element={<LoginSignup/>}/>
-            <Route path='/Home' element={<HomePage/>}/>
+            <Route path='/BrowseJobs' element={<BrowseJobs/>}/>
           </Routes>
         <br/>
-        <Footer/>
     </div>
   );
 }

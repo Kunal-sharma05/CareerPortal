@@ -6,6 +6,7 @@ export const AddJobListing = () => {
   const [requirements, setRequirements] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
   const changeTitle = () => {
@@ -40,6 +41,7 @@ export const AddJobListing = () => {
           setTitle(response.data.title);
           setDescription(response.data.description);
           setRequirements(response.data.requirements);
+          setImage(response.data.image)
           console.log("state variable changed. ");
         })
         .catch((error) => {
@@ -50,7 +52,7 @@ export const AddJobListing = () => {
   const saveOrUpdateJobListing = (e) => {
     e.preventDefault();
     //let emailId=email;
-    const jobListing = { requirements, description, title };
+    const jobListing = { requirements, description, title, image};
     console.log("Event feed from home:", jobListing);
     if (id) {
       JobListingService.updateJobListingById(id, jobListing)
@@ -124,6 +126,19 @@ export const AddJobListing = () => {
                   className="form-control"
                   onChange={(e) => {
                     setRequirements(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="form-group mb-2">
+                <label className="form-label">Image URL of the Company</label>
+                <input
+                  type="text"
+                  placeholder="Enter the image URL of the company"
+                  name="image"
+                  value={image}
+                  className="form-control"
+                  onChange={(e) => {
+                    setImage(e.target.value);
                   }}
                 />
               </div>

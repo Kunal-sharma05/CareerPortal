@@ -57,6 +57,7 @@ export const ListJobListing = () => {
             <th>Requirements</th>
             <th>Descriptions</th>
             <th>Title</th>
+            <th>Image URL</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -66,6 +67,7 @@ export const ListJobListing = () => {
               <td>{jobListing.requirements}</td>
               <td>{jobListing.description}</td>
               <td>{jobListing.title}</td>
+              <td>{jobListing.image}</td>
               <td>
                 <Link
                   to={`/jobListing/update/${jobListing.jobListingId}`}

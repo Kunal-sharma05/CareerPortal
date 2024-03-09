@@ -200,6 +200,7 @@ public class JobListingServiceImpl implements JobListingService {
 	        existingJobListing.setTitle(jobListingDTO.getTitle());
 	        existingJobListing.setDescription(jobListingDTO.getDescription());
 	        existingJobListing.setRequirements(jobListingDTO.getRequirements());
+	        existingJobListing.setImage(jobListingDTO.getImage());
 	        
 	        JobListing updatedJobListing = jobListingRepository.save(existingJobListing);
 	        

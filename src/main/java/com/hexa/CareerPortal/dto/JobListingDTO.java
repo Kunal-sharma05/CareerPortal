@@ -7,7 +7,7 @@ public class JobListingDTO {
 	private Long jobListingId;
     @NotEmpty(message = "Requirements should not be empty")
     private String requirements;
-
+    private String image;
     @NotEmpty(message = "Description should not be empty")
     private String description;
 
@@ -24,17 +24,6 @@ public class JobListingDTO {
         this.title = title;
     }
    
-
-	public JobListingDTO(@NotEmpty(message = "Requirements should not be empty") String requirements,
-			@NotEmpty(message = "Description should not be empty") String description,
-			@NotEmpty(message = "Title should not be empty") String title,
-			JobApplicationDTO jobApplication) {
-		super();
-		this.requirements = requirements;
-		this.description = description;
-		this.title = title;
-		this.jobApplication = jobApplication;
-	}
 
 	public String getRequirements() {
         return requirements;
@@ -76,20 +65,30 @@ public class JobListingDTO {
 		this.jobListingId = jobListingId;
 	}
 
-	@Override
-	public String toString() {
-		return "JobListingDTO [jobListingId=" + jobListingId + ", requirements=" + requirements + ", description="
-				+ description + ", title=" + title + ", jobApplication=" + jobApplication + "]";
-	}
 
 	public JobListingDTO(Long jobListingId, @NotEmpty(message = "Requirements should not be empty") String requirements,
-			@NotEmpty(message = "Description should not be empty") String description,
+			String image, @NotEmpty(message = "Description should not be empty") String description,
 			@NotEmpty(message = "Title should not be empty") String title, JobApplicationDTO jobApplication) {
 		super();
 		this.jobListingId = jobListingId;
 		this.requirements = requirements;
+		this.image = image;
 		this.description = description;
 		this.title = title;
 		this.jobApplication = jobApplication;
+	}
+
+	@Override
+	public String toString() {
+		return "JobListingDTO [jobListingId=" + jobListingId + ", requirements=" + requirements + ", image=" + image
+				+ ", description=" + description + ", title=" + title + ", jobApplication=" + jobApplication + "]";
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

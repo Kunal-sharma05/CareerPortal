@@ -25,6 +25,7 @@ public class JobListing {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="job_listing_id")
 	private Long jobListingId;
+	private String image;
 	private String requirements;
 	private String description;
 	private String title;
@@ -36,15 +37,6 @@ public class JobListing {
 	private JobApplication jobApplication;
 	public JobListing() {
 		super();
-	}
-	public JobListing(Long jobListingId, String requirements, String description, String title,
-			LocalDateTime dateOfPosting) {
-		super();
-		this.jobListingId = jobListingId;
-		this.requirements = requirements;
-		this.description = description;
-		this.title = title;
-		this.dateOfPosting = dateOfPosting;
 	}
 	public Long getJobListingId() {
 		return jobListingId;
@@ -83,11 +75,29 @@ public class JobListing {
 	public void setJobApplication(JobApplication jobApplication) {
 		this.jobApplication = jobApplication;
 	}
+	public JobListing(Long jobListingId, String image, String requirements, String description, String title,
+			LocalDateTime dateOfPosting, JobApplication jobApplication) {
+		super();
+		this.jobListingId = jobListingId;
+		this.image = image;
+		this.requirements = requirements;
+		this.description = description;
+		this.title = title;
+		this.dateOfPosting = dateOfPosting;
+		this.jobApplication = jobApplication;
+	}
 	@Override
 	public String toString() {
-		return "JobListing [jobListingId=" + jobListingId + ", requirements=" + requirements + ", description="
-				+ description + ", title=" + title + ", dateOfPosting=" + dateOfPosting
-				+ "]";
+		return "JobListing [jobListingId=" + jobListingId + ", image=" + image + ", requirements=" + requirements
+				+ ", description=" + description + ", title=" + title + ", dateOfPosting=" + dateOfPosting
+				+ ", jobApplication=" + jobApplication + "]";
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 	
 }
