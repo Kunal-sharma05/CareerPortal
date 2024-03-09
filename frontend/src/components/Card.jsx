@@ -16,7 +16,7 @@ const onClickHandler =()=>{
         <div className="w-full p-3">
             <h3 className='text-pretty text-xl font-semibold'>{title}</h3>
             <h5 className=' text-sm'>{description}</h5>
-            <button  onClick={onClickHandler} className={`px-2 py-1  text-xs text-white ${applied ? 'bg-green-500' : "bg-blue-500"} font-semibold rounded-md`}> {applied ?"Applied":"Apply"} </button>
+            <button  onClick={onClickHandler} className={` px-2 py-1 bottom-0 text-xs text-white ${applied ? 'bg-green-500' : "bg-blue-500"} font-semibold rounded-md`}> {applied ?"Applied":"Apply"} </button>
         </div>
     </div>
   )
