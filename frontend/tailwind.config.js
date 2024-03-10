@@ -5,5 +5,8 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  fontFamily: {
+    arial: ["Arial"],
+ }
 }
 
