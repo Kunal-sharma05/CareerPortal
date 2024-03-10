@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import './LoginSignup.css';
-
 import user_icon from '../Assets/person.png'
 import email_icon from '../Assets/email.png'
 import password_icon from '../Assets/password.png'
+import { Header } from "../Header";
+import { Footer } from "../Footer";
+
 const LoginSignup = () => {
 
     const [action, setAction] = useState("Login");
 
     return(
+        <div className="w-full h-full flex flex-col" >
+      <Header/>
         <div className = 'container'>
         <div className = "header ">   
-        <div className ="text">{action}</div>
-        <div className = "underline"></div>
+        <div className ="text text-zinc-100">{action}</div>
+        <div className = "underline text-zinc-100"></div>
         </div> 
         <div className = "inputs">
         {action ==="Login"?<div></div>:<div className = "input">
@@ -31,6 +35,7 @@ const LoginSignup = () => {
             
          </div>
          
+         
         </div>
         {action === "Sign Up"?<div></div>: <div className = "forgot-password">Forgot Password?<span> Click Here!</span> </div>}
     
@@ -39,6 +44,10 @@ const LoginSignup = () => {
           <div className= {action === "Sign Up"?"submit gray":"submit"} onClick={()=>{setAction("Login")}}>Login</div>
         </div>
         </div>
+        <Footer />
+        </div>
+       
+       
     );
 };
 

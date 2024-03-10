@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const SideNav = () => {
   return (
-    <div className=" w-[20%]  flex-1 border-r-2 border-zinc-200 p-3 ">
+    <div className="bg w-[20%]   flex-1 border-r-2 border-zinc-200 p-3 ">
       <h1 className="text-xl text-zinc-100 ">
         <i className="ri-profile-line "></i>
         <span className="ml-2">Dash Board</span>
@@ -52,7 +52,7 @@ export const SideNav = () => {
           <i className="ri-flag-2-fill mr-1"></i>
           Job Fairs
         </Link>
-        
+
       </nav>
     </div>
   );

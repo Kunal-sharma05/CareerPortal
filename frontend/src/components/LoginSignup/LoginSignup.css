@@ -21,7 +21,7 @@
 }
 
 .text{
-    color: rgb(57, 60, 249);
+  
     font-size: 48px;
     font-weight: 700;
 }
@@ -29,7 +29,7 @@
 .underline{
     width: 61px;
     height: 6px;
-    background:rgb(57, 60, 249);
+    background: #fff;
     border-radius: 9px;
     
 }
@@ -81,6 +81,7 @@
     display: flex;
     gap: 3px;
     margin: 10px auto;
+    padding-bottom: 5%;
 }
 
 .submit{

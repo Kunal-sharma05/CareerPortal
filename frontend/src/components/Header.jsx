@@ -9,6 +9,9 @@ export const Header = () => {
   const onClickDashBoard = () =>{
     navigate("/BrowseJobs")
   }
+  const onClickAbout = () =>{
+    navigate("/About")
+  }
   const onClickLogin = () =>{
     navigate("/signin")
   }
@@ -19,10 +22,11 @@ export const Header = () => {
           <div className='flex gap-5 -translate-x-56 py-2 px-5'>
           <div onClick={onClickHome} className="text-base  text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md px-2">Home</div>
           <div onClick={onClickDashBoard} className="text-base  text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md px-2">Dash Board</div>
+          <div onClick={onClickAbout} className="text-base  text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md px-2">About</div>
           </div>
           <div className='flex gap-5 py-2 px-4'>
           <div onClick={onClickLogin} className="text-base  text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md px-2">Log In</div>
-          <div onClick={onClickLogin} className="text-base  text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md px-2">Sign Up In</div>
+          <div onClick={onClickLogin} className="text-base  text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md px-2">Sign Up </div>
           </div>
         </div>
       </header>
