@@ -17,6 +17,8 @@ import { AddResume } from '../addcomponents/AddResume';
 import LoginSignup from '../LoginSignup/LoginSignup';
 import { BrowseJobs } from '../BrowseJobs';
 import { About } from '../About';
+import { JobSeekers } from '../JobSeekers';
+
 
 export const Router = () => {
   return (
@@ -49,6 +51,8 @@ export const Router = () => {
             <Route path='/signin' element={<LoginSignup/>}/>
             <Route path='/BrowseJobs' element={<BrowseJobs/>}/>
             <Route path='/About' element={<About/>}/>
+            <Route path='/Home' element={<HomePage/>}/>
+            <Route path='/browseJobSeekers' element={<JobSeekers/>}/>
           </Routes>
   )
 }

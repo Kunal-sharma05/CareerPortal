@@ -15,8 +15,8 @@ const LoginSignup = () => {
       <Header/>
         <div className = 'container'>
         <div className = "header ">   
-        <div className ="text">{action}</div>
-        <div className = "underline"></div>
+        <div className ="text text-zinc-100">{action}</div>
+        <div className = "underline text-zinc-100"></div>
         </div> 
         <div className = "inputs">
         {action ==="Login"?<div></div>:<div className = "input">
@@ -34,6 +34,7 @@ const LoginSignup = () => {
             <input type="password" placeholder="Password" />
             
          </div>
+         
          
         </div>
         {action === "Sign Up"?<div></div>: <div className = "forgot-password">Forgot Password?<span> Click Here!</span> </div>}
