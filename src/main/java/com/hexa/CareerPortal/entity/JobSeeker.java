@@ -44,6 +44,8 @@ public class JobSeeker {
 	private LocalDateTime dateCreated;
 	@UpdateTimestamp
 	private LocalDateTime dateUpdated;
+	
+	private String image;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="jobSeeker_jobApplication_mapping",joinColumns=@JoinColumn(name="job_seeker_id"),inverseJoinColumns=@JoinColumn(name="job_application_id"))
 	private List<JobApplication> jobApplication=new ArrayList<>();
@@ -52,23 +54,6 @@ public class JobSeeker {
 	private List<Resume> resumes=new ArrayList<>();
 	public JobSeeker() {
 		super();
-	}
-	
-	public JobSeeker(Long jobSeekerId, String fullName, String professionalDetails, String educationDetail,
-			String mobileNumber, String email, LocalDateTime dateCreated, LocalDateTime dateUpdated,
-			List<JobApplication> jobApplication, List<Resume> resume, Date dateOfBirth) {
-		super();
-		this.jobSeekerId = jobSeekerId;
-		this.fullName = fullName;
-		this.professionalDetails = professionalDetails;
-		this.educationDetail = educationDetail;
-		this.mobileNumber = mobileNumber;
-		this.email = email;
-		this.dateCreated = dateCreated;
-		this.dateUpdated = dateUpdated;
-		this.jobApplication = jobApplication;
-		this.resumes = resume;
-		this.dateOfBirth = dateOfBirth;
 	}
 
 
@@ -145,13 +130,42 @@ public class JobSeeker {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public JobSeeker(Long jobSeekerId, String fullName, String professionalDetails, String educationDetail,
+			String mobileNumber, String email, Date dateOfBirth, LocalDateTime dateCreated, LocalDateTime dateUpdated,
+			String image, List<JobApplication> jobApplication, List<Resume> resumes) {
+		super();
+		this.jobSeekerId = jobSeekerId;
+		this.fullName = fullName;
+		this.professionalDetails = professionalDetails;
+		this.educationDetail = educationDetail;
+		this.mobileNumber = mobileNumber;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.dateCreated = dateCreated;
+		this.dateUpdated = dateUpdated;
+		this.image = image;
+		this.jobApplication = jobApplication;
+		this.resumes = resumes;
+	}
+
+
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
 	@Override
 	public String toString() {
 		return "JobSeeker [jobSeekerId=" + jobSeekerId + ", fullName=" + fullName + ", professionalDetails="
 				+ professionalDetails + ", educationDetail=" + educationDetail + ", mobileNumber=" + mobileNumber
-				+ ", email=" + email + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
-				+ ", jobApplication=" + jobApplication + ", resume=" + resumes + "dateOfBirth =" + dateOfBirth+ "]";
-		
+				+ ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", dateCreated=" + dateCreated
+				+ ", dateUpdated=" + dateUpdated + ", image=" + image + ", jobApplication=" + jobApplication
+				+ ", resumes=" + resumes + "]";
 	}
 	
 	

@@ -157,7 +157,11 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	        // Update the existing employer with the new information
 	        existingJobSeeker.setFullName(jobSeekerDTO.getFullName());
 	        existingJobSeeker.setMobileNumber(jobSeekerDTO.getMobileNumber());
+	        existingJobSeeker.setEducationDetail(jobSeekerDTO.getEducationDetail());
+	        existingJobSeeker.setProfessionalDetails(jobSeekerDTO.getProfessionalDetails());
 	        existingJobSeeker.setEmail(jobSeekerDTO.getEmail());
+	        existingJobSeeker.setImage(jobSeekerDTO.getImage());
+	        existingJobSeeker.setDateOfBirth(jobSeekerDTO.getDateOfBirth());
 	        
 	        jobSeekerRepository.save(existingJobSeeker);
 	        

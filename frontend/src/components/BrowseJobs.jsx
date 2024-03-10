@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "./Card";
+import { Card } from "./Card1";
 import { SideNav } from "./templates/SideNav";
 import JobListingService from "../services/JobListingService";
 import { Footer } from "./Footer";

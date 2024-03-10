@@ -26,6 +26,7 @@ public class JobSeekerDTO {
 	@Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits")
     private String mobileNumber;
     private Date dateOfBirth;
+    private String image;
 	@NotEmpty(message = "email should be valid")
 	@Email(message = "email should be valid")
     private String email;
@@ -143,12 +144,24 @@ public class JobSeekerDTO {
 
 
 
+	public String getImage() {
+		return image;
+	}
+
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "JobSeekerDTO [jobSeekerId=" + jobSeekerId + ", fullName=" + fullName + ", professionalDetails="
 				+ professionalDetails + ", educationDetail=" + educationDetail + ", mobileNumber=" + mobileNumber
-				+ ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", jobApplication=" + jobApplication
-				+ ", resumes=" + resumes + "]";
+				+ ", dateOfBirth=" + dateOfBirth + ", image=" + image + ", email=" + email + ", jobApplication="
+				+ jobApplication + ", resumes=" + resumes + "]";
 	}
 
 
@@ -158,7 +171,7 @@ public class JobSeekerDTO {
 			@NotEmpty(message = "details should not be empty") String professionalDetails,
 			@NotEmpty(message = "details should not be empty") String educationDetail,
 			@NotEmpty(message = "contact number should not be empty") @Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits") String mobileNumber,
-			Date dateOfBirth,
+			Date dateOfBirth, String image,
 			@NotEmpty(message = "email should be valid") @Email(message = "email should be valid") String email,
 			List<JobApplicationDTO> jobApplication, List<ResumeDTO> resumes) {
 		super();
@@ -168,10 +181,13 @@ public class JobSeekerDTO {
 		this.educationDetail = educationDetail;
 		this.mobileNumber = mobileNumber;
 		this.dateOfBirth = dateOfBirth;
+		this.image = image;
 		this.email = email;
 		this.jobApplication = jobApplication;
 		this.resumes = resumes;
 	}
+
+
 
 	
 }
