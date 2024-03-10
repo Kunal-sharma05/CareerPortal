@@ -52,14 +52,7 @@ export const SideNav = () => {
           <i className="ri-flag-2-fill mr-1"></i>
           Job Fairs
         </Link>
-      
-        <Link
-          to="/About"
-          className="text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md p-2 "
-          style={{ textDecoration: "none" }}
-        >
-          <i className="ri-building-4-fill mr-1"></i>About
-        </Link>
+
       </nav>
     </div>
   );

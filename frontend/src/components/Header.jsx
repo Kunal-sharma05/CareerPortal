@@ -26,7 +26,7 @@ export const Header = () => {
           </div>
           <div className='flex gap-5 py-2 px-4'>
           <div onClick={onClickLogin} className="text-base  text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md px-2">Log In</div>
-          <div onClick={onClickLogin} className="text-base  text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md px-2">Sign Up In</div>
+          <div onClick={onClickLogin} className="text-base  text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md px-2">Sign Up </div>
           </div>
         </div>
       </header>
