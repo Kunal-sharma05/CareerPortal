@@ -81,6 +81,7 @@
     display: flex;
     gap: 3px;
     margin: 10px auto;
+    padding-bottom: 5%;
 }
 
 .submit{

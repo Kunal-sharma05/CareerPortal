@@ -9,11 +9,12 @@ export const AddJobSeeker = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [email, setEmail] = useState("");
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
   const changeTitle = () => {
     if (id) {
-      console.log("returned title  update job seeker .id", { id });
+      console.log("returned title  update job seeker .id", { id },educationDetail);
       return <h2 className="text-center">Update Job Seeker</h2>;
     } else {
       console.log("returned title  add Job Seeker");
@@ -26,7 +27,7 @@ export const AddJobSeeker = () => {
       return <h2 className="text-center">Update </h2>;
     } else {
       console.log("returned title  add JobSeeker");
-      return <h2 className="text-center">Add event</h2>;
+      return <h2 className="text-center">Add Job Seeker</h2>;
     }
   };
 
@@ -38,14 +39,15 @@ export const AddJobSeeker = () => {
         .then((response) => {
           console.log(
             "Response recieved from getbyid API",
-            JSON.stringify(response.data)
+            response.data
           );
           setFullName(response.data.fullName);
           setProfessionalDetails(response.data.professionalDetails);
-          setEducationDetails(response.data.educationDetails);
-          setMobileNumber(response.data.mobileNo);
+          setEducationDetails(response.data.educationDetail);
+          setMobileNumber(response.data.mobileNumber);
           setDateOfBirth(response.data.dateOfBirth);
           setEmail(response.data.email);
+          setImage(response.data.image);
           console.log("state variable changed. ");
         })
         .catch((error) => {
@@ -64,6 +66,7 @@ export const AddJobSeeker = () => {
       mobileNumber,
       dateOfBirth,
       email,
+      image,
     };
     console.log("JobSeeker feed from home:", jobSeeker);
     if (id) {
@@ -92,7 +95,7 @@ export const AddJobSeeker = () => {
   };
 
   return (
-    <div>
+    <div className="bg-[#1F1E24]">
       {console.log("Application Rendered.. ")}
       <div className="container">
         <div className="card col-md-6 offset-md-3">
@@ -139,7 +142,7 @@ export const AddJobSeeker = () => {
                 <input
                   type="text"
                   placeholder="Enter the educational details of the job seeker"
-                  name="educationalDetails"
+                  name="educationDetails"
                   value={educationDetail}
                   className="form-control"
                   onChange={(e) => {
@@ -190,6 +193,19 @@ export const AddJobSeeker = () => {
                   className="form-control"
                   onChange={(e) => {
                     setEmail(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="form-group mb-2">
+                <label className="form-label">Profile Photo URL of the Job seeker</label>
+                <input
+                  type="text"
+                  placeholder="Enter the image URL of the job Seeker"
+                  name="image"
+                  value={image}
+                  className="form-control"
+                  onChange={(e) => {
+                    setImage(e.target.value);
                   }}
                 />
               </div>

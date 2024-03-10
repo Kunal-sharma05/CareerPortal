@@ -35,13 +35,14 @@ export const ListJobSeeker = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="bg-[#1F1E24] h-[220vh] ">
+    <div className=" container">
       {console.log("Application rendered in Job seeker")}
-      <h2 className="text-center">JobSeekerData</h2>
+      <h2 className="text-center text-rose-50">JobSeekerData</h2>
       <Link to={`/addJobSeeker`} className="btn btn-primary mb-3">
         Add Job Seeker
       </Link>
-      <table className="table table-boredered table-info table-stripped">
+      <table className="table table-bordered table-info table-striped -translate-x-10">
         <thead>
           <tr className="table-dark bg bg-dark text-white">
             <th>Full Name</th>
@@ -50,6 +51,7 @@ export const ListJobSeeker = () => {
             <th>Mobile Number</th>
             <th>date of Birth</th>
             <th>Email</th>
+            <th>Image URL</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -58,10 +60,11 @@ export const ListJobSeeker = () => {
             <tr key={key}>
               <td>{jobSeeker.fullName}</td>
               <td>{jobSeeker.professionalDetails}</td>
-              <td>{jobSeeker.educationalDetail}</td>
+              <td>{jobSeeker.educationDetail}</td>
               <td>{jobSeeker.mobileNumber}</td>
               <td>{jobSeeker.dateOfBirth}</td>
               <td>{jobSeeker.email}</td>
+              <td>{jobSeeker.image}</td>
               <td>
                 <Link
                   to={`/jobSeeker/update/${jobSeeker.jobSeekerId}`}
@@ -82,6 +85,7 @@ export const ListJobSeeker = () => {
         </tbody>
       </table>
       <h2></h2>
+    </div>
     </div>
   );
 };

@@ -1,0 +1,21 @@
+.logoscroll{
+    height: 20vw;
+    width: 100%;
+    /* background-color: #b21616; */
+    display: inline-block;
+    animation-name: anime;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background-color: aqua;
+}
+
+@keyframes anime {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-90%)
+    }
+}

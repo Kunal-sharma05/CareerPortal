@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import './LoginSignup.css';
-
 import user_icon from '../Assets/person.png'
 import email_icon from '../Assets/email.png'
 import password_icon from '../Assets/password.png'
+import { Header } from "../Header";
+import { Footer } from "../Footer";
+
 const LoginSignup = () => {
 
     const [action, setAction] = useState("Login");
 
     return(
+        <div className="w-full h-full flex flex-col" >
+      <Header/>
         <div className = 'container'>
         <div className = "header ">   
         <div className ="text">{action}</div>
@@ -39,6 +43,10 @@ const LoginSignup = () => {
           <div className= {action === "Sign Up"?"submit gray":"submit"} onClick={()=>{setAction("Login")}}>Login</div>
         </div>
         </div>
+        <Footer />
+        </div>
+       
+       
     );
 };
 
