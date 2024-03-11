@@ -18,8 +18,8 @@ import LoginSignup from '../LoginSignup/LoginSignup';
 import { BrowseJobs } from '../BrowseJobs';
 import { About } from '../About';
 import { JobSeekers } from '../JobSeekers';
-
-
+import { CareerBlogs } from '../CareerBlogs';
+//kedh
 export const Router = () => {
   return (
     <Routes>
@@ -53,6 +53,7 @@ export const Router = () => {
             <Route path='/About' element={<About/>}/>
             <Route path='/Home' element={<HomePage/>}/>
             <Route path='/browseJobSeekers' element={<JobSeekers/>}/>
+            <Route path='/CareerBlogs' element={<CareerBlogs/>}/>
           </Routes>
   )
 }

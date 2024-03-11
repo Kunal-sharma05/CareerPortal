@@ -17,7 +17,7 @@ export const HomePage = () => {
         <img src="https://1000logos.net/wp-content/uploads/2021/11/Logo-Pinterest.png" alt="" />
       </div>
       {/* Main content */}
-      <main className="flex-grow translate-y-4 mb-3 bg-[#aeb4b6] text-opacity-100 bg-opacity-80 ">
+      <main className="flex-grow translate-y-4 mb-3 bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-300 via-green-400 to-rose-700 ">
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
             <h2 className="text-2xl font-semibold text-black mb-4 font-arial">Find Your Next Opportunity</h2>

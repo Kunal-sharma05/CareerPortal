@@ -39,6 +39,7 @@ export const SideNav = () => {
           Post Jobs
         </Link>
         <Link
+          to="/CareerBlogs"
           className="text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md p-2 "
           style={{ textDecoration: "none" }}
         >
@@ -52,7 +53,7 @@ export const SideNav = () => {
           <i className="ri-flag-2-fill mr-1"></i>
           Job Fairs
         </Link>
-
+        
       </nav>
     </div>
   );
