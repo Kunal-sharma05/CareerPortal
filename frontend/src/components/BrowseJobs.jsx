@@ -4,6 +4,7 @@ import { SideNav } from "./templates/SideNav";
 import JobListingService from "../services/JobListingService";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { Search } from "./Search";
 
 export const BrowseJobs = () => {
   document.title = "CareerCrafter | BrowseJobs";
@@ -41,11 +42,13 @@ export const BrowseJobs = () => {
     });
   };
   return (
-    <div className="w-full h-full flex flex-col" >
+    <div className="w-[100%] h-full flex flex-col overflow-x-hidden" >
       <Header/>
-      <div className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 w-full h-full flex gap-5 ">
+      <div className="bg-gradient-to-r from-slate-900 via-red-900 to-slate-900 w-full h-full flex gap-5 ">
         <SideNav />
-        <div id="scrollbar" className={`w-[80%] h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto scroll-m-0 `} style={{ scrollbarWidth: 'none'}}>
+        <div className="w-[80%] h-[88%]">
+        <Search/>
+        <div id="scrollbar" className={`w-full h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto scroll-m-0 `} style={{ scrollbarWidth: 'none'}}>
           {jobListingArray.map((item, key) => (
             <Card
               key={key}
@@ -54,6 +57,7 @@ export const BrowseJobs = () => {
               handleClick={handleApplyButton}
             />
           ))}
+        </div>
         </div>
       </div>
       <Footer />
