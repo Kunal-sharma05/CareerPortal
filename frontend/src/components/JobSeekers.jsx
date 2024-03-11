@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { SideNav } from './templates/SideNav';
-import { Header } from './Header';
-import { Footer } from './Footer';
-import JobSeekerService from '../services/JobSeekerService';
-import { useNavigate } from 'react-router-dom';
-import { CardJobSeeker } from './CardJobSeeker';
+import React, { useEffect, useState } from "react";
+import { SideNav } from "./templates/SideNav";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+import JobSeekerService from "../services/JobSeekerService";
+import { useNavigate } from "react-router-dom";
+import { CardJobSeeker } from "./CardJobSeeker";
+import { SearchJobSeeker } from "./SearchJobSeeker";
 
 export const JobSeekers = () => {
-  const[jobSeekerArray,setJobSeekerArray]=useState([]);
+  const [jobSeekerArray, setJobSeekerArray] = useState([]);
   const navigate = useNavigate();
   const fetchAllJobSeekers = () => {
     console.log("fetch all job seeker method fired......");
@@ -36,22 +37,29 @@ export const JobSeekers = () => {
     });
   };
   return (
-    <div className="w-full h-full flex flex-col" >
-    <Header/>
-    <div className="bg-gradient-to-r from-slate-900 via-red-900 to-slate-900 w-full h-full flex gap-5">
-      <SideNav />
-      <div id="scrollbar" className={`w-[80%] h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto scroll-m-0 `} style={{ scrollbarWidth: 'none'}}>
-        {jobSeekerArray.map((item, key) => (
-          <CardJobSeeker
-            key={key}
-            index={key}
-            values={item}
-            handleClick={handleApplyButton}
-          />
-        ))}
+    <div className="w-[100%] h-full flex flex-col overflow-x-hidden">
+      <Header />
+      <div className="bg-gradient-to-r from-slate-900 via-red-900 to-slate-900 w-full h-full flex gap-5 ">
+        <SideNav />
+        <div className="w-[80%] h-[88%]">
+          <SearchJobSeeker />
+          <div
+            id="scrollbar"
+            className={`w-full h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto `}
+            style={{ scrollbarWidth: "none" }}
+          >
+            {jobSeekerArray.map((item, key) => (
+              <CardJobSeeker
+                key={key}
+                index={key}
+                values={item}
+                handleClick={handleApplyButton}
+              />
+            ))}
+          </div>
+        </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
   );
-}
+};
