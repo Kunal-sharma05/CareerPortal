@@ -18,6 +18,8 @@ import LoginSignup from '../LoginSignup/LoginSignup';
 import { BrowseJobs } from '../BrowseJobs';
 import { About } from '../About';
 import { JobSeekers } from '../JobSeekers';
+import { JobProfile } from '../JobProfile';
+import { JobSeekerProfile } from '../JobSeekerProfile';
 
 
 export const Router = () => {
@@ -53,6 +55,9 @@ export const Router = () => {
             <Route path='/About' element={<About/>}/>
             <Route path='/Home' element={<HomePage/>}/>
             <Route path='/browseJobSeekers' element={<JobSeekers/>}/>
+            <Route path='/jobProfile' element={<JobProfile/>}/>
+            <Route path='/jobProfile/:id' element={<JobProfile/>}/>
+            <Route path='/jobSeekerProfile/:id' element={<JobSeekerProfile/>}/>
           </Routes>
   )
 }

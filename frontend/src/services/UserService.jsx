@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from "../components/utils/axios";
 
-const BASE_REST_API_URL = "http://localhost:8080/api/users";
+const BASE_REST_API_URL = "api/users";
 class UserService {
   getAllUsers() {
     return axios.get(BASE_REST_API_URL);
