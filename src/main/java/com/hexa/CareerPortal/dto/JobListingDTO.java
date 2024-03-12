@@ -1,5 +1,7 @@
 package com.hexa.CareerPortal.dto;
 
+import java.util.List;
+
 import jakarta.validation.constraints.NotEmpty;
 
 public class JobListingDTO {
@@ -13,7 +15,7 @@ public class JobListingDTO {
 
     @NotEmpty(message = "Title should not be empty")
     private String title;
-	private JobApplicationDTO jobApplication;
+	private List<JobApplicationDTO> jobApplication;
 
     public JobListingDTO() {
     }
@@ -49,14 +51,6 @@ public class JobListingDTO {
         this.title = title;
     }
 
-	public JobApplicationDTO getJobApplication() {
-		return jobApplication;
-	}
-
-	public void setJobApplication(JobApplicationDTO jobApplication) {
-		this.jobApplication = jobApplication;
-	}
-
 	public Long getJobListingId() {
 		return jobListingId;
 	}
@@ -65,10 +59,25 @@ public class JobListingDTO {
 		this.jobListingId = jobListingId;
 	}
 
+	public List<JobApplicationDTO> getJobApplication() {
+		return jobApplication;
+	}
+
+	public void setJobApplication(List<JobApplicationDTO> jobApplication) {
+		this.jobApplication = jobApplication;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public JobListingDTO(Long jobListingId, @NotEmpty(message = "Requirements should not be empty") String requirements,
 			String image, @NotEmpty(message = "Description should not be empty") String description,
-			@NotEmpty(message = "Title should not be empty") String title, JobApplicationDTO jobApplication) {
+			@NotEmpty(message = "Title should not be empty") String title, List<JobApplicationDTO> jobApplication) {
 		super();
 		this.jobListingId = jobListingId;
 		this.requirements = requirements;
@@ -82,13 +91,5 @@ public class JobListingDTO {
 	public String toString() {
 		return "JobListingDTO [jobListingId=" + jobListingId + ", requirements=" + requirements + ", image=" + image
 				+ ", description=" + description + ", title=" + title + ", jobApplication=" + jobApplication + "]";
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
 	}
 }

@@ -169,5 +169,12 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	    }
 	    return jobSeekerDTOLocal;
 	}
+	@Override
+	public List<JobSeekerDTO> findByProfessionalDetailsOrEducationDetailContaining(String details) {
+		List<JobSeeker> jobSeeker=new ArrayList<>();
+		jobSeeker.addAll(jobSeekerRepository.findByProfessionalDetailsContainingOrEducationDetailContaining(details, details));
+		List<JobSeekerDTO> jobSeekerDTO=jobSeeker.stream().map(js->modelMapper.map(js, JobSeekerDTO.class)).collect(Collectors.toList());
+		return jobSeekerDTO;
+	}
 	
 }

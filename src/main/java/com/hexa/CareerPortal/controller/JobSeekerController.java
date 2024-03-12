@@ -151,5 +151,17 @@ public class JobSeekerController {
     	   throw new JobSeekerNotFoundException("Job seeker not found ");
          }
        }
+    @GetMapping("/searchByDetails")
+    public ResponseEntity<List<JobSeekerDTO>> findByDetails(@RequestParam String details) throws JobSeekerNotFoundException {
+        List<JobSeekerDTO> jobSeekerDTO=jobSeekerService.findByProfessionalDetailsOrEducationDetailContaining(details);
+        if(!jobSeekerDTO.isEmpty())
+        {
+        	return ResponseEntity.ok(jobSeekerDTO); 
+        }
+        else
+        {
+        	throw new JobSeekerNotFoundException("JobSeeker not found with details: " + details);
+        }
+    }
     
 }

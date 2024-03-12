@@ -18,6 +18,7 @@ public interface JobListingRepository extends JpaRepository<JobListing,Long> {
 	public List<JobListing> findByDescriptionContaining(String description);
 	public List<JobListing> findByTitle(String Title);
 	public List<JobListing> findByTitleContaining(String title);
+	public List<JobListing> findByTitleContainingAndRequirementsContaining(String title,String Requirements);
 	public List<JobListing> findByDateOfPosting(LocalDateTime dateOfPosting);
 	public void deleteById(Long id);
 	public void deleteAll();

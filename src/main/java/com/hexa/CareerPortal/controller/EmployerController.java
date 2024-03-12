@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hexa.CareerPortal.dto.EmployerDTO;
 import com.hexa.CareerPortal.exception.EmployerNotFoundException;
+import com.hexa.CareerPortal.exception.JobNotFoundException;
 import com.hexa.CareerPortal.service.EmployerService;
 
 import jakarta.validation.Valid;
@@ -45,7 +46,7 @@ public class EmployerController {
     }
 
     @GetMapping("/{employerId}")  //checked
-    public EntityModel<EmployerDTO> getEmployerById(@PathVariable Long employerId) throws EmployerNotFoundException {
+    public EntityModel<EmployerDTO> getEmployerById(@PathVariable Long employerId) throws EmployerNotFoundException, JobNotFoundException {
         EmployerDTO employerDTO = employerService.findById(employerId);
         if (employerDTO != null) {
             EntityModel<EmployerDTO> resource = EntityModel.of(employerDTO);

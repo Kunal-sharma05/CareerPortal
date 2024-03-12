@@ -20,6 +20,7 @@ public interface JobListingService {
 	public List<JobListingDTO> findByTitle(String Title);
 	public List<JobListingDTO> findByTitleContaining(String title);
 	public List<JobListingDTO> findByDate(LocalDateTime Date);
+	public List<JobListingDTO> findByTitleAndRequirementsContaining(String title,String Requirements);
 	public JobListing deleteById(Long id);
 	public List<JobListingDTO> deleteAll();
 	public long count();

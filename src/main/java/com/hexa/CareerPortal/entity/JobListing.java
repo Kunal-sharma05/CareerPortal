@@ -2,10 +2,10 @@ package com.hexa.CareerPortal.entity;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,8 +14,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,9 +32,10 @@ public class JobListing {
 	@CreationTimestamp
 	@Column(name="date_of_posting")
 	private LocalDateTime dateOfPosting;
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="job_application_id")
-	private JobApplication jobApplication;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="jobListing_jobApplication_mapping",joinColumns=@JoinColumn(name="job_listing_id"),inverseJoinColumns=@JoinColumn(name="job_application_id"))
+	private List<JobApplication> jobApplication=new ArrayList<>();
+
 	public JobListing() {
 		super();
 	}
@@ -68,22 +69,10 @@ public class JobListing {
 	public void setDateOfPosting(LocalDateTime dateOfPosting) {
 		this.dateOfPosting = dateOfPosting;
 	}
-	
-	public JobApplication getJobApplication() {
+	public List<JobApplication> getJobApplication() {
 		return jobApplication;
 	}
-	public void setJobApplication(JobApplication jobApplication) {
-		this.jobApplication = jobApplication;
-	}
-	public JobListing(Long jobListingId, String image, String requirements, String description, String title,
-			LocalDateTime dateOfPosting, JobApplication jobApplication) {
-		super();
-		this.jobListingId = jobListingId;
-		this.image = image;
-		this.requirements = requirements;
-		this.description = description;
-		this.title = title;
-		this.dateOfPosting = dateOfPosting;
+	public void setJobApplication(List<JobApplication> jobApplication) {
 		this.jobApplication = jobApplication;
 	}
 	@Override
@@ -97,6 +86,17 @@ public class JobListing {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public JobListing(Long jobListingId, String image, String requirements, String description, String title,
+			LocalDateTime dateOfPosting, List<JobApplication> jobApplication) {
+		super();
+		this.jobListingId = jobListingId;
+		this.image = image;
+		this.requirements = requirements;
+		this.description = description;
+		this.title = title;
+		this.dateOfPosting = dateOfPosting;
+		this.jobApplication = jobApplication;
 	}
 	
 	

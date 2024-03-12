@@ -210,6 +210,13 @@ public class JobListingServiceImpl implements JobListingService {
 	    return updatedJobListingDTO;
 	}
 
+	@Override
+	public List<JobListingDTO> findByTitleAndRequirementsContaining(String title, String requirements) {
+		List<JobListing> jobListing=jobListingRepository.findByTitleContainingAndRequirementsContaining(title,requirements);
+		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
+	    return savedJobListingsDTO;
+	}
+
 
 	/*
 	 * @Override public List<JobListing> findAll(List<JobListing> jobListing) {

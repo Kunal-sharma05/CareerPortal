@@ -20,6 +20,7 @@ public interface JobSeekerService {
 	public JobSeekerDTO createJobSeeker(JobSeekerDTO jobSeekerDTO);
 	public JobSeekerDTO updateJobSeeker(Long id, JobSeekerDTO jobSeekerDto);
 	public JobSeekerDTO updateMobileNo(Long id, String mobileNo);
+	public List<JobSeekerDTO> findByProfessionalDetailsOrEducationDetailContaining(String details);
 
 	
 }

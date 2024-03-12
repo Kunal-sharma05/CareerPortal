@@ -36,7 +36,7 @@ export const SearchJobSeeker = ({handleButton}) => {
         type="text"
         onChange={handleInput}
         value={query}
-        placeholder="search users on the basis of name"
+        placeholder="search users on the basis of details"
         className="w-[40%] mx-3 p-1 text-base border-black rounded-md"
       />
       {query.length > 0 && (

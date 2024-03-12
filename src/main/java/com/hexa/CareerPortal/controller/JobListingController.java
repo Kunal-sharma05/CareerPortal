@@ -208,10 +208,25 @@ public class JobListingController {
         }
 
         @GetMapping("/findAll")
-        public ResponseEntity<List<JobListingDTO>> findAll() {
+        public ResponseEntity<List<JobListingDTO>> findAll() throws JobNotFoundException {
             List<JobListingDTO> allJobListingDTOs = jobListingService.findAll();
-            return ResponseEntity.ok(allJobListingDTOs);
+            if (!allJobListingDTOs.isEmpty()) {
+                return ResponseEntity.ok(allJobListingDTOs);
+            } else {
+            	throw new JobNotFoundException("Jobs not found ");
+            } 
         }
+        @GetMapping("/searchByTitleAndRequirement")
+        public ResponseEntity<List<JobListingDTO>> findByTitleAndRequirement(@RequestParam String title, @RequestParam String requirements) throws JobNotFoundException {
+            List<JobListingDTO> jobListings = jobListingService.findByTitleAndRequirementsContaining(title, requirements);
+            if (!jobListings.isEmpty()) {
+                return ResponseEntity.ok(jobListings);
+            } else {
+            	throw new JobNotFoundException("Jobs not found ");
+            }
+        }
+        
+        
 
     
 }

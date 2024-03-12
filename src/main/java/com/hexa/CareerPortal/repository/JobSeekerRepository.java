@@ -14,4 +14,5 @@ public interface JobSeekerRepository extends JpaRepository<JobSeeker, Long>   {
 	public JobSeeker findByEmail(String Email);
 	public void deleteAll();
 	public long count();
+	public List<JobSeeker> findByProfessionalDetailsContainingOrEducationDetailContaining(String professionalDetails, String educationDetail);
 }
