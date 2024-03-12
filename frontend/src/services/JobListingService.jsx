@@ -20,6 +20,9 @@ class JobListingService {
   GetByTitleContainig(title) {
     return axios.get(BASE_REST_API_URL+"/findByTitleContaining"+"?title="+title);
   }
+  SearchByTitleAndRequirements(title,requirements){
+    return axios.get(BASE_REST_API_URL + "/searchByTitleAndRequirement?title="+title + "&requirements="+requirements);
+  }
   
 }
 export default new JobListingService();

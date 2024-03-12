@@ -1,14 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import JobSeekerService from "../services/JobSeekerService";
 
-export const SearchJobSeeker = () => {
+export const SearchJobSeeker = ({handleButton}) => {
   const [query, setQuery] = useState("");
+  const [searches, setSearches] = useState(null);
+  const GetSearches = async () => {
+    try {
+      const { data } = await JobSeekerService.searchByDetails(query);
+      console.log("Search of jobSeeker by details ", data);
+      setSearches(data);
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
+  useEffect(() => {
+    if (query.length>0) {
+      GetSearches();
+    } else {
+      setSearches(null); // Clear search results if query is empty
+    }
+  }, [query]);
+  const handleInput = (e)=> {
+    const value = e.target.value;
+    setQuery(value);
+  }
+  useEffect(()=>{
+    handleButton(searches);
+  },[searches,handleButton]);
+
   return (
     <div className="w-full h-[10vh] relative flex translate-x-44 items-center">
       <i className="ri-search-line text-base text-zinc-100"></i>
       <input
         type="text"
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={handleInput}
         value={query}
         placeholder="search users on the basis of name"
         className="w-[40%] mx-3 p-1 text-base border-black rounded-md"

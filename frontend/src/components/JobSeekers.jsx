@@ -9,6 +9,7 @@ import { SearchJobSeeker } from "./SearchJobSeeker";
 
 export const JobSeekers = () => {
   const [jobSeekerArray, setJobSeekerArray] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
   const fetchAllJobSeekers = () => {
     console.log("fetch all job seeker method fired......");
@@ -22,9 +23,16 @@ export const JobSeekers = () => {
       });
   };
   useEffect(() => {
-    console.log("use effect of home page....");
-    fetchAllJobSeekers();
-  }, []);
+    console.log("use effect of Browse Job page....");
+    if (searchResults?.length === 0) {
+      fetchAllJobSeekers();
+    }
+  }, [searchResults]);
+
+  const handleSearchButton = (results) => {
+    console.log("result object recieved in Browse jobs ", results);
+    setSearchResults(results); // Set searchResults to search query results
+  };
   const handleApplyButton = (cardIndex) => {
     console.log("index passed", cardIndex);
     setJobSeekerArray((prev) => {
@@ -42,13 +50,22 @@ export const JobSeekers = () => {
       <div className="bg-gradient-to-r from-slate-900 via-red-900 to-slate-900 w-full h-full flex gap-5 ">
         <SideNav />
         <div className="w-[80%] h-[88%]">
-          <SearchJobSeeker />
+          <SearchJobSeeker handleButton={handleSearchButton} />
           <div
             id="scrollbar"
             className={`w-full h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto `}
             style={{ scrollbarWidth: "none" }}
           >
-            {jobSeekerArray.map((item, key) => (
+            {searchResults?.length > 0
+              ? searchResults.map((item, key) => (
+                  <CardJobSeeker
+                    key={key}
+                    index={key}
+                    values={item}
+                    handleClick={handleApplyButton}
+                  />
+                ))
+           : jobSeekerArray.map((item, key) => (
               <CardJobSeeker
                 key={key}
                 index={key}
