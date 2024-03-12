@@ -45,7 +45,7 @@ export const ListJobListing = () => {
     fetchAllJobListing();
   }, []);
   return (
-    <div className="container">
+    <div className="container overflow-auto">
       {console.log("JobListing Part Rendered ")}
       <h1 className="text-center">JobListings</h1>
       <Link to="/addJobListing" className="btn btn-primary mb-3">

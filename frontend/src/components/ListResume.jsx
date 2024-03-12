@@ -43,7 +43,7 @@ export const ListResume = () => {
     fetchAllResume();
   }, []);
   return (
-    <div className="container">
+    <div className="container overflow-auto">
       {console.log("List resume application rendered")}
       <h2 className="text-center">Resume Data</h2>
       <Link to={`/addResume`} className="btn btn-primary mb-3">

@@ -1,5 +1,6 @@
 package com.hexa.CareerPortal.dto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,7 @@ public class JobSeekerDTO {
 	@NotEmpty(message = "contact number should not be empty")
 	@Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits")
     private String mobileNumber;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String image;
 	@NotEmpty(message = "email should be valid")
 	@Email(message = "email should be valid")
@@ -45,7 +46,7 @@ public class JobSeekerDTO {
 			@NotEmpty(message = "details should not be empty") String professionalDetails,
 			@NotEmpty(message = "details should not be empty") String educationDetail,
 			@NotEmpty(message = "contact number should not be empty") @Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits") String mobileNumber,
-			Date dateOfBirth,
+			LocalDate dateOfBirth,
 			@NotEmpty(message = "email should be valid") @Email(message = "email should be valid") String email,
 			List<JobApplicationDTO> jobApplication, List<ResumeDTO> resumes) {
 		super();
@@ -111,11 +112,11 @@ public class JobSeekerDTO {
 
 
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -171,7 +172,7 @@ public class JobSeekerDTO {
 			@NotEmpty(message = "details should not be empty") String professionalDetails,
 			@NotEmpty(message = "details should not be empty") String educationDetail,
 			@NotEmpty(message = "contact number should not be empty") @Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits") String mobileNumber,
-			Date dateOfBirth, String image,
+			LocalDate dateOfBirth, String image,
 			@NotEmpty(message = "email should be valid") @Email(message = "email should be valid") String email,
 			List<JobApplicationDTO> jobApplication, List<ResumeDTO> resumes) {
 		super();

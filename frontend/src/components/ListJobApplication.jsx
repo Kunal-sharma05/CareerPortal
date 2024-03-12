@@ -45,7 +45,7 @@ export const ListJobApplication = () => {
     fetchAllJobApplication();
   }, []);
   return (
-    <div className="container">
+    <div className="container overflow-auto">
       {console.log("JobApplication Part Rendered ")}
       <h1 className="text-center">JobApplications</h1>
       <Link to="/addJobApplication" className="btn btn-primary mb-3">

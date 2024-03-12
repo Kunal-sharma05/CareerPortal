@@ -34,7 +34,7 @@ export const ListUser = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container overflow-auto">
       {console.log("User Part Rendered ")}
       <h1 className="text-center">Users</h1>
       <Link to="/addUser" className="btn btn-success mb-3">

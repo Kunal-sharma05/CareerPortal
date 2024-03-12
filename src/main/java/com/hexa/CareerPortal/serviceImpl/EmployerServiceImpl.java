@@ -202,6 +202,7 @@ public class EmployerServiceImpl implements EmployerService {
 	        existingEmployer.setCompanyName(employerDTO.getCompanyName());
 	        existingEmployer.setMobileNo(employerDTO.getMobileNo());
 	        existingEmployer.setEmail(employerDTO.getEmail());
+	        existingEmployer.setImage(employerDTO.getImage());
 	        
 	        Employer updatedEmployer = employerRepository.save(existingEmployer);
 	        

@@ -7,7 +7,7 @@
     width: 30px;
    
     background-size: 250px;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
     
 }
 
@@ -91,7 +91,7 @@
     width: 220px;
     height: 59px;
     color: #fff;
-    background: rgb(57, 60, 249);
+    background:linear-gradient(to left top, rgb(8, 8, 8), rgb(39, 0, 8));
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;

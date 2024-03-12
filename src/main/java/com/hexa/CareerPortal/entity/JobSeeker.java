@@ -1,5 +1,6 @@
 package com.hexa.CareerPortal.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,12 +40,12 @@ public class JobSeeker {
 	@Column(unique=true)
 	private String email;
 	@Column(name="date_of_birth")
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	@CreationTimestamp
 	private LocalDateTime dateCreated;
 	@UpdateTimestamp
 	private LocalDateTime dateUpdated;
-	
+	@Column(name="image")
 	private String image;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="jobSeeker_jobApplication_mapping",joinColumns=@JoinColumn(name="job_seeker_id"),inverseJoinColumns=@JoinColumn(name="job_application_id"))
@@ -122,16 +123,16 @@ public class JobSeeker {
 		this.resumes = resume;
 	}
 	
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
 	public JobSeeker(Long jobSeekerId, String fullName, String professionalDetails, String educationDetail,
-			String mobileNumber, String email, Date dateOfBirth, LocalDateTime dateCreated, LocalDateTime dateUpdated,
+			String mobileNumber, String email, LocalDate dateOfBirth, LocalDateTime dateCreated, LocalDateTime dateUpdated,
 			String image, List<JobApplication> jobApplication, List<Resume> resumes) {
 		super();
 		this.jobSeekerId = jobSeekerId;

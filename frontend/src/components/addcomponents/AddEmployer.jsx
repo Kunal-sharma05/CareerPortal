@@ -7,6 +7,7 @@ export const AddEmployer = () => {
   const [companyName, setCompanyName] = useState("");
   const [mobileNo, setMobileNo] = useState("");
   const [email, setEmail] = useState("");
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
   const changeTitle = () => {
@@ -42,6 +43,7 @@ export const AddEmployer = () => {
           setCompanyName(response.data.companyName);
           setMobileNo(response.data.mobileNo);
           setEmail(response.data.email);
+          setImage(response.data.image);
           console.log("state variable changed. ");
         })
         .catch((error) => {
@@ -52,7 +54,7 @@ export const AddEmployer = () => {
   const saveOrUpdateEmployer = (e) => {
     e.preventDefault();
     //let emailId=email;
-    const employer = { fullName, companyName, mobileNo, email };
+    const employer = { fullName, companyName, mobileNo, email, image};
     console.log("Employer feed from home:", employer);
     if (id) {
       EmployerService.updateEmployerById(id, employer)
@@ -144,6 +146,20 @@ export const AddEmployer = () => {
                   className="form-control"
                   onChange={(e) => {
                     setEmail(e.target.value);
+                  }}
+                />
+              </div>
+              {/**Image of the Employer */}
+              <div className="form-group mb-2">
+                <label className="form-label">Profile Photo URL of the Job seeker</label>
+                <input
+                  type="text"
+                  placeholder="Enter the image URL of the job Seeker"
+                  name="image"
+                  value={image}
+                  className="form-control"
+                  onChange={(e) => {
+                    setImage(e.target.value);
                   }}
                 />
               </div>

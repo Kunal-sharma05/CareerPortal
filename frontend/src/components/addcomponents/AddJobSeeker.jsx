@@ -73,7 +73,7 @@ export const AddJobSeeker = () => {
       JobSeekerService.updateJobSeekerById(id, jobSeeker)
         .then((response) => {
           console.log(
-            "response recieved from saved API..." + JSON.stringify(response)
+            "response recieved from saved API...",response
           );
           navigate("/jobSeeker");
         })
@@ -95,9 +95,9 @@ export const AddJobSeeker = () => {
   };
 
   return (
-    <div className="bg-[#1F1E24]">
+    <div className="w-full">
       {console.log("Application Rendered.. ")}
-      <div className="container">
+      <div className="container w-full">
         <div className="card col-md-6 offset-md-3">
           {changeTitle()}
           <div className="card-body">
@@ -172,7 +172,7 @@ export const AddJobSeeker = () => {
                   Date of Birth of the job Seeker
                 </label>
                 <input
-                  type="datetime-local"
+                  type="date"
                   placeholder="Enter the Date of Birth of the job Seeker"
                   name="Date of Birth "
                   value={dateOfBirth}
@@ -196,6 +196,7 @@ export const AddJobSeeker = () => {
                   }}
                 />
               </div>
+              {/*Image of the job Seeker */}
               <div className="form-group mb-2">
                 <label className="form-label">Profile Photo URL of the Job seeker</label>
                 <input

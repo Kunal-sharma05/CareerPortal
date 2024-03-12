@@ -36,7 +36,7 @@ export const ListJobSeeker = () => {
 
   return (
     <div className="bg-[#1F1E24] h-[220vh] ">
-    <div className=" container">
+    <div className=" container overflow-auto">
       {console.log("Application rendered in Job seeker")}
       <h2 className="text-center text-rose-50">JobSeekerData</h2>
       <Link to={`/addJobSeeker`} className="btn btn-primary mb-3">

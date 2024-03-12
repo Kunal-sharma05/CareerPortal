@@ -29,6 +29,9 @@ public class Employer {
 	private String mobileNo;
 	@Column(unique=true)
 	private String email;
+	@Column(name="image")
+	private String image;
+
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="Employer_jobListing_mapping",joinColumns=@JoinColumn(name="employer_id"),inverseJoinColumns=@JoinColumn(name="job_Listing_id"))
 	private List<JobListing> jobListing;
@@ -86,12 +89,22 @@ public class Employer {
 	public void setJobListing(List<JobListing> jobListing) {
 		this.jobListing = jobListing;
 	}
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	@Override
 	public String toString() {
 		return "Employer [employerId=" + employerId + ", fullName=" + fullName + ", companyName=" + companyName
-				+ ", mobileNo=" + mobileNo + ", email=" + email + ", jobListing=" + jobListing + "]";
+				+ ", mobileNo=" + mobileNo + ", email=" + email + ", image=" + image + ", jobListing=" + jobListing
+				+ "]";
 	}
+
+
 
 	
 	

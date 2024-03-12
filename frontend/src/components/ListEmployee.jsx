@@ -49,7 +49,7 @@ export const ListEmployee = () => {
     fetchAllEmployer();
   }, []);
   return (
-    <div className="container">
+    <div className="container overflow-auto">
       {console.log("Employer Part Rendered ")}
       <h1 className="text-center">Employers</h1>
       <Link to="/addEmployer" className="btn btn-primary mb-3">
@@ -62,6 +62,7 @@ export const ListEmployee = () => {
             <th>Company Name</th>
             <th>mobile Number</th>
             <th>Email</th>
+            <th>Image URL</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -72,6 +73,7 @@ export const ListEmployee = () => {
               <td>{employee.companyName}</td>
               <td>{employee.mobileNo}</td>
               <td>{employee.email}</td>
+              <td>{employee.image}</td>
               <td>
                 <Link
                   to={`/employee/update/${employee.employerId}`}

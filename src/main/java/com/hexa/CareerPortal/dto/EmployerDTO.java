@@ -1,5 +1,6 @@
 package com.hexa.CareerPortal.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -12,7 +13,7 @@ public class EmployerDTO {
     @NotEmpty(message = "Full name should not be empty")
     @Size(min=2,message="Name should be more than 2 letters ")
     private String fullName;
-
+	private String image;
     @NotEmpty(message = "Company name should not be empty")
     private String companyName;
 
@@ -35,19 +36,6 @@ public class EmployerDTO {
         this.email = email;
     }
 
-	public EmployerDTO(
-			@NotEmpty(message = "Full name should not be empty") @Size(min = 2, message = "Name should be more than 2 letters ") String fullName,
-			@NotEmpty(message = "Company name should not be empty") String companyName,
-			@NotEmpty(message = "Mobile number should not be empty") @Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits") String mobileNo,
-			@NotEmpty(message = "Email should not be empty") @Email(message = "Email should be valid") String email,
-			List<JobListingDTO> jobListing) {
-		super();
-		this.fullName = fullName;
-		this.companyName = companyName;
-		this.mobileNo = mobileNo;
-		this.email = email;
-		this.jobListing = jobListing;
-	}
 
 	public String getFullName() {
         return fullName;
@@ -97,24 +85,35 @@ public class EmployerDTO {
 		this.employerId = employerId;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+	@Override
+	public String toString() {
+		return "EmployerDTO [employerId=" + employerId + ", fullName=" + fullName + ", image=" + image
+				+ ", companyName=" + companyName + ", mobileNo=" + mobileNo + ", email=" + email + ", jobListing="
+				+ jobListing + "]";
+	}
+
 	public EmployerDTO(Long employerId,
 			@NotEmpty(message = "Full name should not be empty") @Size(min = 2, message = "Name should be more than 2 letters ") String fullName,
-			@NotEmpty(message = "Company name should not be empty") String companyName,
+			String image, @NotEmpty(message = "Company name should not be empty") String companyName,
 			@NotEmpty(message = "Mobile number should not be empty") @Pattern(regexp = "\\d{10}", message = "Mobile number should be 10 digits") String mobileNo,
 			@NotEmpty(message = "Email should not be empty") @Email(message = "Email should be valid") String email,
 			List<JobListingDTO> jobListing) {
 		super();
 		this.employerId = employerId;
 		this.fullName = fullName;
+		this.image = image;
 		this.companyName = companyName;
 		this.mobileNo = mobileNo;
 		this.email = email;
 		this.jobListing = jobListing;
-	}
-
-	@Override
-	public String toString() {
-		return "EmployerDTO [employerId=" + employerId + ", fullName=" + fullName + ", companyName=" + companyName
-				+ ", mobileNo=" + mobileNo + ", email=" + email + ", jobListing=" + jobListing + "]";
 	}
 }
