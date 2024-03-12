@@ -34,7 +34,11 @@ const LoginSignup = () => {
             <input type="password" placeholder="Password" />
             
          </div>
-         
+         <div className = "input">
+            <img src={password_icon} alt="" />
+            <input type="text" placeholder="Role" />
+            
+         </div>
          
         </div>
         {action === "Sign Up"?<div></div>: <div className = "forgot-password">Forgot Password?<span> Click Here!</span> </div>}
