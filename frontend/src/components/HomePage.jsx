@@ -1,6 +1,7 @@
 import React from 'react'
 import { Footer } from './Footer'
 import { Header } from './Header'
+import { SearchHomePage } from './SearchHomePage'
 
 export const HomePage = () => {
   return (
@@ -22,11 +23,7 @@ export const HomePage = () => {
           <div className="px-4 py-6 sm:px-0">
             <h2 className="text-2xl font-semibold text-black mb-4 font-arial">Find Your Next Opportunity</h2>
             {/* Job Search Form */}
-            <form className="flex space-x-4">
-              <input type="text" placeholder="Job title or keywords" className=" text-red w-1/2 px-4 py-2 rounded-lg border-2 border-gray-700 focus:outline-none focus:border-gray-900 placeholder-amber-950" />
-              <input type="text" placeholder="Location" className="w-1/2 px-4 py-2 rounded-lg border-2 border-gray-700 focus:outline-none focus:border-gray-900 placeholder-amber-950" />
-              <button type="submit" className="font-bold px-6 py-2 bg-slate-900 text-zinc-100 rounded-lg hover:bg-slate-700 transition-colors duration-300">Search</button>
-            </form>
+            <SearchHomePage/>
           </div>
         </div>
       </main>

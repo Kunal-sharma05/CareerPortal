@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 export const Card = ({index,values,handleClick}) => {
 const navigate=useNavigate();
-const {title,description,image,applied}=values
+const {jobListingId,title,description,image,applied}=values
 const onClickHandler =()=>{
    handleClick(index)
+
   
+
+   console.log("value of id",jobListingId)
+   navigate(`/jobProfile/${jobListingId}`); 
+
 };
   return (
     <div className='w-[20vw] h-[27vw] bg-gradient-to-r from-rose-100 to-teal-100 p-3 rounded-md relative'>
@@ -16,7 +21,7 @@ const onClickHandler =()=>{
         <div className="w-full p-3">
             <h3 className='text-pretty text-xl font-semibold'>{title}</h3>
             <h5 className=' text-sm'>{description}</h5>
-            <button  onClick={onClickHandler} className={` px-2 py-1 bottom-2 text-xs text-white ${applied ? 'bg-green-700' : "bg-black"} font-semibold rounded-md absolute`}> {applied ?"Applied":"Apply"} </button>
+            <button  onClick={onClickHandler} className={` px-2 py-1 bottom-2 text-xs text-white ${applied ? 'bg-green-700' : "bg-black"} font-semibold rounded-md absolute`}> {applied ?"Applied":"Read More"} </button>
         </div>
     </div>
   )

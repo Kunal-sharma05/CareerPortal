@@ -9,13 +9,14 @@ import { Search } from "./Search";
 export const BrowseJobs = () => {
   document.title = "CareerCrafter | BrowseJobs";
   const [jobListingArray, setJobListingArray] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const fetchAllJobListing = () => {
     console.log("Feth all JobListings in homepage is fired");
     JobListingService.getAllJobListings()
       .then((response) => {
         console.log(
           "respnse recieved from the APU in the home page for JobListing...",
-          JSON.stringify(response.data)
+          response.data
         );
         setJobListingArray(response.data);
       })
@@ -27,9 +28,16 @@ export const BrowseJobs = () => {
       });
   };
   useEffect(() => {
-    console.log("use effect of home page....");
-    fetchAllJobListing();
-  }, []);
+    console.log("use effect of Browse Job page....");
+    if (searchResults?.length === 0) {
+      fetchAllJobListing();
+    }
+  }, [searchResults]);
+
+  const handleSearchButton = (results) => {
+    console.log("result object recieved in Browse jobs ", results);
+    setSearchResults(results); // Set searchResults to search query results
+  };
   const handleApplyButton = (cardIndex) => {
     console.log("index passed", cardIndex);
     setJobListingArray((prev) => {
@@ -42,22 +50,35 @@ export const BrowseJobs = () => {
     });
   };
   return (
-    <div className="w-[100%] h-full flex flex-col overflow-x-hidden" >
-      <Header/>
+    <div className="w-[100%] h-full flex flex-col overflow-x-hidden">
+      <Header />
       <div className="bg-gradient-to-r from-slate-900 via-red-900 to-slate-900 w-full h-full flex gap-5 ">
         <SideNav />
         <div className="w-[80%] h-[88%]">
-        <Search/>
-        <div id="scrollbar" className={`w-full h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto scroll-m-0 `} style={{ scrollbarWidth: 'none'}}>
-          {jobListingArray.map((item, key) => (
-            <Card
-              key={key}
-              index={key}
-              values={item}
-              handleClick={handleApplyButton}
-            />
-          ))}
-        </div>
+          <Search handleClick={handleSearchButton} />
+          <div
+            id="scrollbar"
+            className={`w-full h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto scroll-m-0 `}
+            style={{ scrollbarWidth: "none" }}
+          >
+            {searchResults?.length > 0
+              ? searchResults.map((item, key) => (
+                  <Card
+                    key={key}
+                    index={key}
+                    values={item}
+                    handleClick={handleApplyButton}
+                  />
+                ))
+              : jobListingArray.map((item, key) => (
+                  <Card
+                    key={key}
+                    index={key}
+                    values={item}
+                    handleClick={handleApplyButton}
+                  />
+                ))}
+          </div>
         </div>
       </div>
       <Footer />

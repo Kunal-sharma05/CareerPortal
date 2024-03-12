@@ -19,7 +19,11 @@ import { BrowseJobs } from '../BrowseJobs';
 import { About } from '../About';
 import { JobSeekers } from '../JobSeekers';
 import { CareerBlogs } from '../CareerBlogs';
-//kedh
+import { JobProfile } from '../JobProfile';
+import { JobSeekerProfile } from '../JobSeekerProfile';
+
+
+
 export const Router = () => {
   return (
     <Routes>
@@ -54,6 +58,9 @@ export const Router = () => {
             <Route path='/Home' element={<HomePage/>}/>
             <Route path='/browseJobSeekers' element={<JobSeekers/>}/>
             <Route path='/CareerBlogs' element={<CareerBlogs/>}/>
+            <Route path='/jobProfile' element={<JobProfile/>}/>
+            <Route path='/jobProfile/:id' element={<JobProfile/>}/>
+            <Route path='/jobSeekerProfile/:id' element={<JobSeekerProfile/>}/>
           </Routes>
   )
 }

@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from "../components/utils/axios";
 
-const BASE_REST_API_URL = "http://localhost:8080/api/jobseekers";
+const BASE_REST_API_URL = "api/jobseekers";
 class JobSeekerService {
   getAllJobSeekers() {
     return axios.get(BASE_REST_API_URL + "/getAllJobSeekers");
@@ -16,6 +16,9 @@ class JobSeekerService {
   }
   updateJobSeekerById(id, jobSeeker) {
     return axios.put(BASE_REST_API_URL + "/" + id, jobSeeker);
+  }
+  searchByDetails(details){
+    return axios.get(BASE_REST_API_URL+"/searchByDetails?details="+details);//ss
   }
 }
 export default new JobSeekerService();
