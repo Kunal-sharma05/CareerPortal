@@ -1,5 +1,6 @@
 package com.hexa.CareerPortal.service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -45,7 +46,8 @@ public class JobSeekerTest {
 		existingProductOptional.setProfessionalDetails("SDE 2");
 		existingProductOptional.setFullName("Asim Zohair");
 		existingProductOptional.setMobileNumber("1234567890");
-		existingProductOptional.setDateOfBirth(new Date());
+		existingProductOptional.setDateOfBirth(LocalDate.of(2012, 10, 10));
+
 		
 		JobSeekerDTO savedProduct=jobSeekerServiceImpl.createJobSeeker(existingProductOptional);
 		LOGGER.log(Level.INFO, "ExistingProduct in db using JPA save()"+savedProduct);
