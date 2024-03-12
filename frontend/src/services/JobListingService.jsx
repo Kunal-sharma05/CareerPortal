@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from "../components/utils/axios";
 
-const BASE_REST_API_URL = "http://localhost:8080/api/jobListings";
+const BASE_REST_API_URL = "api/jobListings";
 class JobListingService {
   getAllJobListings() {
     return axios.get(BASE_REST_API_URL);
@@ -17,5 +17,9 @@ class JobListingService {
   updateJobListingById(id, joblisting) {
     return axios.put(BASE_REST_API_URL + "/" + id, joblisting);
   }
+  GetByTitleContainig(title) {
+    return axios.get(BASE_REST_API_URL+"/findByTitleContaining"+"?title="+title);
+  }
+  
 }
 export default new JobListingService();

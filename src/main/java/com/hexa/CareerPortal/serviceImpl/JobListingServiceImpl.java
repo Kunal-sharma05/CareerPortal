@@ -100,6 +100,7 @@ public class JobListingServiceImpl implements JobListingService {
 	@Override
 	public List<JobListingDTO> findByTitleContaining(String title) {
 		List<JobListing> jobListing=jobListingRepository.findByTitleContaining(title);
+		System.out.println("Job listing by title "+ jobListing);
 		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
 	}
