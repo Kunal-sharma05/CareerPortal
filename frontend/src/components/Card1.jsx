@@ -6,8 +6,12 @@ const navigate=useNavigate();
 const {jobListingId,title,description,image,applied}=values
 const onClickHandler =()=>{
    handleClick(index)
+
+  
+
    console.log("value of id",jobListingId)
    navigate(`/jobProfile/${jobListingId}`); 
+
 };
   return (
     <div className='w-[20vw] h-[27vw] bg-gradient-to-r from-rose-100 to-teal-100 p-3 rounded-md relative'>
