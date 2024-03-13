@@ -10,7 +10,7 @@ export const CardJobSeeker = ({ index, values, handleClick }) => {
     navigate(`/jobSeekerProfile/${jobSeekerId}`);
   };
   return (
-    <div className="w-[20vw] h-[27vw] bg-gradient-to-r from-rose-100 to-teal-100 p-3 rounded-md relative">
+    <div className="w-[20vw] h-[27vw] bg-gradient-to-r from-rose-100 to-teal-100 p-2 rounded-md relative hover:w-[20.5vw] hover:h-[27.5vw] transition-all duration-200 ease-in-out hover:p-[1vw]">
       <div className="w-full h-40 bg-sky-200 ">
         <img
           className="h-full w-full object-top object-cover"

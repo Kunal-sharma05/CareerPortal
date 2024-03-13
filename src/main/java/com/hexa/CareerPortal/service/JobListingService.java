@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.hexa.CareerPortal.dto.JobListingDTO;
+import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.entity.JobListing;
 
 public interface JobListingService {
@@ -28,5 +29,6 @@ public interface JobListingService {
 	public List<JobListingDTO> findAll();
 	//public List<JobListing> findAll(List<JobListing> jobListing);
 	public JobListingDTO updateJobListing(Long jobListingId, JobListingDTO jobListingDTO);
+	public JobListingDTO addingJobApplication(Long jobListingId, JobApplication jobApplication);
 	
 }

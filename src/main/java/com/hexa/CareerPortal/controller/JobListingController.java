@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexa.CareerPortal.dto.JobListingDTO;
+import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.entity.JobListing;
 import com.hexa.CareerPortal.exception.JobNotFoundException;
 import com.hexa.CareerPortal.exception.ResourceNotFoundException;
@@ -224,7 +225,17 @@ public class JobListingController {
             } else {
             	throw new JobNotFoundException("Jobs not found ");
             }
+         
         }
+        @PutMapping("/{id}/addJobApplication")
+        public ResponseEntity<JobListingDTO> addJobApplication(@PathVariable Long id, @RequestBody JobApplication jobApplication) throws JobNotFoundException {
+       	 JobListingDTO updatedJobListing = jobListingService.addingJobApplication(id, jobApplication);
+            if (updatedJobListing != null) {
+                return ResponseEntity.ok(updatedJobListing);
+            } else {
+                throw new JobNotFoundException("Job Listing not found with id: " + id);
+            }
+       }
         
         
 

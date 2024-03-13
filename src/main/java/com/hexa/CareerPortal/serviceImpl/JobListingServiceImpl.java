@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hexa.CareerPortal.dto.JobListingDTO;
+import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.entity.JobListing;
+import com.hexa.CareerPortal.repository.JobApplicationRepository;
 import com.hexa.CareerPortal.repository.JobListingRepository;
 import com.hexa.CareerPortal.service.JobListingService;
 
@@ -20,9 +22,11 @@ public class JobListingServiceImpl implements JobListingService {
 	@Autowired
 	private ModelMapper modelMapper;
 	private JobListingRepository jobListingRepository;
-	public JobListingServiceImpl(JobListingRepository jobListingRepository) {
+	private JobApplicationRepository jobApplicationRepository;
+	public JobListingServiceImpl(JobListingRepository jobListingRepository,JobApplicationRepository jobApplication) {
 		super();
 		this.jobListingRepository = jobListingRepository;
+		this.jobApplicationRepository=jobApplication;
 	}
 
 	@Override
@@ -202,6 +206,7 @@ public class JobListingServiceImpl implements JobListingService {
 	        existingJobListing.setDescription(jobListingDTO.getDescription());
 	        existingJobListing.setRequirements(jobListingDTO.getRequirements());
 	        existingJobListing.setImage(jobListingDTO.getImage());
+//	        existingJobListing.setJobApplication(jobListingDTO.getJobApplication());
 	        
 	        JobListing updatedJobListing = jobListingRepository.save(existingJobListing);
 	        
@@ -215,6 +220,25 @@ public class JobListingServiceImpl implements JobListingService {
 		List<JobListing> jobListing=jobListingRepository.findByTitleContainingAndRequirementsContaining(title,requirements);
 		List<JobListingDTO> savedJobListingsDTO=jobListing.stream().map(job->modelMapper.map(job, JobListingDTO.class)).collect(Collectors.toList());
 	    return savedJobListingsDTO;
+	}
+
+	@Override
+	public JobListingDTO addingJobApplication(Long jobListingId, JobApplication jobApplication) {
+		Optional<JobListing> optionalJobListing = jobListingRepository.findById(jobListingId);
+	    JobListingDTO updatedJobListingDTO=null;
+	    if (optionalJobListing.isPresent())
+	    {
+	        JobListing existingJobListing = optionalJobListing.get();
+	        //existingJobListing.addJobApplication(jobApplication);
+	        JobApplication jobApplication1=jobApplicationRepository.findById(jobApplication.getJobApplicationId()).orElse(null);
+	        jobApplication1.setStatus(jobApplication.getStatus());
+	        System.out.println(jobApplication1);
+	        existingJobListing.setJobApplication(jobApplication1);
+	        JobListing updatedJobListing = jobListingRepository.save(existingJobListing);
+	        
+	        updatedJobListingDTO=modelMapper.map(updatedJobListing, JobListingDTO.class);
+	    } 
+	    return updatedJobListingDTO;
 	}
 
 

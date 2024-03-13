@@ -72,7 +72,13 @@ public class JobListing {
 	public List<JobApplication> getJobApplication() {
 		return jobApplication;
 	}
+	public void addJobApplication(JobApplication jobApplication) {
+		this.jobApplication.add(jobApplication);
+	}
 	public void setJobApplication(List<JobApplication> jobApplication) {
+		this.jobApplication = jobApplication;
+	}
+	public void changeJobApplication(JobApplication jobApplication) {
 		this.jobApplication = jobApplication;
 	}
 	@Override

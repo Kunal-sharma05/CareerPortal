@@ -49,9 +49,9 @@ export const JobSeekerProfile = () => {
             <img
               src={`${image}`}
               alt=""
-              className=" w-32 h-32 object-cover rounded-full mt-4"
+              className=" w-40 h-40 object-cover rounded-full border-zinc-100 border-2 mt-4"
             />
-            <div className=" text-zinc-800  p-2 bg-gradient-to-r from-rose-100 to-teal-100  -translate-y-5 text-xl font-bold rounded-2xl mt-2 ">
+            <div className=" text-zinc-800  p-2 bg-gradient-to-r from-rose-100 to-teal-100  -translate-y-5 text-l font-bold rounded-md mt-2 ">
               {fullName}
             </div>
             <div className="text-zinc-100 h-30 text-center">Mobile Number: {mobileNumber}</div>

@@ -5,11 +5,11 @@ import { SearchHomePage } from './SearchHomePage'
 
 export const HomePage = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="w-full h-full flex flex-col min-h-screen">
       {/* Header */}
       <Header/>
       {/*Image*/}
-      <div className='h-[20%] w-screen flex translate-y-16 mb-[10%] overflow-auto ' style={{ scrollbarWidth: 'none'}}>
+      <div className='h-[20%] w-[100%] flex translate-y-16 mb-[10%] overflow-auto ' style={{ scrollbarWidth: 'none'}}>
         <img src="https://1000logos.net/wp-content/uploads/2021/11/Logo-Opera-768x432.png" alt="" className='' />
         <img src="https://1000logos.net/wp-content/uploads/2016/11/Google-Symbol.png" alt="" />
         <img src="https://1000logos.net/wp-content/uploads/2017/02/Apple-Logosu.png" alt="" />

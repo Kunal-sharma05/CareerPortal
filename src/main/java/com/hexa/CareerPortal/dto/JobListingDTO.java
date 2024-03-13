@@ -2,6 +2,8 @@ package com.hexa.CareerPortal.dto;
 
 import java.util.List;
 
+import com.hexa.CareerPortal.entity.JobApplication;
+
 import jakarta.validation.constraints.NotEmpty;
 
 public class JobListingDTO {
@@ -15,7 +17,7 @@ public class JobListingDTO {
 
     @NotEmpty(message = "Title should not be empty")
     private String title;
-	private List<JobApplicationDTO> jobApplication;
+	private List<JobApplication> jobApplication;
 
     public JobListingDTO() {
     }
@@ -59,13 +61,17 @@ public class JobListingDTO {
 		this.jobListingId = jobListingId;
 	}
 
-	public List<JobApplicationDTO> getJobApplication() {
+	public List<JobApplication> getJobApplication() {
 		return jobApplication;
 	}
 
-	public void setJobApplication(List<JobApplicationDTO> jobApplication) {
+	public void addJobApplication(JobApplication jobApplication) {
+		this.jobApplication.add(jobApplication);
+	}
+	public void setJobApplication(List<JobApplication> jobApplication) {
 		this.jobApplication = jobApplication;
 	}
+	
 
 	public String getImage() {
 		return image;
@@ -77,7 +83,7 @@ public class JobListingDTO {
 
 	public JobListingDTO(Long jobListingId, @NotEmpty(message = "Requirements should not be empty") String requirements,
 			String image, @NotEmpty(message = "Description should not be empty") String description,
-			@NotEmpty(message = "Title should not be empty") String title, List<JobApplicationDTO> jobApplication) {
+			@NotEmpty(message = "Title should not be empty") String title, List<JobApplication> jobApplication) {
 		super();
 		this.jobListingId = jobListingId;
 		this.requirements = requirements;
