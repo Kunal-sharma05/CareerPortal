@@ -78,9 +78,6 @@ public class JobListing {
 	public void setJobApplication(List<JobApplication> jobApplication) {
 		this.jobApplication = jobApplication;
 	}
-	public void changeJobApplication(JobApplication jobApplication) {
-		this.jobApplication = jobApplication;
-	}
 	@Override
 	public String toString() {
 		return "JobListing [jobListingId=" + jobListingId + ", image=" + image + ", requirements=" + requirements

@@ -229,14 +229,26 @@ public class JobListingServiceImpl implements JobListingService {
 	    if (optionalJobListing.isPresent())
 	    {
 	        JobListing existingJobListing = optionalJobListing.get();
-	        //existingJobListing.addJobApplication(jobApplication);
+	        existingJobListing.addJobApplication(jobApplication);
+	        JobListing updatedJobListing = jobListingRepository.save(existingJobListing);
+	        updatedJobListingDTO=modelMapper.map(updatedJobListing, JobListingDTO.class);
+	    } 
+	    return updatedJobListingDTO;
+	}
+	@Override
+	public JobListingDTO updatingJobApplication(Long jobListingId, JobApplication jobApplication) {
+		Optional<JobListing> optionalJobListing = jobListingRepository.findById(jobListingId);
+	    JobListingDTO updatedJobListingDTO=null;
+	    if (optionalJobListing.isPresent())
+	    {
+            JobListing existingJobListing = optionalJobListing.get();
 	        JobApplication jobApplication1=jobApplicationRepository.findById(jobApplication.getJobApplicationId()).orElse(null);
 	        jobApplication1.setStatus(jobApplication.getStatus());
 	        System.out.println(jobApplication1);
-	        existingJobListing.setJobApplication(jobApplication1);
-	        JobListing updatedJobListing = jobListingRepository.save(existingJobListing);
+	        jobApplicationRepository.save(jobApplication1);
+//	        JobListing updatedJobListing = jobListingRepository.save(existingJobListing);
 	        
-	        updatedJobListingDTO=modelMapper.map(updatedJobListing, JobListingDTO.class);
+	        updatedJobListingDTO=modelMapper.map(existingJobListing, JobListingDTO.class);
 	    } 
 	    return updatedJobListingDTO;
 	}

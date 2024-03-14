@@ -30,5 +30,6 @@ public interface JobListingService {
 	//public List<JobListing> findAll(List<JobListing> jobListing);
 	public JobListingDTO updateJobListing(Long jobListingId, JobListingDTO jobListingDTO);
 	public JobListingDTO addingJobApplication(Long jobListingId, JobApplication jobApplication);
+	public JobListingDTO updatingJobApplication(Long jobListingId, JobApplication jobApplication);
 	
 }

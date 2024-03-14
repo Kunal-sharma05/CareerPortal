@@ -237,6 +237,18 @@ public class JobListingController {
             }
        }
         
+        @PutMapping("/{id}/updateJobApplication")
+        public ResponseEntity<JobListingDTO> updateJobApplication(@PathVariable Long id, @RequestBody JobApplication jobApplication) throws JobNotFoundException {
+       	 JobListingDTO updatedJobListing = jobListingService.updatingJobApplication(id, jobApplication);
+            if (updatedJobListing != null) {
+                return ResponseEntity.ok(updatedJobListing);
+            } else {
+                throw new JobNotFoundException("Job Listing not found with id: " + id);
+            }
+       }
+        
+       
+        
         
 
     
