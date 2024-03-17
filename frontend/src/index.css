@@ -48,3 +48,15 @@ code {
   background-color: rgb(72, 26, 26);
   border-radius: 30px;
 }
+
+@layer base{
+
+  body{
+    background-color: #14161b;
+  }
+
+}
+
+.slick-slide >div{
+  margin:0 10px;
+}

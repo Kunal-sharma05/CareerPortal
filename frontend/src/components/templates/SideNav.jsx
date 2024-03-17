@@ -57,7 +57,7 @@ export const SideNav = () => {
           Post Jobs
         </NavLink>
         <NavLink
-        to="/"
+        to="/CareerBlogs"
           className="text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md p-2 "
           style={(e)=>({ 
             textDecoration: "none",
@@ -69,7 +69,7 @@ export const SideNav = () => {
           Career Blogs
         </NavLink>
         <NavLink
-        to="/"
+        to="/JobFairs"
           className="text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md p-2 "
           style={(e)=>({ 
             textDecoration: "none",

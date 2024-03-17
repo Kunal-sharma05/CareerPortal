@@ -20,8 +20,8 @@ import { About } from '../About';
 import { JobSeekers } from '../JobSeekers';
 import { JobProfile } from '../JobProfile';
 import { JobSeekerProfile } from '../JobSeekerProfile';
-
-
+import { CareerBlogs } from '../CareerBlogs';
+import { JobFairs } from '../JobFairs';
 export const Router = () => {
   return (
     <Routes>
@@ -58,6 +58,8 @@ export const Router = () => {
             <Route path='/jobProfile' element={<JobProfile/>}/>
             <Route path='/jobProfile/:id' element={<JobProfile/>}/>
             <Route path='/jobSeekerProfile/:id' element={<JobSeekerProfile/>}/>
+            <Route path='/CareerBlogs' element={<CareerBlogs/>}/>
+            <Route path='/JobFairs' element={<JobFairs/>}/>
           </Routes>
   )
 }
