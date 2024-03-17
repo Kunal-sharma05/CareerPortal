@@ -22,6 +22,7 @@ import { JobProfile } from '../JobProfile';
 import { JobSeekerProfile } from '../JobSeekerProfile';
 import { CareerBlogs } from '../CareerBlogs';
 import { JobFairs } from '../JobFairs';
+import { PostJob } from '../PostJob';
 export const Router = () => {
   return (
     <Routes>
@@ -60,6 +61,7 @@ export const Router = () => {
             <Route path='/jobSeekerProfile/:id' element={<JobSeekerProfile/>}/>
             <Route path='/CareerBlogs' element={<CareerBlogs/>}/>
             <Route path='/JobFairs' element={<JobFairs/>}/>
+            <Route path='/PostJob' element={<PostJob/>}/>
           </Routes>
   )
 }

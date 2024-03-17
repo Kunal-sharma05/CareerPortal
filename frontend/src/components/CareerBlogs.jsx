@@ -5,7 +5,6 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { SideNav } from "./templates/SideNav";
 import { useNavigate, Link } from "react-router-dom";
-import Accenture from "./Assets/Accenture.png"
 export function  CareerBlogs() {
   const navigate = useNavigate();
 
@@ -38,7 +37,7 @@ export function  CareerBlogs() {
             <div className="flex flex-col items-center justify-center gap-6 p-1">
               <p className="text-xl font-semibold">{d.name}</p>
               <p className="text-center">{d.review}</p>
-              <button onClick={onReadMoreHandler} className='bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black text-white text-lg px-8 py-1 rounded-xl'><a href={d.blog} >Read More </a></button>
+              <button onClick={onReadMoreHandler} className='bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black text-white text-lg px-8 py-1 rounded-xl'><a href={d.blog} className="text-zinc-100" style={{textDecoration:"none"}} >Read More </a></button>
             </div>
           </div>
         ))}
