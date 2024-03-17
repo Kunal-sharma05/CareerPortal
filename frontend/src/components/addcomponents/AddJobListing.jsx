@@ -80,7 +80,7 @@ export const AddJobListing = () => {
   };
 
   return (
-    <div>
+    <div className="w-[84%]">
       {console.log("Application Rendered.. ")}
       <div className="container">
         <div className="card col-md-6 offset-md-3  bg-gradient-to-r from-rose-100 to-teal-100">
