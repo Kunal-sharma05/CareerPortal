@@ -45,6 +45,7 @@ public class AuthServiceImpl implements AuthService {
 		System.out.println(("object received"+dto));
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
+		System.out.println(authentication);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String token = jwtTokenProvider.generateToken(authentication);
 		System.out.println("Token generated : "+token);
