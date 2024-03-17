@@ -36,6 +36,5 @@ public class CareerPortalApplication {
      ModelMapper getModelMapper() { 
         return new ModelMapper(); 
     }
-	private Long employerId; 
 
 }

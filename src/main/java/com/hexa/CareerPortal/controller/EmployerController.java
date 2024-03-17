@@ -68,7 +68,7 @@ public class EmployerController {
         }
     }
 
-    @DeleteMapping("/{employerId}")  //checked
+    @DeleteMapping("delete/{employerId}")  //checked
     public ResponseEntity<Void> deleteEmployer(@PathVariable Long employerId) {
         employerService.deleteById(employerId);
         return ResponseEntity.noContent().build();

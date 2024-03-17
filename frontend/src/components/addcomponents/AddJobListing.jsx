@@ -15,7 +15,7 @@ export const AddJobListing = () => {
       return <h2 className="text-center">Update Job LIsting</h2>;
     } else {
       console.log("returned title  add event");
-      return <h2 className="text-center">Add Job LIsting</h2>;
+      return <h2 className="text-center">Post Job</h2>;
     }
   };
   const updateButton = () => {
@@ -24,7 +24,7 @@ export const AddJobListing = () => {
       return <h2 className="text-center">Update </h2>;
     } else {
       console.log("returned title  add event");
-      return <h2 className="text-center">Add Job Listing</h2>;
+      return <h2 className="text-center">Post Jobs</h2>;
     }
   };
 
@@ -83,7 +83,7 @@ export const AddJobListing = () => {
     <div>
       {console.log("Application Rendered.. ")}
       <div className="container">
-        <div className="card col-md-6 offset-md-3">
+        <div className="card col-md-6 offset-md-3  bg-gradient-to-r from-rose-100 to-teal-100">
           {changeTitle()}
           <div className="card-body">
             <form>
@@ -147,7 +147,7 @@ export const AddJobListing = () => {
                 onClick={(e) => saveOrUpdateJobListing(e)}
                 className="btn btn-success"
               >
-                Save JobListing
+                Post Job
               </button>
               &nbsp;&nbsp;
               <Link to="/jobListing" className="btn btn-danger">
