@@ -37,7 +37,7 @@ export function JobFairs() {
         <p>Gear up for the ultimate tech rendezvous at the Tech Connect Expo! Hosted in the heart of downtown, this event brings together leading tech companies from Silicon Valley giants to innovative startups. Explore cutting-edge technologies, engage in insightful workshops, and network with industry pioneers. Whether you're passionate about coding, data science, or cybersecurity, the Tech Connect Expo is your gateway to a dynamic career in the tech sphere.</p>
       </div>
       <br></br>
-      <div className="card pl-3">
+      <div className="card pl-3 pr-3 bg-gradient-to-r from-rose-100 to-teal-100">
         <h2>Google Job Fair at KIIT University</h2>
         <p><strong>Date:</strong> April 10, 2024</p>
         <p><strong>Time:</strong> 9:00 AM - 5:00 PM</p>
