@@ -45,8 +45,13 @@ const LoginForm = () => {
         setSuccess(true);
         if (role === "EMPLOYER"){ navigate("/addEmployer");
         }
-        else if (role === "JOB_SEEKER") navigate("/addJobSeeker");
-        else if (role === "ADMIN") navigate("/user");
+        else if(role === "JOB_SEEKER")
+          {
+           navigate("/addJobSeeker");
+        }
+        else if (role === "ADMIN") {
+          navigate("/user");
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -59,7 +64,7 @@ const LoginForm = () => {
         }
       });
     setEmail("");
-    setPassword(" ");
+    setPassword("");
     setSuccess(true);
   };
 
