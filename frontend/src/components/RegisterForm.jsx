@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import AuthService from "../services/AuthService";
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,7 +20,7 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       await AuthService.postRegister(formData);
-      alert('Registration successful!');
+      navigate("/login");
     } catch (error) {
       if (error.response && error.response.data) {
         setErrors(error.response.data);

@@ -16,10 +16,10 @@ export const AddJobSeeker = () => {
   const changeTitle = () => {
     if (id) {
       console.log("returned title  update job seeker .id", { id },educationDetail);
-      return <h2 className="text-center">Update Job Seeker</h2>;
+      return <h2 className="text-center">Update Profile</h2>;
     } else {
       console.log("returned title  add Job Seeker");
-      return <h2 className="text-center">Add Job Seeker</h2>;
+      return <h2 className="text-center">Profile Details</h2>;
     }
   };
   const updateButton = () => {

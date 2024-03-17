@@ -13,10 +13,10 @@ export const AddEmployer = () => {
   const changeTitle = () => {
     if (id) {
       console.log("returned fullname  update event .id", { id });
-      return <h2 className="text-center">Update event</h2>;
+      return <h2 className="text-center">Update Profile</h2>;
     } else {
       console.log("returned fullname  add event");
-      return <h2 className="text-center">Add event</h2>;
+      return <h2 className="text-center">Profile Details</h2>;
     }
   };
   const updateButton = () => {
@@ -25,7 +25,7 @@ export const AddEmployer = () => {
       return <h2 className="text-center">Update </h2>;
     } else {
       console.log("returned fullname  add event");
-      return <h2 className="text-center">Add event</h2>;
+      return <h2 className="text-center">Add Employer</h2>;
     }
   };
 
@@ -84,8 +84,8 @@ export const AddEmployer = () => {
   return (
     <div>
       {console.log("Application Rendered.. ")}
-      <div className="container">
-        <div className="card col-md-6 offset-md-3">
+      <div className="container ">
+        <div className="card col-md-6 offset-md-3 bg-gradient-to-r from-rose-100 to-teal-100">
           {changeTitle()}
           <div className="card-body">
             <form>
