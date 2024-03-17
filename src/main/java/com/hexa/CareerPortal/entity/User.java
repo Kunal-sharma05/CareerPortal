@@ -21,9 +21,11 @@ public class User {
 	@Column(name="user_id")
 	private Long userId;
 	private String name;
-	@Column(unique=true)
+	@Column(nullable=false,unique=true)
 	private String email;
+	@Column(nullable = false)
 	private String password;
+	@Enumerated(value=EnumType.STRING)
 	private Role role;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="employer_id")

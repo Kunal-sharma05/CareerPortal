@@ -12,6 +12,19 @@ html,body{
   height: 100%;
   width: 100%;
 }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Apply Roboto font to specific elements */
+.text-2xl,
+.text-xl,
+.text-md,
+.text-sm,
+.text-lg,
+.font-medium,
+.font-bold,
+.font-semibold {
+  font-family: 'Roboto', sans-serif;
+}
 /* primary - #1F1E24
 secondary - #6556CD */
 /* body {

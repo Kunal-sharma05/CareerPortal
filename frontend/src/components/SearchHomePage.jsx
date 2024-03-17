@@ -63,7 +63,7 @@ export const SearchHomePage = ({ handleButton }) => {
         </form>
         <div className="w-[90%] max-h-[17vh] absolute bg-gradient-to-r from-slate-900 via-zinc-900 to-slate-900 top-[58%]  overflow-auto rounded-full">
         {searches?.map((item, index) => (
-          <Link to={`/jobProfile/${item.jobListingId}`} key={index} className=" h-10 hover:text-black font-semibold text-slate-600 w-[100%] py-5 px-10 no-underline flex justify-center items-center border-b- rounded-md ">
+          <Link to={`/jobProfile/${item.jobListingId}`} key={index} className=" h-10 hover:text-black font-semibold text-zinc-100 w-[100%] py-5 px-10 no-underline flex justify-center items-center border-b- rounded-md ">
             <img src={item.image} alt="" className="w-[10vh] h-[5vh] mr-2 object-cover rounded-full" />
             <span>{item.title}</span>
           </Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+//ass
 export const SideNav = () => {
   return (
     <div className=" w-[20%]   flex-1 border-r-2 border-zinc-200 p-3 ">
@@ -33,7 +33,7 @@ export const SideNav = () => {
           Job Seekers
         </NavLink>
         <NavLink
-          to="/"
+          to="/addJobSeeker"
           className="text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md p-2 "
           style={(e)=>({ 
             textDecoration: "none",
@@ -45,7 +45,7 @@ export const SideNav = () => {
           Profile
         </NavLink>
         <NavLink
-          to="/"
+          to="/addJobListing"
           className="text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md p-2 "
           style={(e)=>({ 
             textDecoration: "none",

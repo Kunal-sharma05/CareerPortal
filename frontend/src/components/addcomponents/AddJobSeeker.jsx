@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import JobSeekerService from "../../services/JobSeekerService";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { SideNav } from "../templates/SideNav";
 
 export const AddJobSeeker = () => {
   const [fullName, setFullName] = useState("");
@@ -95,10 +96,11 @@ export const AddJobSeeker = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full overflow-auto flex">
       {console.log("Application Rendered.. ")}
+      <SideNav></SideNav>
       <div className="container w-full">
-        <div className="card col-md-6 offset-md-3">
+        <div className="card col-md-6 offset-md-3 bg-gradient-to-r from-rose-100 to-teal-100">
           {changeTitle()}
           <div className="card-body">
             <form>
