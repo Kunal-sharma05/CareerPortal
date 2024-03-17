@@ -48,6 +48,7 @@ public class SecurityConfig {
 			.authorizeHttpRequests((authorize) ->
 			//authorize.anyRequest().authenticated()
 			authorize.requestMatchers("/api/authenticate/**").permitAll()
+			.requestMatchers("/api/**").permitAll()
 //			.requestMatchers("/api/users/**").hasAuthority(Role.ADMIN.name())
 			.anyRequest().authenticated())
 			.exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint))

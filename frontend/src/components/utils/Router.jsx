@@ -22,6 +22,9 @@ import { JobProfile } from '../JobProfile';
 import { JobSeekerProfile } from '../JobSeekerProfile';
 import { CareerBlogs } from '../CareerBlogs';
 import { JobFairs } from '../JobFairs';
+
+
+
 export const Router = () => {
   return (
     <Routes>

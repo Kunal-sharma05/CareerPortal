@@ -47,7 +47,7 @@ export const ListJobListing = () => {
   return (
     <div className="container overflow-auto">
       {console.log("JobListing Part Rendered ")}
-      <h1 className="text-center">JobListings</h1>
+      <h1 className="text-center bg-gradient-to-r from-rose-100 to-teal-100">Job Listings</h1>
       <Link to="/addJobListing" className="btn btn-primary mb-3">
         Add JobListing
       </Link>
