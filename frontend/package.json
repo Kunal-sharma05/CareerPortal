@@ -24,6 +24,7 @@
     "react-strap": "^0.0.1",
     "react-toastify": "^10.0.4",
     "reactstrap": "^9.2.2",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
