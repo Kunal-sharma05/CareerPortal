@@ -13,7 +13,7 @@ export const Header = () => {
     navigate("/About")
   }
   const onClickLogin = () =>{
-    navigate("/login")
+    navigate("/Profile")
   }
   const onClickSingin = () =>{
     navigate("/register")

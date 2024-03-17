@@ -25,6 +25,7 @@ import { JobFairs } from '../JobFairs';
 import { PostJob } from '../PostJob';
 import RegisterForm from '../RegisterForm';
 import LoginForm from '../LoginForm';
+import { Profile } from '../Profile';
 export const Router = () => {
   return (
     <Routes>
@@ -66,6 +67,7 @@ export const Router = () => {
             <Route path='/PostJob' element={<PostJob/>}/>
             <Route path='/register' element={<RegisterForm/>}/>
             <Route path='/login' element={<LoginForm/>}/>
+            <Route path='/profile' element={<Profile/>}/>
           </Routes>
   )
 }
