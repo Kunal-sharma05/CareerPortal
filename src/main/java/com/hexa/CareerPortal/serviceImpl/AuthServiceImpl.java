@@ -2,6 +2,8 @@ package com.hexa.CareerPortal.serviceImpl;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,6 +34,8 @@ public class AuthServiceImpl implements AuthService {
 	private PasswordEncoder passwordEncoder;
 	private JwtTokenProvider jwtTokenProvider;
 	@Autowired
+	private ModelMapper modelMapper;
+	@Autowired
 	public AuthServiceImpl(AuthenticationManager authenticationManager, 
 			UserRepository userRepo,PasswordEncoder passwordEncoder,
 			JwtTokenProvider jwtTokenProvider) {
@@ -51,11 +55,11 @@ public class AuthServiceImpl implements AuthService {
 		System.out.println("Token generated : "+token);
 		User user = userRepo.findByEmail(dto.getEmail()).get();
 		System.out.println("user object found in repo "+user);
-		UserDTO userDto = new UserDTO();
-		userDto.setUserId(user.getUserId());
-		userDto.setName(user.getName());
-		userDto.setEmail(user.getEmail());
-		userDto.setPassword(user.getPassword());
+		UserDTO userDto = modelMapper.map(user, UserDTO.class);
+//		userDto.setUserId(user.getUserId());
+//		userDto.setName(user.getName());
+//		userDto.setEmail(user.getEmail());
+//		userDto.setPassword(user.getPassword());
 		Role role=Role.JOB_SEEKER;
 		Role roleUser = user.getRole();
 			if(roleUser.name().equalsIgnoreCase("ADMIN"))

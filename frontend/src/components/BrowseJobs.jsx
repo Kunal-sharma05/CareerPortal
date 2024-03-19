@@ -52,7 +52,7 @@ export const BrowseJobs = () => {
   return (
     <div className="w-[100%] h-full flex flex-col overflow-x-hidden">
       <Header />
-      <div className="bg-gradient-to-r from-slate-900 via-red-900 to-slate-900 w-full h-full flex gap-5 ">
+      <div className="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 w-full h-full flex gap-5 ">
         <SideNav />
         <div className="w-[80%] h-[88%]">
           <Search handleClick={handleSearchButton} />

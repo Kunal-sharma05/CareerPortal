@@ -2,6 +2,7 @@ package com.hexa.CareerPortal.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -48,8 +49,10 @@ public class SecurityConfig {
 			.authorizeHttpRequests((authorize) ->
 			//authorize.anyRequest().authenticated()
 			authorize.requestMatchers("/api/authenticate/**").permitAll()
+			.requestMatchers("/api/employers/**").hasAuthority(Role.EMPLOYER.name()) 
+			.requestMatchers("/api/employers/**").hasAuthority(Role.ADMIN.name())//,
+			.requestMatchers(HttpMethod.POST, "/api/jobListings/**").hasAuthority(Role.EMPLOYER.name())
 			.requestMatchers("/api/**").permitAll()
-//			.requestMatchers("/api/users/**").hasAuthority(Role.ADMIN.name())
 			.anyRequest().authenticated())
 			.exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint))
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

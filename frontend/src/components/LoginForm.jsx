@@ -4,7 +4,7 @@ import { AuthContext } from "./context/AuthProvider";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import AuthService from "../services/AuthService";
 const LoginForm = () => {
-  document.title = "CareerCrafter | Login";
+  // document.title = "CareerCrafter | Login";
   const userRef = useRef();
   const errorRef = useRef();
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const LoginForm = () => {
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const { setAuth } = useContext(AuthContext);
+  const{setAuth}=useContext(AuthContext)
   useEffect(() => {
     userRef?.current?.focus();
   }, []);
@@ -36,21 +36,31 @@ const LoginForm = () => {
         const accessToken = response.data.accessToken;
         const userId = response.data.userDto.userId;
         const role = response.data.userDto.role;
+        const dto = response.data.userDto;
         console.log("response from login API : " + accessToken);
         console.log("user id", response.data.userDto.userId);
-        setAuth({ userId, email, password, accessToken });
+        setAuth({userId, email, password, accessToken, role, dto} );
+       // console.log(auth)
         setEmail("");
         setPassword("");
         setSuccess(true);
-        if (role === "EMPLOYER"){ navigate("/addEmployer");
-        }
-        else if(role === "JOB_SEEKER")
-          {
-           navigate("/addJobSeeker");
-        }
-        else if (role === "ADMIN") {
+        console.log("dto employer", dto.employer);
+        if (role === "EMPLOYER" && dto.employer !== null) {
+          console.log("no navigate 1") 
+          navigate(`/PersonProfile/${dto.employer.employerId}`);
+      } else if (role === "JOB_SEEKER" && dto.jobseeker !== null) {
+        console.log("no navigate 2")
+          navigate("/addJobSeeker");
+      } else if (role === "ADMIN") {
+        console.log("no navigate 3")
           navigate("/user");
-        }
+      } else if (role === "EMPLOYER") {
+          console.log("no navigate 4")
+          navigate("/addEmployer");
+      } else if (role === "JOB_SEEKER") {
+        console.log("no navigate 5")
+          navigate("/addJobSeeker");
+      }
       })
       .catch((error) => {
         console.log(error);

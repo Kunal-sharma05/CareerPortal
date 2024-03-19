@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import EmployerService from "../../services/EmployerService";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import {AuthContext} from "../context/AuthProvider";
 
 export const AddEmployer = () => {
+  const {auth,setAuth} = useContext(AuthContext)
   const [fullName, setFullName] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [mobileNo, setMobileNo] = useState("");
@@ -33,7 +35,7 @@ export const AddEmployer = () => {
     console.log("useEffect triggered.... ");
     console.log("id value obtained from url using useParams()", id);
     if (id) {
-      EmployerService.getEmployerById(id)
+      EmployerService.getEmployerById(id, auth)
         .then((response) => {
           console.log(
             "Response recieved from getEmployerbyid API",
@@ -54,21 +56,40 @@ export const AddEmployer = () => {
   const saveOrUpdateEmployer = (e) => {
     e.preventDefault();
     //let emailId=email;
+    console.log("access token", auth)
     const employer = { fullName, companyName, mobileNo, email, image};
     console.log("Employer feed from home:", employer);
     if (id) {
-      EmployerService.updateEmployerById(id, employer)
+      EmployerService.updateEmployerById(id, employer, auth)
         .then((response) => {
           console.log(
             "response recieved from saved API..." + JSON.stringify(response)
           );
+          if(auth.role==="ADMIN")
           navigate("/employer");
+        else
+        navigate(`/PersonProfile/${id}`)
         })
         .catch((error) => {
           console.log("error recieved from saved API...", error);
         });
-    } else {
-      EmployerService.addEmployer(employer)
+    } 
+    else if(auth?.userId){
+      console.log("auth inside add employefr line 75", auth)
+      EmployerService.addProfile(auth?.userId, employer, auth)
+        .then((response) => {
+          console.log(
+            "response recieved from saved API..." + JSON.stringify(response)
+          );
+          navigate("/PersonProfile");
+        })
+        .catch((error) => {
+          console.log("error recieved from saved API...", error);
+        });
+    }
+    else {
+      console.log("access token", auth)
+      EmployerService.addEmployer(employer,auth)
         .then((response) => {
           console.log(
             "response recieved from saved API..." + JSON.stringify(response)
@@ -165,7 +186,8 @@ export const AddEmployer = () => {
               </div>
               {/* submit-button  */}
               <button
-                onClick={(e) => saveOrUpdateEmployer(e)}
+                // onClick={(e) =>saveOrUpdateEmployer(e)}
+                onClick={saveOrUpdateEmployer}
                 className="btn btn-success"
               >
                 Save Employer

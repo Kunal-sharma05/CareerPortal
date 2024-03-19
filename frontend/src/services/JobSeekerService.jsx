@@ -15,7 +15,16 @@ class JobSeekerService {
     return axios.get(BASE_REST_API_URL + "/" + id);
   }
   updateJobSeekerById(id, jobSeeker) {
-    return axios.put(BASE_REST_API_URL + "/" + id, jobSeeker);
+    return axios.put(BASE_REST_API_URL + "/" + id, jobSeeker,
+    // {
+    //   headers:{
+    //       'Access-Control-Allow-Origin': '*',
+    //   'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE',
+    //   'Access-Control-Allow-Credentials':true,
+    //    Authorization: `Bearer ${auth.accessToken}`
+    //   }
+    // }
+    );
   }
   searchByDetails(details){
     return axios.get(BASE_REST_API_URL+"/searchByDetails?details="+details);//ss

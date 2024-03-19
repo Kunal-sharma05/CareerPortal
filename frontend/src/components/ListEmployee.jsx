@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import UserService from '../services/UserService';
 import { Link } from "react-router-dom";
 import EmployerService from "../services/EmployerService";
-
+import { AuthContext } from "./context/AuthProvider";
 export const ListEmployee = () => {
   //const [state variable, function that acn change the state varible]
+  const {auth,setAuth} = useContext(AuthContext)
+  console.log("auth in list employee", auth)
   const [employeeArray, setEmployeeArray] = useState([]);
   const deleteEmployerById = (id) => {
     console.log("Delete employer is fired.....");
@@ -29,7 +31,8 @@ export const ListEmployee = () => {
   };
   const fetchAllEmployer = () => {
     console.log("Feth all employers is fired");
-    EmployerService.getAllEmployers()
+    console.log("auth in feth all employee", auth)
+    EmployerService.getAllEmployers(auth)
       .then((response) => {
         console.log(
           "respnse recieved from the APU in the List Employer...",

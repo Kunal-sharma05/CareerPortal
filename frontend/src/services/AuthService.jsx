@@ -6,6 +6,7 @@ class AuthService {
       return axios.post(BASE_REST_API_URL+"/register",formData);
     }
     postLogin(formData) {
+        console.log("you are inside post login method")
         return axios.post(BASE_REST_API_URL+"/login",formData);
     }
 }

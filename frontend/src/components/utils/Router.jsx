@@ -26,6 +26,9 @@ import { PostJob } from '../PostJob';
 import RegisterForm from '../RegisterForm';
 import LoginForm from '../LoginForm';
 import { Profile } from '../Profile';
+import { RequireAuth } from '../RequireAuth';
+import { PersonProfile } from '../PersonProfile';
+import { JobApplications } from '../JobApplications';
 export const Router = () => {
   return (
     <Routes>
@@ -34,10 +37,6 @@ export const Router = () => {
             <Route path='*' element={<Error/>}/>
             <Route path='/addUser' element={<AddUser/>}/>
             <Route path="/update/:id" element={<AddUser/>}/>
-            <Route path='/listEmployee' element={<ListEmployee/>}/>
-            <Route path='/employer' element={<ListEmployee/>}/>
-            <Route path='/employee/update/:id' element={<AddEmployer/>}/> 
-            <Route path='/addEmployer' element={<AddEmployer/>}/>
             <Route path='/listJobApplication' element={<ListJobApplication/>}/>
             <Route path='/jobApplication' element={<ListJobApplication/>}/>
             <Route path='/addJobApplication' element={<AddJobApplications/>}/>
@@ -68,6 +67,15 @@ export const Router = () => {
             <Route path='/register' element={<RegisterForm/>}/>
             <Route path='/login' element={<LoginForm/>}/>
             <Route path='/profile' element={<Profile/>}/>
+            <Route element={<RequireAuth/>}>
+            <Route path='/listEmployee' element={<ListEmployee/>}/>
+            <Route path='/employer' element={<ListEmployee/>}/>
+            <Route path='/employee/update/:id' element={<AddEmployer/>}/> 
+            <Route path='/addEmployer' element={<AddEmployer/>}/>
+            <Route path='/jobApplication/:id' element={<ListJobApplication/>}/>
+            <Route path='/jobApplications/:id' element={<JobApplications/>}/>
+            <Route path='/PersonProfile/:id' element={<PersonProfile/>}/>
+            </Route>
           </Routes>
   )
 }

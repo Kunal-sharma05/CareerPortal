@@ -23,6 +23,18 @@ class JobListingService {
   SearchByTitleAndRequirements(title,requirements){
     return axios.get(BASE_REST_API_URL + "/searchByTitleAndRequirement?title="+title + "&requirements="+requirements);
   }
+  jobApplications(id,auth)
+  {
+    return axios.get(BASE_REST_API_URL + "/" + id,
+    {
+      headers:{
+          'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE',
+      'Access-Control-Allow-Credentials':true,
+       Authorization: `Bearer ${auth.accessToken}`
+      }
+    });
+  }
   
 }
 export default new JobListingService();

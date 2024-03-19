@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import UserService from '../services/UserService';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import JobListingService from "../services/JobListingService";
+import { AuthContext } from "./context/AuthProvider";
+import EmployerService from "../services/EmployerService";
 
 export const ListJobListing = () => {
   //const [state variable, function that acn change the state varible]
+  const navigate = useNavigate()
+  const {auth} = useContext(AuthContext)
   const [jobListingArray, setJobListingArray] = useState([]);
+
   const deleteJobListingById = (id) => {
     console.log("Delete JobListing is fired.....");
     JobListingService.deleteJobListingById(id)
@@ -25,6 +30,25 @@ export const ListJobListing = () => {
   };
   const fetchAllJobListing = () => {
     console.log("Feth all JobListings is fired");
+    if(auth?.userId)
+    {
+      console
+      EmployerService.getEmployerById(auth?.dto?.employer?.employerId, auth)
+      .then((response) => {
+        console.log(
+          "respnse recieved from the APU in the List JobListing...",
+          JSON.stringify(response.data.jobListing)
+        );
+        setJobListingArray(response.data.jobListing);
+      })
+      .catch((error) => {
+        console.log(
+          "Error recieved in the list JobListing component in fetch all jobListingr",
+          error
+        );
+      });
+    }
+    else{
     JobListingService.getAllJobListings()
       .then((response) => {
         console.log(
@@ -39,19 +63,22 @@ export const ListJobListing = () => {
           error
         );
       });
+    }
   };
   useEffect(() => {
-    console.log("use effect of user listing....");
+    console.log("use effect of job listing....");
     fetchAllJobListing();
   }, []);
   return (
-    <div className="container overflow-auto">
+    <div className="h-full w-full container">
       {console.log("JobListing Part Rendered ")}
       <h1 className="text-center bg-gradient-to-r from-rose-100 to-teal-100">Job Listings</h1>
-      <Link to="/addJobListing" className="btn btn-primary mb-3">
+      {auth?.userId?<Link to={`/jobListing/update/${auth?.dto.employer.employerId}`} className="btn btn-primary mb-3">
+        PostJobs
+      </Link>:<Link to="/addJobListing" className="btn btn-primary mb-3">
         Add JobListing
-      </Link>
-      <table className="table table-bordered table-info table-striped">
+      </Link> }
+      <table className="table table-bordered table-striped ">
         <thead>
           <tr className="table-dark">
             <th>Requirements</th>
@@ -59,6 +86,7 @@ export const ListJobListing = () => {
             <th>Title</th>
             <th>Image URL</th>
             <th>Actions</th>
+            <th>JobApplication</th>
           </tr>
         </thead>
         <tbody>
@@ -83,6 +111,12 @@ export const ListJobListing = () => {
                   Delete
                 </button>
               </td>
+              <td><button
+                  className="btn btn-primary"
+                  onClick={() => navigate(`/jobApplications/${jobListing.jobListingId}`)}
+                >
+                  JobApplication
+                </button></td>
             </tr>
           ))}
         </tbody>

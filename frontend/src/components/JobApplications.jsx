@@ -4,8 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import JobApplicationService from "../services/JobApplicationService";
 import { AuthContext } from "./context/AuthProvider";
 import JobListingService from "../services/JobListingService";
+import { Header } from "./Header";
+import { SideNav } from "./templates/SideNav";
+import { Footer } from "./Footer";
 
-export const ListJobApplication = () => {
+export const JobApplications = () => {
   //const [state variable, function that acn change the state varible]
   const [jobApplicationArray, setJobApplicationArray] = useState([]);
   const {auth} = useContext(AuthContext)
@@ -69,13 +72,17 @@ export const ListJobApplication = () => {
     fetchAllJobApplication();
   }, []);
   return (
-    <div className="container overflow-auto">
+    <div className="h-full w-full ">
+      <Header/>
+      <div className="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 w-full h-full flex gap-5 ">
+      <SideNav className="w-[16%]"/>
+      <div className="w-[80%] container overflow-auto">
       {console.log("JobApplication Part Rendered ")}
-      <h1 className="text-center text-zinc-100">JobApplications</h1>
+      <h1 className=" text-center" style={{color:"wheat"}}>JobApplications</h1>
       {auth.role==="EMPLOYER"?null:<Link to="/addJobApplication" className="btn btn-primary mb-3">
         Add JobApplication
       </Link>}
-      <table className="table table-bordered table-info table-striped">
+      <table className="table table-bordered table-striped">
         <thead>
           <tr className="table-dark">
             <th>Status</th>
@@ -119,6 +126,9 @@ export const ListJobApplication = () => {
           ))}
         </tbody>
       </table>
+      </div>
+    </div>
+    <Footer/>
     </div>
   );
 };

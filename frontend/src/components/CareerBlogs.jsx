@@ -22,7 +22,7 @@ export function  CareerBlogs() {
   return (
     <div className="w-full h-full flex flex-col overflow-x-hidden">
       <Header />
-      <div className="bg-gradient-to-r from-slate-900 via-red-900 w-[73%] h-full flex gap-4">
+      <div className="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 w-[73%] h-full flex gap-4">
         <SideNav />  
         
     <div className='w-3/4 m-auto pl-40'>
