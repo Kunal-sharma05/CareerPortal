@@ -22,9 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexa.CareerPortal.dto.EmployerDTO;
+import com.hexa.CareerPortal.dto.JobListingDTO;
+import com.hexa.CareerPortal.dto.UserDTO;
 import com.hexa.CareerPortal.exception.EmployerNotFoundException;
 import com.hexa.CareerPortal.exception.JobNotFoundException;
+import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.EmployerService;
+import com.hexa.CareerPortal.service.UserService;
 
 import jakarta.validation.Valid;
 
@@ -34,9 +38,12 @@ import jakarta.validation.Valid;
 public class EmployerController {
 
     private final EmployerService employerService;
+    
+    private final UserService userService;
 
-    public EmployerController(EmployerService employerService) {
+    public EmployerController(EmployerService employerService, UserService userService ) {
         this.employerService = employerService;
+		this.userService = userService;
     }
 
     @PostMapping  //checked
@@ -174,4 +181,28 @@ public class EmployerController {
         	employerService.deleteAll(employers);
         	return ResponseEntity.noContent().build();
         }
+        
+        @PutMapping ("/addProfile/{id}")
+        public ResponseEntity<UserDTO> addEmployerProfile(@PathVariable Long id ,@Valid @RequestBody EmployerDTO employerDTO) throws ResourceNotFoundException {
+            UserDTO createdUser = userService.addEmployer(id, employerDTO);
+            if(createdUser!=null) {
+            	return ResponseEntity.ok(createdUser);
+            }
+            else
+            {
+            	throw new ResourceNotFoundException("user is not found");
+            }
+
+        }
+        @PutMapping("/{employerId}/addJob")
+        public ResponseEntity<EmployerDTO> addJob(@PathVariable Long employerId, @RequestBody JobListingDTO jobListingDto) throws EmployerNotFoundException {
+      	  EmployerDTO updatedEmployer = employerService.addJobListing(employerId, jobListingDto);
+            if(updatedEmployer!=null) {
+                return ResponseEntity.ok(updatedEmployer);
+             }
+             else
+             {
+        	   throw new EmployerNotFoundException("employer not found ");
+             }
+           }
 }

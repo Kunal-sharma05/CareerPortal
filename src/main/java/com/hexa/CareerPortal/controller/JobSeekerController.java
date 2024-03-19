@@ -17,10 +17,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hexa.CareerPortal.dto.EmployerDTO;
+import com.hexa.CareerPortal.dto.JobApplicationDTO;
 import com.hexa.CareerPortal.dto.JobSeekerDTO;
+import com.hexa.CareerPortal.dto.ResumeDTO;
+import com.hexa.CareerPortal.dto.UserDTO;
 import com.hexa.CareerPortal.exception.JobSeekerNotFoundException;
 import com.hexa.CareerPortal.exception.ResourceNotFoundException;
 import com.hexa.CareerPortal.service.JobSeekerService;
+import com.hexa.CareerPortal.service.UserService;
+
+import jakarta.validation.Valid;
 
 @CrossOrigin("*")
 @RestController
@@ -29,10 +36,13 @@ public class JobSeekerController {
 
 	@Autowired
     private final JobSeekerService jobSeekerService;
-
+	
+	@Autowired
+    private final UserService userService;
    
-    public JobSeekerController(JobSeekerService jobSeekerService) {
+    public JobSeekerController(JobSeekerService jobSeekerService, UserService userService) {
         this.jobSeekerService = jobSeekerService;
+        this.userService = userService;
     }
 
     @PostMapping //checked
@@ -163,5 +173,40 @@ public class JobSeekerController {
         	throw new JobSeekerNotFoundException("JobSeeker not found with details: " + details);
         }
     }
+    @PutMapping ("/addProfile/{id}")
+    public ResponseEntity<UserDTO> addJobSeekerProfile(@PathVariable Long id ,@Valid @RequestBody JobSeekerDTO jobSeekerDTO) throws ResourceNotFoundException {
+		UserDTO createdUser = userService.addJobSeeker(id, jobSeekerDTO);
+        if(createdUser!=null) {
+        	return ResponseEntity.ok(createdUser);
+        }
+        else
+        {
+        	throw new ResourceNotFoundException("user is not found");
+        }
+
+    }
+    @PutMapping("/addJobApplication/{id}")
+    public ResponseEntity<JobSeekerDTO> addJobApplication(@PathVariable Long id, @RequestBody JobApplicationDTO jobApplicationDTO) throws JobSeekerNotFoundException {
+    	JobSeekerDTO jobSeekerDTO= jobSeekerService.addJobApplication(id, jobApplicationDTO);
+        if(jobSeekerDTO!=null) {
+        	return ResponseEntity.ok(jobSeekerDTO);
+        }
+        else
+        {
+        	throw new JobSeekerNotFoundException("JobSeeker not found with id: " + id);
+        }
+    }
+    @PutMapping("/addResume/{id}")
+    public ResponseEntity<JobSeekerDTO> addResume(@PathVariable Long id, @RequestBody ResumeDTO resumeDTO) throws JobSeekerNotFoundException {
+    	JobSeekerDTO jobSeekerDTO= jobSeekerService.addResume(id, resumeDTO);
+        if(jobSeekerDTO!=null) {
+        	return ResponseEntity.ok(jobSeekerDTO);
+        }
+        else
+        {
+        	throw new JobSeekerNotFoundException("JobSeeker not found with id: " + id);
+        }
+    }
+    
     
 }

@@ -3,7 +3,9 @@ package com.hexa.CareerPortal.service;
 import java.util.List;
 
 import com.hexa.CareerPortal.dto.EmployerDTO;
+import com.hexa.CareerPortal.dto.JobListingDTO;
 import com.hexa.CareerPortal.entity.Employer;
+import com.hexa.CareerPortal.entity.JobListing;
 
 public interface EmployerService {
 	public EmployerDTO createEmployer( EmployerDTO employerDTO);
@@ -21,5 +23,6 @@ public interface EmployerService {
 	public void deleteAll(List<EmployerDTO> employers);
 	public List<EmployerDTO> findAll();
 	public List<Employer> findAll(List<Employer> employers);
-	public EmployerDTO updateEmployer(Long employerId, EmployerDTO employerDTO);	
+	public EmployerDTO updateEmployer(Long employerId, EmployerDTO employerDTO);
+	EmployerDTO addJobListing(Long employerId, JobListingDTO jobListing);	
 }

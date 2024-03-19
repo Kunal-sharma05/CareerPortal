@@ -2,6 +2,8 @@ package com.hexa.CareerPortal.service;
 
 import java.util.List;
 
+import com.hexa.CareerPortal.dto.EmployerDTO;
+import com.hexa.CareerPortal.dto.JobSeekerDTO;
 import com.hexa.CareerPortal.dto.UserDTO;
 import com.hexa.CareerPortal.entity.Role;
 import com.hexa.CareerPortal.entity.User;
@@ -26,4 +28,6 @@ public interface UserService {
 	public User changePassword(Long id,String password);
 	public List<UserDTO> createUsers(List<UserDTO> user);
 	public UserDTO updateUser(Long userId, UserDTO userDTO);
+	UserDTO addEmployer(Long userId, EmployerDTO employerDto);
+	UserDTO addJobSeeker(Long userId, JobSeekerDTO jobSeekerDto);
 }

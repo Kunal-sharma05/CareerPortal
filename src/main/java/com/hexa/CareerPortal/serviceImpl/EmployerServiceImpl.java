@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hexa.CareerPortal.dto.EmployerDTO;
+import com.hexa.CareerPortal.dto.JobListingDTO;
 import com.hexa.CareerPortal.entity.Employer;
+import com.hexa.CareerPortal.entity.JobApplication;
+import com.hexa.CareerPortal.entity.JobListing;
 import com.hexa.CareerPortal.repository.EmployerRepository;
 import com.hexa.CareerPortal.service.EmployerService;
 @Service
@@ -209,6 +212,22 @@ public class EmployerServiceImpl implements EmployerService {
 	        employeDTO=modelMapper.map(updatedEmployer, EmployerDTO.class);
 	    }
 	    return employeDTO;
+	}
+	@Override
+	public EmployerDTO addJobListing(Long employerId, JobListingDTO jobListingDto) {
+		Optional<Employer> optionalEmployer = employerRepository.findById(employerId);
+	    EmployerDTO updatedEmployerDTO=null;
+	    if (optionalEmployer.isPresent())
+	    {
+	        Employer existingEmployer = optionalEmployer.get();
+	        List<JobListing> list = existingEmployer.getJobListing();
+	        JobListing jobListing=modelMapper.map(jobListingDto, JobListing.class);
+	        list.add(jobListing);
+	        existingEmployer.setJobListing(list);
+	        Employer updatedEmployer = employerRepository.save(existingEmployer);
+	        updatedEmployerDTO=modelMapper.map(updatedEmployer, EmployerDTO.class);
+	    } 
+	    return updatedEmployerDTO;
 	}
 
 }

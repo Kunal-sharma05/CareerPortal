@@ -6,6 +6,7 @@ import { SideNav } from "./templates/SideNav";
 import { Footer } from "./Footer";
 
 export const JobSeekerProfile = () => {
+  document.title = "CareerCrafter | Job profile";
   const [fullName, setFullName] = useState("");
   const [professionalDetails, setProfessionalDetails] = useState("");
   const [educationDetail, setEducationDetail] = useState("");

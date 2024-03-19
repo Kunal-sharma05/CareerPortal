@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import JobListingService from "../../services/JobListingService";
 
 export const AddJobListing = () => {
+  document.title = "CareerCrafter | Post Job";
   const [requirements, setRequirements] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");

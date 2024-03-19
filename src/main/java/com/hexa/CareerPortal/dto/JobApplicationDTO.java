@@ -22,7 +22,13 @@ public class JobApplicationDTO {
 		return status;
 	}
 	public void setStatus(Status status) {
-		this.status = status;
+		if(status==null)
+		{
+			this.status=Status.PENDING;
+		}
+		else {
+		   this.status = status;
+		}
 	}
 	
 	public Long getJobApplicationId() {

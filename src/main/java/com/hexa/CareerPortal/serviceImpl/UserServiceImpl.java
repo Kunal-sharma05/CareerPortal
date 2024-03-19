@@ -9,9 +9,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hexa.CareerPortal.dto.EmployerDTO;
+import com.hexa.CareerPortal.dto.JobSeekerDTO;
 import com.hexa.CareerPortal.dto.UserDTO;
+import com.hexa.CareerPortal.entity.Employer;
+import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.entity.Role;
 import com.hexa.CareerPortal.entity.User;
+import com.hexa.CareerPortal.repository.EmployerRepository;
+import com.hexa.CareerPortal.repository.JobSeekerRepository;
 import com.hexa.CareerPortal.repository.UserRepository;
 import com.hexa.CareerPortal.service.UserService;
 
@@ -26,7 +32,12 @@ public class UserServiceImpl implements UserService {
 	
     @Autowired
 	private UserRepository userRepository;
-	
+    
+    @Autowired
+    private EmployerRepository employerRepository;
+    
+    @Autowired
+    private JobSeekerRepository jobSeekerRepository;
 	public UserServiceImpl(UserRepository userRepository)
 	{
 		super();
@@ -203,6 +214,39 @@ public class UserServiceImpl implements UserService {
 			user.setName(userDTO.getName());
 			user.setPassword(userDTO.getPassword());
 			user.setRole(userDTO.getRole());
+			userRepository.save(user);
+			user1=modelMapper.map(user,UserDTO.class);
+		}
+		
+		return user1;
+	}
+	@Override
+	public UserDTO addEmployer(Long userId, EmployerDTO employerDto) {
+		User user=userRepository.findById(userId).orElse(null);
+		UserDTO user1=null;
+		if(user!=null)
+		{
+			Employer employerEntity=modelMapper.map(employerDto, Employer.class);
+			Employer employer1=employerRepository.save(employerEntity);
+			employerDto=modelMapper.map(employer1,EmployerDTO.class);
+			user.setEmployer(employer1);
+			userRepository.save(user);
+			user1=modelMapper.map(user,UserDTO.class);
+		}
+		
+		return user1;
+	}
+	@Override
+	public UserDTO addJobSeeker(Long userId, JobSeekerDTO jobSeekerDto) {
+		User user=userRepository.findById(userId).orElse(null);
+		UserDTO user1=null;
+		if(user!=null)
+		{
+		
+			JobSeeker JobSeekerEntity=  modelMapper.map(jobSeekerDto, JobSeeker.class);
+			JobSeeker savedJobSeeker= jobSeekerRepository.save(JobSeekerEntity);
+			jobSeekerDto=modelMapper.map(savedJobSeeker,JobSeekerDTO.class );
+			user.setJobSeeker(savedJobSeeker);
 			userRepository.save(user);
 			user1=modelMapper.map(user,UserDTO.class);
 		}

@@ -6,6 +6,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import JobListingService from "../services/JobListingService";
 
 export const JobProfile = () => {
+  document.title = "CareerCrafter | Job profile";
+  
   const [requirements, setRequirements] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");

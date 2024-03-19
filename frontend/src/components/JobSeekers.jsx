@@ -8,6 +8,7 @@ import { CardJobSeeker } from "./CardJobSeeker";
 import { SearchJobSeeker } from "./SearchJobSeeker";
 
 export const JobSeekers = () => {
+  document.title = "CareerCrafter | Job Seekers";
   const [jobSeekerArray, setJobSeekerArray] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();

@@ -12,6 +12,7 @@ import { Header } from "./Header";
 
 
 export function JobFairs() {
+  document.title = "CareerCrafter | Job flair";
   /*  
   const [open, setOpen] = useState('1');
   const toggle = (id) => {

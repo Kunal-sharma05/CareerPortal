@@ -6,6 +6,7 @@ import { Footer } from "./Footer";
 import { SideNav } from "./templates/SideNav";
 import { useNavigate, Link } from "react-router-dom";
 export function  CareerBlogs() {
+  document.title = "CareerCrafter | Career Blogs";
   const navigate = useNavigate();
 
   const settings = {
