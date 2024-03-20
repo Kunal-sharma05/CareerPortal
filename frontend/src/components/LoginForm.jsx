@@ -14,10 +14,11 @@ const LoginForm = () => {
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const{setAuth}=useContext(AuthContext)
+  const{auth,setAuth}=useContext(AuthContext)
   useEffect(() => {
     userRef?.current?.focus();
   }, []);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,9 +49,10 @@ const LoginForm = () => {
         if (role === "EMPLOYER" && dto.employer !== null) {
           console.log("no navigate 1") 
           navigate(`/PersonProfile/${dto.employer.employerId}`);
-      } else if (role === "JOB_SEEKER" && dto.jobseeker !== null) {
+      } else if (role === "JOB_SEEKER" && dto.jobSeeker !== null) {
         console.log("no navigate 2")
-          navigate("/addJobSeeker");
+        console.log("dto employer", dto.jobSeeker);
+          navigate(`/PersonProfileJobSeeker/${dto.jobSeeker.jobSeekerId}`);
       } else if (role === "ADMIN") {
         console.log("no navigate 3")
           navigate("/user");

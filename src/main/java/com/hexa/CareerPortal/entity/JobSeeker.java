@@ -49,7 +49,7 @@ public class JobSeeker {
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="jobSeeker_jobApplication_mapping",joinColumns=@JoinColumn(name="job_seeker_id"),inverseJoinColumns=@JoinColumn(name="job_application_id"))
 	private List<JobApplication> jobApplication=new ArrayList<>();
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL,orphanRemoval = true)
 	@JoinTable(name="jobSeeker_resume_mapping",joinColumns=@JoinColumn(name="job_seeker_id"),inverseJoinColumns=@JoinColumn(name="resume_id"))
 	private List<Resume> resumes=new ArrayList<>();
 	public JobSeeker() {

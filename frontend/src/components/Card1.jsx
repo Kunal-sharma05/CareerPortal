@@ -10,7 +10,7 @@ const onClickHandler =()=>{
    navigate(`/jobProfile/${jobListingId}`); 
 };
   return (
-    <div className='w-[20vw] h-[27vw] bg-gradient-to-r from-rose-100 to-teal-100 p-2 rounded-md relative hover:scale-[102%] transition-all duration-300 ease-in-out hover:p-[1vw]'>
+    <div className='w-[20vw] h-[27vw] bg-gradient-to-r from-rose-100 to-teal-100 p-2 rounded-md relative hover:scale-[105%] transition-all duration-300 ease-in-out hover:p-[1vw]'>
         <div className="w-full h-40 bg-sky-200 ">
             <img className='h-full w-full object-cover' src={image} alt="" />
         </div>

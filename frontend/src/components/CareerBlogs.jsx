@@ -22,7 +22,7 @@ export function  CareerBlogs() {
   return (
     <div className="w-full h-full flex flex-col overflow-x-hidden">
       <Header />
-      <div className="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 w-[73%] h-full flex gap-4">
+      <div className="bg-gradient-to-r from-slate-900 via-purple-950  w-[73%] h-full flex gap-4">
         <SideNav />  
         
     <div className='w-3/4 m-auto pl-40'>
@@ -33,7 +33,7 @@ export function  CareerBlogs() {
         {data.map((d) => (
           <div key={d.name} className="bg-white h-[450px] text-black rounded-xl">
             <div className='h-56 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black flex justify-center items-center rounded-t-xl'>
-              <img src={d.imgUrl} alt="" className="h-44 w-44 rounded-full"/>
+              <img src={d.imgUrl} alt="" className="h-44 w-44 rounded-full object-cover"/>
             </div>
             <div className="flex flex-col items-center justify-center gap-6 p-1">
               <p className="text-xl font-semibold">{d.name}</p>
@@ -55,31 +55,31 @@ export function  CareerBlogs() {
 const data = [
   {
     name: `Mckinsey`,
-    imgUrl: `https://images.app.goo.gl/QtoYqEryA1ADimHbA`,
+    imgUrl: `https://www.mckinsey.com/~/media/images/global/seoimageplaceholder.jpg?mw=677&car=42:25`,
     review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     blog: `https://www.mckinsey.com/careers/meet-our-people/careers-blog`
   },
   {
     name: `MentorCruise on Tesla`,
-    imgUrl: `https://images.app.goo.gl/6eytzniGisFuC3m96`,
+    imgUrl: `https://media.designrush.com/inspiration_images/269905/conversions/1_Tesla_Logo_Design_31692375c0d0-desktop.jpg`,
     review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     blog: `https://mentorcruise.com/blog/tesla-recruitment-and-selection-process-how-to-get-hired-at-tesla/`
   },
   {
     name: `Microsoft `,
-    imgUrl: `https://images.app.goo.gl/C6eoqxJcY6QYvguAA `,
+    imgUrl: `https://www.logodesignlove.com/wp-content/uploads/2012/08/microsoft-logo-02.jpeg`,
     review:` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     blog : `https://news.microsoft.com/life/spending-time-behind-bars-employee-set-no-bars-success/`
   },
   {
     name:`Accenture`,
-    imgUrl: `https://images.app.goo.gl/ekgMC13UrhJoQkq16`,
+    imgUrl: `https://logos-world.net/wp-content/uploads/2020/06/Accenture-Emblem.png`,
     review:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     blog: `https://www.accenture.com/us-en/blogs/blogs-careers`
   },
   {
     name: `Hexaware Technologies`,
-    imgUrl: `https://images.app.goo.gl/44LGBVJXQCC6CYDaA`,
+    imgUrl: `https://cdn.worldvectorlogo.com/logos/hexaware-technologies-1.svg`,
     review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     blog: `https://hexaware.com/blogs/recruitment-the-millennials-way/`
   },

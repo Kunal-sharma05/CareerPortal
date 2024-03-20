@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ResumeService from "../../services/ResumeService";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
+import JobSeekerService from "../../services/JobSeekerService";
 
 export const AddResume = () => {
   const [fileUrl, setFileUrl] = useState("");
   const navigate = useNavigate();
-  const { ResumeId } = useParams();
+  const { id } = useParams();
+  const {auth} = useContext(AuthContext)
   const changeTitle = () => {
-    if (ResumeId) {
-      console.log("returned title  update Resume .id", { ResumeId });
+    if (id) {
+      console.log("returned title  update Resume .id", { id });
       return <h2 className="text-center">Update Resume</h2>;
     } else {
       console.log("returned title  add Resume");
@@ -16,8 +19,8 @@ export const AddResume = () => {
     }
   };
   const updateButton = () => {
-    if (ResumeId) {
-      console.log("returned title  update Resume .id", { ResumeId });
+    if (id) {
+      console.log("returned title  update Resume .id", { id });
       return <h2 className="text-center">Update </h2>;
     } else {
       console.log("returned title  add Resume");
@@ -27,9 +30,10 @@ export const AddResume = () => {
 
   useEffect(() => {
     console.log("useEffect triggered.... ");
-    console.log("id value obtained from url using useParams()", ResumeId);
-    if (ResumeId) {
-      ResumeService.getResumeById(ResumeId)
+    
+    if (auth?.role==="ADMIN"&&id) {
+      console.log("id value obtained from url using useParams()", id);
+      ResumeService.getResumeById(id)
         .then((response) => {
           console.log(
             "Response recieved from getbyid API",
@@ -48,8 +52,23 @@ export const AddResume = () => {
     //let emailId=email;
     const Resume = { fileUrl };
     console.log("Resume feed from home:", Resume);
-    if (ResumeId) {
-      ResumeService.updateResumeById(ResumeId, Resume)
+    if (id && auth?.userId) {
+      console.log("Hi job seeker")
+      JobSeekerService.addResume(id, Resume)
+        .then((response) => {
+          console.log(
+            "response recieved from saved API..." + JSON.stringify(response)
+          );
+          const Id = auth?.dto?.jobSeeker?.jobSeekerId
+          navigate(`/PersonProfileJobSeeker/${Id}`);
+        })
+        .catch((error) => {
+          console.log("error recieved from saved API...", error);
+        });
+    }  
+    else
+    if (id) {
+      ResumeService.updateResumeById(id, Resume)
         .then((response) => {
           console.log(
             "response recieved from saved API..." + JSON.stringify(response)
@@ -63,7 +82,7 @@ export const AddResume = () => {
       ResumeService.addResume(Resume)
         .then((response) => {
           console.log(
-            "response recieved from saved API..." + JSON.stringify(response)
+            "response recieved from saved API in add resume..." + JSON.stringify(response)
           );
           navigate("/Resume");
         })

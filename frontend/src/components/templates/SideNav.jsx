@@ -1,7 +1,10 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
 //ass
 export const SideNav = () => {
+  const {auth} = useContext(AuthContext)
+  const navigate = useNavigate();
   return (
     <div className=" w-[20%]   flex-1 border-r-2 border-zinc-200 p-3 ">
       <h1 className="text-xl text-zinc-100 ">
@@ -44,7 +47,7 @@ export const SideNav = () => {
           <i className="ri-empathize-fill mr-1"></i>
           Profile
         </NavLink>
-        <NavLink
+        {auth?.role==="EMPLOYER"?<NavLink
           to="/PostJob"
           className="text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md p-2 "
           style={(e)=>({ 
@@ -55,7 +58,7 @@ export const SideNav = () => {
         >
           <i className="ri-signpost-fill mr-1"></i>
           Post Jobs
-        </NavLink>
+        </NavLink>:null}
         <NavLink
         to="/CareerBlogs"
           className="text-zinc-100 hover:bg-zinc-100 hover:text-black duration-200 rounded-md p-2 "

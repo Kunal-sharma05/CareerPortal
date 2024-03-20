@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import JobApplicationService from "../services/JobApplicationService";
 import { AuthContext } from "./context/AuthProvider";
 import JobListingService from "../services/JobListingService";
+import JobSeekerService from "../services/JobSeekerService";
 
 export const ListJobApplication = () => {
   //const [state variable, function that acn change the state varible]
@@ -29,10 +30,28 @@ export const ListJobApplication = () => {
   };
   const fetchAllJobApplication = () => {
     console.log("Feth all JobApplications is fired");
-    if(auth?.userId)
+    if(auth?.userId && auth.role ==="EMPLOYER")
     {
       console.log("fetch all job application for particular job listing", id)
       JobListingService.jobApplications(id, auth)
+      .then((response) => {
+        console.log(
+          "respnse recieved from the APU in the List JobListing...",
+          JSON.stringify(response.data.jobApplication)
+        );
+        setJobApplicationArray(response.data.jobApplication);
+      })
+      .catch((error) => {
+        console.log(
+          "Error recieved in the list JobListing component in fetch all jobListingr",
+          error
+        );
+      });
+    }
+    else if(auth?.userId && auth.role ==="JOB_SEEKER")
+    {
+      console.log("fetch all job application for particular job Seeker", id)
+      JobSeekerService.getJobSeekerById(id)
       .then((response) => {
         console.log(
           "respnse recieved from the APU in the List JobListing...",
@@ -69,10 +88,10 @@ export const ListJobApplication = () => {
     fetchAllJobApplication();
   }, []);
   return (
-    <div className="container overflow-auto">
+    <div className="h-full w-full container">
       {console.log("JobApplication Part Rendered ")}
       <h1 className="text-center text-zinc-100">JobApplications</h1>
-      {auth.role==="EMPLOYER"?null:<Link to="/addJobApplication" className="btn btn-primary mb-3">
+      {auth.role==="EMPLOYER"||auth.role==="JOB_SEEKER" ?null:<Link to="/addJobApplication" className="btn btn-primary mb-3">
         Add JobApplication
       </Link>}
       <table className="table table-bordered table-info table-striped">
@@ -93,28 +112,33 @@ export const ListJobApplication = () => {
               )}
               <td>{jobApplication.status}</td>
               <td>
-                <Link
-                  to={`/jobApplication/update/${jobApplication.jobApplicationId}`}
+              {auth?.role=="EMPLOYER"?<Link
+                  to={`/jobSeekerProfile/${jobApplication.jobApplicationId}`}
                   className="btn btn-success"
                 >
-                  update
-                </Link>
-                <br />
+                  delete
+                </Link>:null
+                  }
                 <button
-                  className="btn btn-danger"
+                  className=" bg-black text-zinc-100 w-20 rounded-md p-2"
                   onClick={() =>
                     deleteJobApplicationById(jobApplication.jobApplicationId)
                   }
                 >
-                  Delete
+                  Update
                 </button>
               </td>
-              <td><Link
+              <td>{auth?.role=="EMPLOYER"?<Link
                   to={`/jobSeekerProfile/${jobApplication.jobApplicationId}`}
                   className="btn btn-success"
                 >
                   JobSeeker
-                </Link></td>
+                </Link>:<Link
+                  to={`/jobProfile/${jobApplication.jobApplicationId}`}
+                  className="btn btn-success"
+                >
+                  Job
+                </Link>}</td>
             </tr>
           ))}
         </tbody>

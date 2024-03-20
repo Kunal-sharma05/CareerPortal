@@ -185,9 +185,9 @@ public class JobSeekerController {
         }
 
     }
-    @PutMapping("/addJobApplication/{id}")
-    public ResponseEntity<JobSeekerDTO> addJobApplication(@PathVariable Long id, @RequestBody JobApplicationDTO jobApplicationDTO) throws JobSeekerNotFoundException {
-    	JobSeekerDTO jobSeekerDTO= jobSeekerService.addJobApplication(id, jobApplicationDTO);
+    @PutMapping("/addJobApplication/{id}/{jobId}")
+    public ResponseEntity<JobSeekerDTO> addJobApplication(@PathVariable Long id,@PathVariable Long jobId, @RequestBody JobApplicationDTO jobApplicationDTO) throws JobSeekerNotFoundException {
+    	JobSeekerDTO jobSeekerDTO= jobSeekerService.addJobApplication(id, jobApplicationDTO, jobId);
         if(jobSeekerDTO!=null) {
         	return ResponseEntity.ok(jobSeekerDTO);
         }

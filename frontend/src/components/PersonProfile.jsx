@@ -33,6 +33,7 @@ export const PersonProfile = () => {
           setCompanyName(response.data.companyName);
           setMobileNo(response.data.mobileNo);
           setImage(response.data.image)
+          setEmail(response.data.email)
           console.log("state variable changed. ");
         })
         .catch((error) => {
@@ -58,7 +59,8 @@ export const PersonProfile = () => {
             <img src={`${image}`} alt=""  className=" w-40 h-40 object-cover rounded-full mt-4 border-2 border-zinc-100 "/>
             <div className=" text-zinc-800  p-2 bg-gradient-to-r from-rose-100 to-teal-100  -translate-y-5 text-l font-bold rounded-md mt-2 ">{fullName}</div>
             <div className="text-zinc-100 h-30 text-center  rounded-full">About:- {companyName} <br></br> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt odit repudiandae asperiores quia, illum quo, maiores veritatis vitae ea delectus qui cum placeat vero laudantium aut hic amet consectetur consequuntur? Repudiandae officia porro iste esse eveniet ex dignissimos perspiciatis corporis provident itaque nam eaque nisi placeat, quidem voluptas nostrum nihil!</div>
-            <div className="text-zinc-100 h-30 text-center">Contact:- {mobileNo} <br></br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos harum sit pariatur ipsum ut at officiis voluptatibus quaerat accusantium architecto labore possimus a debitis voluptate molestiae placeat delectus, explicabo hic repudiandae consequatur nemo! Mollitia architecto voluptates obcaecati, animi vitae labore.</div>
+            <div className="text-zinc-100 h-30 text-center">Mobile Number:- {mobileNo} </div>
+            <div className="text-zinc-100 h-30 text-center">Email:- {email} </div>
             <button onClick={handleUpdate} className=" bg-black rounded-md text-base font-semibold text-zinc-100 p-2">Update</button>
             <ListJobListing ></ListJobListing>
           </div>

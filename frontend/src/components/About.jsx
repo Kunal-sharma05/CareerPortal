@@ -7,7 +7,7 @@ export const About = ()=> {
   return (
     <div className="w-full h-full flex flex-col" >
       <Header/>
-      <div className="bg-gradient-to-r from-slate-900 via-red-900 to-slate-900 w-full h-full flex gap-5 ">
+      <div className="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 w-full h-full flex gap-5 ">
         <SideNav />
         <div id="scrollbar" className={`w-[80%] h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto scroll-m-0 `} style={{ scrollbarWidth: 'none'}}>   
         <div className=" text-zinc-100 p-8 text-center">

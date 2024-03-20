@@ -29,6 +29,7 @@ import { Profile } from '../Profile';
 import { RequireAuth } from '../RequireAuth';
 import { PersonProfile } from '../PersonProfile';
 import { JobApplications } from '../JobApplications';
+import { PersonProfileJobSeeker } from '../PersonProfileJobSeeker';
 export const Router = () => {
   return (
     <Routes>
@@ -63,9 +64,8 @@ export const Router = () => {
             <Route path='/jobSeekerProfile/:id' element={<JobSeekerProfile/>}/>
             <Route path='/CareerBlogs' element={<CareerBlogs/>}/>
             <Route path='/JobFairs' element={<JobFairs/>}/>
-            <Route path='/PostJob' element={<PostJob/>}/>
             <Route path='/register' element={<RegisterForm/>}/>
-            <Route path='/login' element={<LoginForm/>}/>
+            <Route path='/login' element={<Profile/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route element={<RequireAuth/>}>
             <Route path='/listEmployee' element={<ListEmployee/>}/>
@@ -75,6 +75,8 @@ export const Router = () => {
             <Route path='/jobApplication/:id' element={<ListJobApplication/>}/>
             <Route path='/jobApplications/:id' element={<JobApplications/>}/>
             <Route path='/PersonProfile/:id' element={<PersonProfile/>}/>
+            <Route path='/PersonProfileJobSeeker/:id' element={<PersonProfileJobSeeker/>}/>
+            <Route path='/PostJob' element={<PostJob/>}/>
             </Route>
           </Routes>
   )

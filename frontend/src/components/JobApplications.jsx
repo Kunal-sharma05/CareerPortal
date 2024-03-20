@@ -32,7 +32,7 @@ export const JobApplications = () => {
   };
   const fetchAllJobApplication = () => {
     console.log("Feth all JobApplications is fired");
-    if(auth?.userId)
+    if(auth?.userId && auth?.role==="EMPLOYER")
     {
       console.log("fetch all job application for particular job listing", id)
       JobListingService.jobApplications(id, auth)
@@ -68,18 +68,19 @@ export const JobApplications = () => {
     }
   };
   useEffect(() => {
-    console.log("use effect of user listing....");
+    console.log("use effect of user ....");
     fetchAllJobApplication();
   }, []);
   return (
-    <div className="h-full w-full ">
+    <div className="h-full w-full flex flex-col ">
       <Header/>
-      <div className="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 w-full h-full flex gap-5 ">
-      <SideNav className="w-[16%]"/>
-      <div className="w-[80%] container overflow-auto">
+      <div className="bg-gradient-to-r from-slate-900 via-purple-950  w-full h-full flex gap-5 ">
+      <SideNav />
+      <div className="w-[80%] h-[88%]">
+      <div className="w-[10%] container overflow-auto pl-[80%]">
       {console.log("JobApplication Part Rendered ")}
       <h1 className=" text-center" style={{color:"wheat"}}>JobApplications</h1>
-      {auth.role==="EMPLOYER"?null:<Link to="/addJobApplication" className="btn btn-primary mb-3">
+      {(auth?.role==="EMPLOYER"||auth?.role==="JOB_SEEKER")?null:<Link to="/addJobApplication" className="btn btn-primary mb-3">
         Add JobApplication
       </Link>}
       <table className="table table-bordered table-striped">
@@ -116,16 +117,22 @@ export const JobApplications = () => {
                   Delete
                 </button>
               </td>
-              <td><Link
+              <td>{auth?.role=="EMPLOYER"?<Link
                   to={`/jobSeekerProfile/${jobApplication.jobApplicationId}`}
                   className="btn btn-success"
                 >
                   JobSeeker
-                </Link></td>
+                </Link>:<Link
+                  to={`/jobProfile/${jobApplication.jobApplicationId}`}
+                  className="btn btn-success"
+                >
+                  Job
+                </Link>}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
       </div>
     </div>
     <Footer/>

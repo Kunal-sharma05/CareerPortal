@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import JobApplicationService from "../../services/JobApplicationService";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
 
 export const AddJobApplications = () => {
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
-  const { jobApplicationId } = useParams();
+  const {auth} = useContext(AuthContext)
+  const { id } = useParams();
   const changeTitle = () => {
-    if (jobApplicationId) {
+    if (id) {
       console.log("returned title  update jobApplication .id", {
-        jobApplicationId,
+        id,
       });
       return <h2 className="text-center">Update job Application</h2>;
     } else {
@@ -18,9 +20,9 @@ export const AddJobApplications = () => {
     }
   };
   const updateButton = () => {
-    if (jobApplicationId) {
+    if (id) {
       console.log("returned title  update jobApplication .id", {
-        jobApplicationId,
+        id,
       });
       return <h2 className="text-center">Update </h2>;
     } else {
@@ -32,11 +34,9 @@ export const AddJobApplications = () => {
   useEffect(() => {
     console.log("useEffect triggered.... ");
     console.log(
-      "id value obtained from url using useParams()",
-      jobApplicationId
-    );
-    if (jobApplicationId) {
-      JobApplicationService.getJobApplicationById(jobApplicationId)
+      "id value obtained from url using useParams()",id);
+    if (id) {
+      JobApplicationService.getJobApplicationById(id)
         .then((response) => {
           console.log(
             "Response recieved from getbyid API",
@@ -55,16 +55,20 @@ export const AddJobApplications = () => {
     //let emailId=email;
     const jobApplication = { status };
     console.log("JobApplication feed from home:", jobApplication);
-    if (jobApplicationId) {
+    if (id) {
       JobApplicationService.updateJobApplicationById(
-        jobApplicationId,
+        id,
         jobApplication
       )
         .then((response) => {
           console.log(
             "response recieved from saved API..." + JSON.stringify(response)
           );
-          navigate("/jobApplication");
+          if(auth?.role==="JOB_SEEKER" && auth?.role==="ADMIN" )
+          navigate(`/jobApplication`);
+        else{
+          navigate(`/PersonProfile/${auth?.dto?.employer?.employerId}`);
+        }
         })
         .catch((error) => {
           console.log("error recieved from saved API...", error);

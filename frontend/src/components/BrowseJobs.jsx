@@ -58,7 +58,7 @@ export const BrowseJobs = () => {
           <Search handleClick={handleSearchButton} />
           <div
             id="scrollbar"
-            className={`w-full h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto scroll-m-0 `}
+            className={`w-full h-[98%] flex gap-5 flex-wrap mt-2 overflow-auto scroll-m-0 p-2 `}
             style={{ scrollbarWidth: "none" }}
           >
             {searchResults?.length > 0

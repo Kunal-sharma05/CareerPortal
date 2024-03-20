@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import EmployerService from "../../services/EmployerService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {AuthContext} from "../context/AuthProvider";
+import { Header } from "../Header";
+import { Footer } from "../Footer";
+import { SideNav } from "../templates/SideNav";
 
 export const AddEmployer = () => {
   const {auth,setAuth} = useContext(AuthContext)
@@ -81,9 +84,10 @@ export const AddEmployer = () => {
           console.log(
             "response recieved from saved API..." + JSON.stringify(response)
           );
-          navigate("/PersonProfile");
+          navigate(`/PersonProfile/${auth?.dto?.employer?.employerId}`);
         })
         .catch((error) => {
+          alert(" email duplicate unsucessfull")
           console.log("error recieved from saved API...", error);
         });
     }
@@ -104,8 +108,12 @@ export const AddEmployer = () => {
 
   return (
     <div>
+      <Header/>
       {console.log("Application Rendered.. ")}
-      <div className="container ">
+      <div className="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 w-full h-full flex gap-5 ">
+      <SideNav/>
+      <div className="w-[80%] h-[88%]">
+      <div className=" container ">
         <div className="card col-md-6 offset-md-3 bg-gradient-to-r from-rose-100 to-teal-100">
           {changeTitle()}
           <div className="card-body">
@@ -198,8 +206,11 @@ export const AddEmployer = () => {
               </Link>
             </form>
           </div>
+          </div>
         </div>
       </div>
+      </div>
+      <Footer/>
     </div>
   );
 };

@@ -23,7 +23,7 @@ public interface JobSeekerService {
 	public JobSeekerDTO updateJobSeeker(Long id, JobSeekerDTO jobSeekerDto);
 	public JobSeekerDTO updateMobileNo(Long id, String mobileNo);
 	public List<JobSeekerDTO> findByProfessionalDetailsOrEducationDetailContaining(String details);
-	JobSeekerDTO addJobApplication(Long jobSeekerId, JobApplicationDTO jobApplicationDto);
+	JobSeekerDTO addJobApplication(Long jobSeekerId, JobApplicationDTO jobApplicationDto,Long jobId);
 	JobSeekerDTO addResume(Long jobSeekerId, ResumeDTO ResumeDto);
 
 	

@@ -20,6 +20,7 @@ import com.hexa.CareerPortal.entity.JobApplication;
 import com.hexa.CareerPortal.entity.JobListing;
 import com.hexa.CareerPortal.entity.JobSeeker;
 import com.hexa.CareerPortal.entity.Resume;
+import com.hexa.CareerPortal.repository.JobListingRepository;
 import com.hexa.CareerPortal.repository.JobSeekerRepository;
 import com.hexa.CareerPortal.service.JobSeekerService;
 
@@ -30,6 +31,8 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	private ModelMapper modelMapper;
 	@Autowired
 	private JobSeekerRepository jobSeekerRepository;
+	@Autowired
+	private JobListingRepository jobListingRepository;
 	public JobSeekerServiceImpl(JobSeekerRepository jobSeekerRepository) 
 	{
 		super();
@@ -183,22 +186,33 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		List<JobSeekerDTO> jobSeekerDTO=jobSeeker.stream().map(js->modelMapper.map(js, JobSeekerDTO.class)).collect(Collectors.toList());
 		return jobSeekerDTO;
 	}
-	@Override
-	public JobSeekerDTO addJobApplication(Long jobSeekerId, JobApplicationDTO jobApplicationDto) {
-		Optional<JobSeeker> optionalJobSeeker = jobSeekerRepository.findById(jobSeekerId);
-	    JobSeekerDTO updatedJobSeekerDTO=null;
-	    if (optionalJobSeeker.isPresent())
-	    {
+	public JobSeekerDTO addJobApplication(Long jobSeekerId, JobApplicationDTO jobApplicationDto, Long jobId) {
+	    Optional<JobSeeker> optionalJobSeeker = jobSeekerRepository.findById(jobSeekerId);
+	    JobListing jobListing = jobListingRepository.findById(jobId).orElse(null);
+	    JobSeekerDTO updatedJobSeekerDTO = null;
+	    
+	    if (optionalJobSeeker.isPresent() && jobListing != null) {
 	        JobSeeker existingJobSeeker = optionalJobSeeker.get();
-	        List<JobApplication> list = existingJobSeeker.getJobApplication();
-	        JobApplication jobApplication=modelMapper.map(jobApplicationDto, JobApplication.class);
-	        list.add(jobApplication);
-	        existingJobSeeker.setJobApplication(list);
+	        JobApplication jobApplication = modelMapper.map(jobApplicationDto, JobApplication.class);
+	        
+	        // Update JobSeeker
+	        List<JobApplication> jobApplicationsForSeeker = existingJobSeeker.getJobApplication();
+	        jobApplicationsForSeeker.add(jobApplication);
+	        existingJobSeeker.setJobApplication(jobApplicationsForSeeker);
 	        JobSeeker updatedJobSeeker = jobSeekerRepository.save(existingJobSeeker);
-	        updatedJobSeekerDTO=modelMapper.map(updatedJobSeeker, JobSeekerDTO.class);
-	    } 
+	        
+	        // Update JobListing
+	        List<JobApplication> jobApplicationsForListing = jobListing.getJobApplication();
+	        jobApplicationsForListing.add(jobApplication);
+	        jobListing.setJobApplication(jobApplicationsForListing);
+	        jobListingRepository.save(jobListing);
+	        
+	        updatedJobSeekerDTO = modelMapper.map(updatedJobSeeker, JobSeekerDTO.class);
+	    }
+	    
 	    return updatedJobSeekerDTO;
 	}
+
 	@Override
 	public JobSeekerDTO addResume(Long jobSeekerId, ResumeDTO resumeDto) {
 		Optional<JobSeeker> optionalJobSeeker = jobSeekerRepository.findById(jobSeekerId);

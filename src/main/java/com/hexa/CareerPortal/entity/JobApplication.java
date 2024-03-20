@@ -50,7 +50,13 @@ public class JobApplication {
 		return status;
 	}
 	public void setStatus(Status status) {
+		if(status==null)
+		{
+			this.status=Status.PENDING;
+		}
+		else {
 		this.status = status;
+		}
 	}
 	public LocalDateTime getApplicationDate() {
 		return applicationDate;

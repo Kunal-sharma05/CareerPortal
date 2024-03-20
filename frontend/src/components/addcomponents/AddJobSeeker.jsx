@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import JobSeekerService from "../../services/JobSeekerService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { SideNav } from "../templates/SideNav";
+import { AuthContext } from "../context/AuthProvider";
 
 export const AddJobSeeker = () => {
   const [fullName, setFullName] = useState("");
@@ -13,6 +14,7 @@ export const AddJobSeeker = () => {
   const [image, setImage] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
+  const {auth} = useContext(AuthContext)
   const changeTitle = () => {
     if (id) {
       console.log("returned title  update job seeker .id", { id },educationDetail);
@@ -71,18 +73,38 @@ export const AddJobSeeker = () => {
     };
     console.log("JobSeeker feed from home:", jobSeeker);
     if (id) {
-      JobSeekerService.updateJobSeekerById(id, jobSeeker)
+      JobSeekerService.updateJobSeekerById(id, jobSeeker, auth)
         .then((response) => {
           console.log(
-            "response recieved from saved API...",response
+            "response recieved from saved API..." + JSON.stringify(response)
           );
+        if(auth.role==="ADMIN")
           navigate("/jobSeeker");
+        else
+        navigate(`/PersonProfileJobSeeker/${id}`)
         })
         .catch((error) => {
           console.log("error recieved from saved API...", error);
         });
-    } else {
-      JobSeekerService.addJobSeeker(jobSeeker)
+    } 
+    else if(auth?.userId){
+      console.log("auth inside add Job Seeker line 75", auth)
+      JobSeekerService.addProfile(auth?.userId, jobSeeker, auth)
+        .then((response) => {
+          console.log(
+            "response recieved from saved API..." + JSON.stringify(response)
+          );
+          const id = auth?.dto?.jobSeeker?.jobSeekerId
+          console.log("Entered id",id)
+          navigate(`/PersonProfileJobSeekerId/${id}`);
+        })
+        .catch((error) => {
+          console.log("error recieved from saved API...", error);
+        });
+    }
+    else {
+      console.log("access token", auth)
+      JobSeekerService.addJobSeeker(jobSeeker,auth)
         .then((response) => {
           console.log(
             "response recieved from saved API..." + JSON.stringify(response)

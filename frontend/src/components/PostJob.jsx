@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Header } from "./Header";
 import { SideNav } from "./templates/SideNav";
 import { Footer } from "./Footer";
 import { AddJobListing } from "./addcomponents/AddJobListing";
+import { AuthContext } from "./context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export const PostJob = () => {
   return (
