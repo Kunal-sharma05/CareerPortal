@@ -10,7 +10,6 @@ import { AuthContext } from "./context/AuthProvider";
 
 export const JobProfile = () => {
   document.title = "CareerCrafter | Job profile";
-  
   const [requirements, setRequirements] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
@@ -46,11 +45,11 @@ export const JobProfile = () => {
     const Id = auth?.dto?.jobSeeker?.jobSeekerId
     console.log("jobSeekerId",Id )
     setStatus("PENDING")
-    const jobApplication ={ "status":status };
+    const jobApplication ={ "status":status, "id":id };
     JobSeekerService.addJobApplication(Id,jobApplication,id)
     .then((response) => {
       console.log(
-        
+
         "response recieved from the API in the List JobApplication component...",
         JSON.stringify(response.data)
       );

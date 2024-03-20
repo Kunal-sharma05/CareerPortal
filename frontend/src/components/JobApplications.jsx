@@ -88,7 +88,7 @@ export const JobApplications = () => {
           <tr className="table-dark">
             <th>Status</th>
             <th>Actions</th>
-            <th>Application</th>
+            <th>jobSeeker</th>
           </tr>
         </thead>
         <tbody>
@@ -117,17 +117,7 @@ export const JobApplications = () => {
                   Delete
                 </button>
               </td>
-              <td>{auth?.role=="EMPLOYER"?<Link
-                  to={`/jobSeekerProfile/${jobApplication.jobApplicationId}`}
-                  className="btn btn-success"
-                >
-                  JobSeeker
-                </Link>:<Link
-                  to={`/jobProfile/${jobApplication.jobApplicationId}`}
-                  className="btn btn-success"
-                >
-                  Job
-                </Link>}</td>
+              <td>{jobApplication.jobSeekerId}</td>
             </tr>
           ))}
         </tbody>

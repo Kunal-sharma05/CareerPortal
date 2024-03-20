@@ -69,7 +69,7 @@ export const ListResume = () => {
     <div className="container">
       {console.log("List resume application rendered")}
       <h2 className="text-center text-zinc-200">Resume Data</h2>
-      {auth?.role==="JOB_SEEKER"?<Link to={`/resume/update/${auth?.dto.jobSeeker.jobSeekerId}`} className="btn btn-primary mb-3">
+      {auth?.role==="JOB_SEEKER"?<Link to={`/resume/update/${auth?.dto.jobSeeker.jobSeekerId}`} className="btn btn-primary mb-3 w-full">
         Post Resume
       </Link>:<Link to="/addResume" className="btn btn-primary mb-3">
         Add Resume

@@ -73,7 +73,7 @@ export const ListJobListing = () => {
     <div className="h-full w-full container">
       {console.log("JobListing Part Rendered ")}
       <h1 className="text-center bg-gradient-to-r from-rose-100 to-teal-100">Job Listings</h1>
-      {auth?.userId?<Link to={`/jobListing/update/${auth?.dto?.employer?.employerId}`} className="btn btn-primary mb-3">
+      {auth?.userId?<Link to={`/jobListing/update/${auth?.dto?.employer?.employerId}`} className=" justify-center btn btn-primary w-full">
         PostJobs
       </Link>:<Link to="/addJobListing" className="btn btn-primary mb-3">
         Add JobListing

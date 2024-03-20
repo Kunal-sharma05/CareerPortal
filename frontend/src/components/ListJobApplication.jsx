@@ -11,9 +11,9 @@ export const ListJobApplication = () => {
   const [jobApplicationArray, setJobApplicationArray] = useState([]);
   const {auth} = useContext(AuthContext)
   const { id } = useParams()
-  const deleteJobApplicationById = (id) => {
-    console.log("Delete JobApplication is fired.....");
-    JobApplicationService.deleteJobApplicationById(id)
+  const deleteJobApplicationById = (Id) => {
+    console.log("Delete JobApplication is fired.....", Id);
+    JobApplicationService.deleteJobApplicationById(Id)
       .then((response) => {
         console.log(
           "response recieved from the API in the List JobApplication component...",
@@ -91,7 +91,7 @@ export const ListJobApplication = () => {
     <div className="h-full w-full container">
       {console.log("JobApplication Part Rendered ")}
       <h1 className="text-center text-zinc-100">JobApplications</h1>
-      {auth.role==="EMPLOYER"||auth.role==="JOB_SEEKER" ?null:<Link to="/addJobApplication" className="btn btn-primary mb-3">
+      {auth.role==="EMPLOYER"||auth.role==="JOB_SEEKER" ?null:<Link to="/addJobApplication" className="btn btn-primary ">
         Add JobApplication
       </Link>}
       <table className="table table-bordered table-info table-striped">
@@ -99,7 +99,8 @@ export const ListJobApplication = () => {
           <tr className="table-dark">
             <th>Status</th>
             <th>Actions</th>
-            <th>Application</th>
+            {auth?.role==="EMPLOYER"?<th>Application</th>:null}
+            <th>jobId</th>
           </tr>
         </thead>
         <tbody>
@@ -112,23 +113,25 @@ export const ListJobApplication = () => {
               )}
               <td>{jobApplication.status}</td>
               <td>
-              {auth?.role=="EMPLOYER"?<Link
-                  to={`/jobSeekerProfile/${jobApplication.jobApplicationId}`}
+              <Link
+                  onClick={()=>deleteJobApplicationById(jobApplication.jobApplicationId)}
+                  to={`/PersonProfileJobSeeker/${auth?.dto?.jobSeeker?.jobSeekerId}`}
                   className="btn btn-success"
+                  
                 >
                   delete
-                </Link>:null
-                  }
-                <button
+                </Link> &nbsp; &nbsp;
+                {auth?.role==="EMPLOYER"?<button
                   className=" bg-black text-zinc-100 w-20 rounded-md p-2"
                   onClick={() =>
                     deleteJobApplicationById(jobApplication.jobApplicationId)
                   }
                 >
                   Update
-                </button>
+                </button>:null}
               </td>
-              <td>{auth?.role=="EMPLOYER"?<Link
+              <td>{jobApplication.id}</td>
+              {/* <td>{auth?.role=="EMPLOYER"?<Link
                   to={`/jobSeekerProfile/${jobApplication.jobApplicationId}`}
                   className="btn btn-success"
                 >
@@ -138,7 +141,7 @@ export const ListJobApplication = () => {
                   className="btn btn-success"
                 >
                   Job
-                </Link>}</td>
+                </Link>}</td> */}
             </tr>
           ))}
         </tbody>

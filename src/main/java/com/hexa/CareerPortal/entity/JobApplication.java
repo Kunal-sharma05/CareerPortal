@@ -28,6 +28,20 @@ public class JobApplication {
 	@UpdateTimestamp
 	@Column(name="application_updated_date")
 	private LocalDateTime applicationUpadtedDate;
+	private Long id;
+	private Long jobSeekerId;
+	public Long getJobSeekerId() {
+		return jobSeekerId;
+	}
+	public void setJobSeekerId(Long jobSeekerId) {
+		this.jobSeekerId = jobSeekerId;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public JobApplication() {
 		super();
 	}
@@ -70,15 +84,27 @@ public class JobApplication {
 	public void setApplicationUpadtedDate(LocalDateTime applicationUpadtedDate) {
 		this.applicationUpadtedDate = applicationUpadtedDate;
 	}
+	
+
 	@Override
 	public String toString() {
 		return "JobApplication [jobApplicationId=" + jobApplicationId + ", status=" + status + ", applicationDate="
-				+ applicationDate + ", applicationUpadtedDate=" + applicationUpadtedDate
-				+ "]";
+				+ applicationDate + ", applicationUpadtedDate=" + applicationUpadtedDate + ", id=" + id
+				+ ", jobSeekerId=" + jobSeekerId + "]";
 	}
 	public void setMobileNo(String mobileNo) {
 		
 		
+	}
+	public JobApplication(Long jobApplicationId, Status status, LocalDateTime applicationDate,
+			LocalDateTime applicationUpadtedDate, Long id, Long jobSeekerId) {
+		super();
+		this.jobApplicationId = jobApplicationId;
+		this.status = status;
+		this.applicationDate = applicationDate;
+		this.applicationUpadtedDate = applicationUpadtedDate;
+		this.id = id;
+		this.jobSeekerId = jobSeekerId;
 	}
 	
 	

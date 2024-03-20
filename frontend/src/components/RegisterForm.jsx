@@ -25,6 +25,7 @@ const RegisterForm = () => {
       try {
         await AuthService.postRegister(formData);
         alert('Registration successful!');
+        navigate("/profile")
       } catch (error) {
         if (error.response && error.response.data) {
           setErrors(error.response.data);
